@@ -8,16 +8,16 @@ class number
 {
 public:
 	number(string a) { num = a; };
-	string operator +(number b);
-	string operator -(number b);
-	string operator *(number b);
-	string operator /(number b);
-	friend string operator +(string a, string b);
-	friend string operator -(string a, string b);
-	friend string operator *(string a, string b);
-	friend string operator /(string a, string b);
-	friend string Exponential(string a, string b);//指數
-	friend string Factorial(string a, string b);//階乘
+	string operator +(number K);
+	string operator -(number K);
+	string operator *(number K);
+	string operator /(number K);
+	//friend string operator +(string a, string b);
+	//friend string operator -(string a, string b);
+	//friend string operator *(string a, string b);
+	//friend string operator /(string a, string b);
+	//friend string Exponential(string a, string b);//指數
+	//friend string Factorial(string a, string b);//階乘
 	string num;
 private:
 

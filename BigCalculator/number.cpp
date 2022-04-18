@@ -1,16 +1,608 @@
 #include "number.h"
 //////////////////////////
 //////////////////////////﹃﹃钡璶ノ += ┪ .append(str) 
-string operator +(string a, string b);
-string operator -(string a, string b);
-void addzero(string &num)//计干0
+
+void addzero(string &n)//计干0
 {
-	unsigned long long int it = num.find(".");
-	unsigned long long int need = 100-(num.length() - it - 1);
-	for (int i = 0; i < need; i++)
-		num += "0";
+	unsigned long long int it = n.find(".");
+	if (it != n.npos)
+	{
+		unsigned long long int need = 100 - (n.length() - it - 1);
+		for (int i = 0; i < need; i++)
+			n += "0";
+	}
 }
-string operator +(string a, string b)
+string number::operator +(number K)
+{
+	//耞a.b琌琌タ计
+	number a(num), b(K.num);
+	if (a.num[0] == '-')//a璽b璽 or a璽bタ
+	{
+		a.num = a.num.substr(1, a.num.length() - 1);//璽腹
+		    
+		return b - a;
+	}
+	if (b.num[0] == '-')//a+b-
+	{
+		b.num = b.num.substr(1, b.num.length() - 1);//璽腹
+		
+		
+		return a - b;
+	}
+	//耞a.b琌计┪俱计
+	unsigned long long int ait = a.num.find(".");
+	unsigned long long int bit = b.num.find(".");
+	bool checkDec = false;
+	if (ait != a.num.npos)//a琌计
+	{
+		checkDec = true;
+		if (bit == b.num.npos)//bぃ琌计干计翴㎝箂
+		{
+			b.num += ".";
+			for (int i = 1; i < a.num.length() - ait; i++)
+				b.num += "0";
+		}
+		//b琌计
+	}
+	else if (bit != b.num.npos)//b琌计
+	{
+		checkDec = true;
+		if (ait == a.num.npos)//aぃ琌计干计翴㎝箂
+		{
+			a.num += ".";
+			for (int i = 1; i < b.num.length() - bit; i++)
+				a.num += "0";
+		}
+		//a琌计
+	}
+
+	string ans = "";
+	int* numA, * numB, * numAns;//璸衡ノ皚
+	unsigned long long int len;
+	if (checkDec == true)//计
+	{	//絋粄计计
+		ait = a.num.find(".");
+		bit = b.num.find(".");
+		if (a.num.length() - ait > b.num.length() - bit)//a计计ゑbb干0
+		{
+			unsigned long long int zero = (a.num.length() - ait) - (b.num.length() - bit);
+			for (int i = 0; i < zero; i++)
+				b.num += "0";
+		}
+		else if (a.num.length() - ait < b.num.length() - bit)//a计计ゑbぶa干0
+		{
+			unsigned long long int zero = (b.num.length() - bit) - (a.num.length() - ait);
+			for (int i = 0; i < zero; i++)
+				a.num += "0";
+		}
+
+		string revA(a.num.rbegin(), a.num.rend()), revB(b.num.rbegin(), b.num.rend());//﹃は锣
+		 //俱计干玡竚0
+		if (revA.length() > revB.length())
+		{
+			int L = revA.length() - revB.length();
+			for (int i = 0; i < L; i++)
+				revB += "0";
+		}
+		else if (revA.length() < revB.length())
+		{
+			int L = revB.length() - revA.length();
+			for (int i = 0; i < L; i++)
+				revA += "0";
+		}
+
+		len = revA.length();
+		numA = new int[len];
+		numB = new int[len];
+		numAns = new int[len + 1];
+		ait = revA.find(".");
+		for (int i = 0; i < ait; i++)//﹃锣计(计场だ)
+		{
+			numA[i] = revA[i] - 48;
+			numB[i] = revB[i] - 48;
+		}
+		numA[ait] = 0;//计翴竚
+		numB[ait] = 0;
+		for (int i = ait + 1; i < len; i++)//﹃锣计(俱计场だ)
+		{
+			numA[i] = revA[i] - 48;
+			numB[i] = revB[i] - 48;
+		}
+
+		for (int i = 0; i < len + 1; i++)//氮皚耴箂
+			numAns[i] = 0;
+		//璸衡筁祘
+		int c = 0;
+		for (int i = 0; i < ait; i++)//计场だ璸衡
+		{
+			numAns[i] = numA[i] + numB[i] + c;
+			if (numAns[i] > 9)//秈
+			{
+				numAns[i] -= 10;
+				c = 1;
+			}
+			else
+				c = 0;
+		}
+		for (int i = ait + 1; i < len; i++)//俱计场だ璸衡
+		{
+			numAns[i] = numA[i] + numB[i] + c;
+			if (numAns[i] > 9)//秈
+			{
+				numAns[i] -= 10;
+				c = 1;
+			}
+			else
+				c = 0;
+		}
+		numAns[len] = c;//程蔼
+		if (numAns[len] == 0)//猭挡狦计⊿Τ禬筁a.b
+			len--;
+		//挡狦锣传﹃
+		for (int i = len; i > ait; i--)
+			ans += to_string(numAns[i]);
+		ans += ".";
+		for (int i = ait - 1; i >= 0; i--)
+			ans += to_string(numAns[i]);
+		addzero(ans);//计干0
+	}
+	else//俱计
+	{
+		string revA(a.num.rbegin(), a.num.rend()), revB(b.num.rbegin(), b.num.rend());//﹃は锣
+		 //俱计干玡竚0
+		if (revA.length() > revB.length())
+		{
+			int L = revA.length() - revB.length();
+			for (int i = 0; i < L; i++)
+			{
+				revB += "0";
+			}
+				
+		}
+		else if (revA.length() < revB.length())
+		{
+			int L = revB.length() - revA.length();
+			for (int i = 0; i < L; i++)
+			{
+				revA += "0";
+			}
+		}
+
+		len = revA.length();
+		numA = new int[len];
+		numB = new int[len];
+		numAns = new int[len + 1];
+		for (int i = 0; i < len; i++)//﹃锣计
+		{
+			numA[i] = revA[i] - 48;
+			numB[i] = revB[i] - 48;
+		}
+		for (int i = 0; i < len + 1; i++)//氮皚耴箂
+			numAns[i] = 0;
+		//璸衡筁祘
+		int c = 0;
+		for (int i = 0; i < len; i++)
+		{
+			numAns[i] = numA[i] + numB[i] + c;
+			if (numAns[i] > 9)//秈
+			{
+				numAns[i] -= 10;
+				c = 1;
+			}
+			else
+				c = 0;
+		}
+		numAns[len] = c;//程蔼
+		if (numAns[len] == 0)//猭挡狦计⊿Τ禬筁a.b
+			len--;
+		//挡狦锣传﹃
+		for (int i = len; i >= 0; i--)
+			ans += to_string(numAns[i]);
+	}
+	delete[]numA;
+	delete[]numB;
+	delete[]numAns;
+	return ans;
+};
+
+string number::operator -(number K)
+{
+	number a(num), b(K.num);
+//耞a.b琌琌タ计
+	if (b.num[0] == '-')//a-(-5)=a+5
+	{
+		b.num = b.num.substr(1, b.num.length() - 1);//璽腹
+		//number tmp1(num),tmp2(b.num);
+		return a + b;
+	}
+	if (a.num[0] == '-')//a璽bタ (-5)-b=-(5+b)
+	{
+		a.num = a.num.substr(1, a.num.length() - 1);//璽腹
+		//number tmp1(num),tmp2(b.num);
+		string temp = a + b;
+		string ans = "-";
+		ans.append(temp);
+		return ans;
+	}
+	//a.bㄢタ计搭
+	//耞a.b琌计┪俱计
+	unsigned long long int ait = a.num.find(".");
+	unsigned long long int bit = b.num.find(".");
+	bool checkDec = false;
+	if (ait != a.num.npos)//a琌计
+	{
+		checkDec = true;
+		if (bit == b.num.npos)//bぃ琌计干计翴㎝箂
+		{
+			b.num += ".";
+			for (int i = 1; i < a.num.length() - ait; i++)
+				b.num += "0";
+		}
+		//b琌计
+	}
+	else if (bit != b.num.npos)//b琌计
+	{
+		checkDec = true;
+		if (ait == a.num.npos)//aぃ琌计干计翴㎝箂
+		{
+			a.num += ".";
+			for (int i = 1; i < b.num.length() - bit; i++)
+				a.num += "0";
+		}
+		//a琌计
+	}
+
+	string ans = "";
+	int* numA, * numB, * numAns;//璸衡ノ皚
+	unsigned long long int len;
+	bool PN = true;//挡狦タ(t)璽(f)
+	if (checkDec == true)//计搭
+	{
+		//计计干0
+		ait = a.num.find(".");
+		bit = b.num.find(".");
+		if (a.num.length() - ait > b.num.length() - bit)//a计计ゑbb干0
+		{
+			unsigned long long int zero = (a.num.length() - ait) - (b.num.length() - bit);
+			for (int i = 0; i < zero; i++)
+				b.num += "0";
+		}
+		else if (a.num.length() - ait < b.num.length() - bit)//a计计ゑbぶa干0
+		{
+			unsigned long long int zero = (b.num.length() - bit) - (a.num.length() - ait);
+			for (int i = 0; i < zero; i++)
+				a.num += "0";
+		}
+		
+		//ゑ耕a,b
+		if (ait < bit)//a俱计计ゑb搭猭挡狦璽
+		{
+			PN = false;
+			string temp = a.num;//3-5ユ传-(5-3)
+			a.num = b.num;
+			b.num = temp;
+			unsigned long long int t = ait;
+			ait = bit;
+			bit = t;
+		}
+		else if (ait == bit)//俱计计硋计ゑ耕
+		{
+			bool tempCheck = false;//ゑ耕俱计
+			for (int i = 0; i < ait; i++)
+			{
+				if (a.num[i] > b.num[i])
+				{
+					tempCheck = true;
+					break;
+				}
+				if (a.num[i] < b.num[i])
+				{
+					PN = false;
+					string temp = a.num;//3-5ユ传-(5-3)
+					a.num = b.num;
+					b.num = temp;
+					unsigned long long int t = ait;
+					ait = bit;
+					bit = t;
+				}
+			}
+			if (PN == true && tempCheck==false)//俱计⊿ゑ耕ゑ耕计
+			{
+				for (int i = ait + 1; i < a.num.length(); i++)
+				{
+					if (a.num[i] > b.num[i])
+					{
+						tempCheck = true;
+						break;
+					}
+					if (a.num[i] < b.num[i])
+					{
+						tempCheck = true;
+						PN = false;
+						string temp = a.num;//3-5ユ传-(5-3)
+						a.num = b.num;
+						b.num = temp;
+						unsigned long long int t = ait;
+						ait = bit;
+						bit = t;
+					}
+				}
+				if (tempCheck == false)//⊿ゑ耕a=b
+				{
+					ans = "0.0";
+					addzero(ans);
+					return ans;
+				}
+			}
+		}
+
+		string revA(a.num.rbegin(), a.num.rend()), revB(b.num.rbegin(), b.num.rend());//﹃は锣
+		 //俱计干玡竚0
+		if (revA.length() > revB.length())
+		{
+			int L = revA.length() - revB.length();
+			for (int i = 0; i < L; i++)
+				revB += "0";
+		}
+		else if (revA.length() < revB.length())
+		{
+			int L = revB.length() - revA.length();
+			for (int i = 0; i < L; i++)
+				revA += "0";
+		}
+
+		len = revA.length();
+		numA = new int[len];
+		numB = new int[len];
+		numAns = new int[len];
+		ait = revA.find(".");
+		for (int i = 0; i < ait; i++)//﹃锣计(计场だ)
+		{
+			numA[i] = revA[i] - 48;
+			numB[i] = revB[i] - 48;
+		}
+		numA[ait] = 0;//计翴竚
+		numB[ait] = 0;
+		for (int i = ait + 1; i < len; i++)//﹃锣计(俱计场だ)
+		{
+			numA[i] = revA[i] - 48;
+			numB[i] = revB[i] - 48;
+		}
+
+		for (int i = 0; i < len; i++)//氮皚耴箂
+			numAns[i] = 0;
+		//璸衡筁祘
+		int c = 0;
+		for (int i = 0; i < ait; i++)//计场だ璸衡
+		{
+			numAns[i] = numA[i] - numB[i] - c;
+			if (numAns[i] < 0)//
+			{
+				numAns[i] += 10;
+				c = 1;
+			}
+			else
+				c = 0;
+		}
+		for (int i = ait + 1; i < len; i++)//俱计场だ璸衡
+		{
+			numAns[i] = numA[i] - numB[i] - c;
+			if (numAns[i] < 0)//
+			{
+				numAns[i] += 10;
+				c = 1;
+			}
+			else
+				c = 0;
+		}
+		while(len - 2 != ait && numAns[len - 1] == 0)//т程蔼ぃ0计玂痙俱计程ぶ计(134.1-134=000.1)
+			len--;
+		//挡狦锣传﹃
+		if (PN == false)//挡狦琌璽计璽腹
+			ans = "-";
+		for (int i = len - 1; i > ait; i--)
+			ans += to_string(numAns[i]);
+		ans += ".";
+		for (int i = ait - 1; i >= 0; i--)
+			ans += to_string(numAns[i]);
+		addzero(ans);
+	}
+	else//俱计搭
+	{
+		//ゑ耕a,b
+		if (a.num.length() < b.num.length())//a计ゑb搭猭挡狦璽
+		{
+			PN = false;
+			string temp = a.num;//3-5ユ传-(5-3)
+			a.num = b.num;
+			b.num = temp;
+		}
+		else if (a.num.length() == b.num.length())//计硋计ゑ耕
+		{
+			bool tempCheck = false;//ゑ耕俱计
+			for (int i = 0; i < a.num.length(); i++)
+			{
+				if (a.num[i] > b.num[i])
+				{
+					tempCheck = true;
+					break;
+				}
+				if (a.num[i] < b.num[i])
+				{
+					PN = false;
+					string temp = a.num;//3-5ユ传-(5-3)
+					a.num = b.num;
+					b.num = temp;
+					break;
+				}
+			}
+			if (PN == true && tempCheck == false)//⊿ゑ耕a=b
+				return "0";
+		}
+		string revA(a.num.rbegin(), a.num.rend()), revB(b.num.rbegin(), b.num.rend());//﹃は锣
+		 //俱计干玡竚0
+		if (revA.length() > revB.length())
+		{
+			int L = revA.length() - revB.length();
+			for (int i = 0; i < L; i++)
+				revB += "0";
+		}
+		else if (revA.length() < revB.length())
+		{
+			int L = revB.length() - revA.length();
+			for (int i = 0; i < L; i++)
+				revA += "0";
+		}
+
+		len = revA.length();
+		numA = new int[len];
+		numB = new int[len];
+		numAns = new int[len];
+		for (int i = 0; i < len; i++)//﹃锣计
+		{
+			numA[i] = revA[i] - 48;
+			numB[i] = revB[i] - 48;
+		}
+		for (int i = 0; i < len; i++)//氮皚耴箂
+			numAns[i] = 0;
+		//璸衡筁祘
+		int c = 0;
+		for (int i = 0; i < len; i++)
+		{
+			numAns[i] = numA[i] - numB[i] - c;
+			if (numAns[i] < 0)//秈
+			{
+				numAns[i] += 10;
+				c = 1;
+			}
+			else
+				c = 0;
+		}
+		while (len > 1 && numAns[len - 1] == 0)//т程蔼ぃ0计玂痙俱计程ぶ计(134-133=001)
+			len--;
+		//挡狦锣传﹃
+		if (PN == false)//挡狦琌璽计璽腹
+			ans = "-";
+		for (int i = len - 1; i >= 0; i--)
+			ans += to_string(numAns[i]);
+	}
+	delete[]numA;
+	delete[]numB;
+	delete[]numAns;
+	return ans;
+}
+
+string number::operator *(number K)
+{
+	number a(num), b(K.num);
+	bool PN = true;//挡狦タ(T)璽(F)
+	//耞a.bタ璽腹
+	if (a.num[0] == '-' && b.num[0] == '-')//a.b璽挡狦タ
+	{
+		a.num = a.num.substr(1, a.num.length() - 1);//璽腹
+		b.num = b.num.substr(1, b.num.length() - 1);//璽腹
+	}
+	else if (a.num[0] == '-')//a-b+
+	{
+		PN = false;
+		a.num = a.num.substr(1, a.num.length() - 1);//璽腹
+	}
+	else if (b.num[0] == '-')//a+b-
+	{
+		PN = false;
+		b.num = b.num.substr(1, b.num.length() - 1);//璽腹
+	}
+	//Чa.b礚タ璽腹
+	//耞a.b琌计┪俱计琌计碞р计翴埃魁计计
+	unsigned long long int ait = a.num.find(".");
+	unsigned long long int bit = b.num.find(".");
+	unsigned long long int countDec = 0;
+	bool checkDec = false;
+	if (ait != a.num.npos)//a琌计
+	{
+		checkDec = true;
+		countDec = countDec + a.num.length() - ait -1;
+		string temp = a.num.substr(ait + 1, a.num.length() - ait - 1);//计场だ
+		a.num = a.num.substr(0, ait);//俱计场だ
+		a.num.append(temp);
+	}
+	if (bit != b.num.npos)//b琌计
+	{
+		checkDec = true;
+		countDec = countDec + b.num.length() - bit - 1;
+		string temp = b.num.substr(bit + 1, b.num.length() - bit - 1);//计场だ
+		b.num = b.num.substr(0, bit);//俱计场だ
+		b.num.append(temp);
+	}
+
+	string ans = "";
+	int* numA, * numB, * numAns;//璸衡ノ皚
+	string revA(a.num.rbegin(), a.num.rend()), revB(b.num.rbegin(), b.num.rend());//﹃は锣
+	unsigned long long int len = revA.length() + revB.length();
+	numA = new int[revA.length()];
+	numB = new int[revB.length()];
+	numAns = new int[len];
+	for (int i = 0; i < revA.length(); i++)//﹃锣计
+		numA[i] = revA[i] - 48;
+
+	for (int i = 0; i < revB.length(); i++)//﹃锣计
+		numB[i] = revB[i] - 48;
+
+	for (int i = 0; i < len; i++)//氮皚耴箂
+		numAns[i] = 0;
+
+	//璸衡筁祘
+	int c = 0;
+	for (int i = 0; i < revA.length(); i++)
+	{
+		for (int j = 0; j < revB.length(); j++)
+		{
+			numAns[i + j] += numA[i] * numB[j];
+			if (numAns[i + j] > 9)
+			{
+				numAns[i + j + 1] += numAns[i + j] / 10;
+				numAns[i + j] %= 10;
+			}
+		}
+	}
+
+	//挡狦锣传﹃
+	while (len > 1 && numAns[len - 1] == 0)//т程蔼ぃ0计玂痙俱计程ぶ计(120*5=0600)
+		len--;
+
+	if (checkDec == true)//挡狦琌计计翴干
+	{
+		for (int i = 0; i <countDec; i++)//计
+			ans += to_string(numAns[i]);
+		ans += ".";
+		for (int i = countDec; i <len; i++)//俱计
+			ans += to_string(numAns[i]);
+		if (ans[ans.length() - 1] == '.')//俱计场だ0
+			ans += "0";
+		if (PN == false)//挡狦琌璽计璽腹
+			ans += "-";
+		reverse(ans.begin(), ans.end());
+		addzero(ans);
+	}
+	else//挡狦琌俱计钡锣传﹃
+	{
+		if (PN == false)//挡狦琌璽计璽腹
+			ans = "-";
+		for (int i = len - 1; i >= 0; i--)
+			ans += to_string(numAns[i]);
+	}
+	delete[]numA;
+	delete[]numB;
+	delete[]numAns;
+	return ans;
+}
+
+string number::operator /(number b)
+{
+
+}
+
+/*string operator +(string a, string b)
 {
 	//耞a.b琌琌タ计
 	if (a[0] == '-')//a璽b璽 or a璽bタ
@@ -190,8 +782,8 @@ string operator +(string a, string b)
 	delete[]numB;
 	delete[]numAns;
 	return ans;
-}
-string operator -(string a, string b)
+}*/
+/*string operator -(string a, string b)
 {
 	//耞a.b琌琌タ计
 	if (b[0] == '-')//a-(-5)=a+5
@@ -473,8 +1065,8 @@ string operator -(string a, string b)
 	delete[]numB;
 	delete[]numAns;
 	return ans;
-}
-string operator *(string a, string b)
+}*/
+/*string operator *(string a, string b)
 {
 	bool PN = true;//挡狦タ(T)璽(F)
 	//耞a.bタ璽腹
@@ -567,8 +1159,8 @@ string operator *(string a, string b)
 	delete[]numB;
 	delete[]numAns;
 	return ans;
-}
-string operator /(string a, string b)
+}*/
+/*string operator /(string a, string b)
 {
 	return "0";
 }
@@ -579,4 +1171,4 @@ string Exponential(string a, string b)//计
 string Factorial(string a, string b)//顶
 {
 	return "0";
-}
+}*/

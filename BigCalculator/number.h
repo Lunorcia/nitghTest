@@ -7,15 +7,19 @@ using namespace std;
 class number
 {
 public:
-	number(string a, string b) { numa = a; numb = b; };
+	number(string a) { num = a; };
+	string operator +(number b);
+	string operator -(number b);
+	string operator *(number b);
+	string operator /(number b);
 	friend string operator +(string a, string b);
 	friend string operator -(string a, string b);
 	friend string operator *(string a, string b);
 	friend string operator /(string a, string b);
 	friend string Exponential(string a, string b);//计
 	friend string Factorial(string a, string b);//顶
+	string num;
 private:
-	string numa;
-	string numb;
+
 };
-void addzero(string &num);//计干0
+void addzero(string &n);//计干0

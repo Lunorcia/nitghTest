@@ -142,8 +142,10 @@
     <None Include="..\..\..\物件導向\project\pro1\CPP程式設計題-大數計算機.pdf" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="divide.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="number.cpp" />
+    <ClCompile Include="測試檔案.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Decimal.h" />

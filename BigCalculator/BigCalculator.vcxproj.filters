@@ -26,6 +26,12 @@
     <ClCompile Include="number.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="測試檔案.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="divide.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="number.h">

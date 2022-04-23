@@ -1,129 +1,64 @@
 ﻿  divide.cpp
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(9,23): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(38,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(39,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(40,22): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(64,16): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(115,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(142,28): error C2374: 'ait': 重複定義; 多個初始設定
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(101): message : 請參閱 'ait' 的宣告
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(143,28): error C2374: 'bit': 重複定義; 多個初始設定
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(102): message : 請參閱 'bit' 的宣告
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(154,66): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(154,40): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(156,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(164,43): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(165,50): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(165,45): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(166,42): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(182,59): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(182,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(183,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(195,23): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(223,16): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(235,70): error C2059: 語法錯誤: ')'
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(236,13): error C2143: 語法錯誤: 遺漏 ';' (在 '{' 之前)
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(243,13): error C2181: 不合法的 else (沒有相符的 if)
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(257,58): error C2065: 'remainLen': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(263,54): error C2065: 'remainLen': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(280,24): error C2065: 'numAns': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(281,9): error C2065: 'len': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(283,9): error C2065: 'checkDec': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(283,21): warning C4805: '==': 作業中不安全的混用類型 'unknown-type' 和類型 'bool'
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(286,30): error C2065: 'numAns': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(288,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(289,30): error C2065: 'numAns': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(301,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(302,30): error C2065: 'numAns': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(304,13): error C2065: 'numA': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(304,17): error C2541: 'delete': 無法刪除不是指標的物件
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(305,13): error C2065: 'numB': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(305,17): error C2541: 'delete': 無法刪除不是指標的物件
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(306,13): error C2065: 'numAns': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(306,19): error C2541: 'delete': 無法刪除不是指標的物件
+C:\nitghTest\BigCalculator\divide.cpp(9,23): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\divide.cpp(38,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(39,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(40,22): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(64,16): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(115,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(146,66): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(146,40): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(148,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(156,43): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(157,50): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(157,45): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(158,42): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(175,59): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(175,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(176,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(188,23): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\divide.cpp(216,16): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\divide.cpp(245,35): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\divide.cpp(250,35): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\divide.cpp(279,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
   main.cpp
   number.cpp
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(95,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(96,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(97,24): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(106,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(127,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(142,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(145,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(172,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(173,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(174,24): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(199,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(311,16): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(311,29): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(355,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(356,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(357,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(366,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(387,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(403,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(406,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(423,22): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(458,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(459,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(460,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(486,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(525,60): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(525,34): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(526,27): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(533,60): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(533,34): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(534,27): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(544,19): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(545,20): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(548,20): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(556,20): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(558,21): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(578,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(591,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-  測試檔案.cpp
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(45,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(72,28): error C2374: 'ait': 重複定義; 多個初始設定
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(31): message : 請參閱 'ait' 的宣告
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(73,28): error C2374: 'bit': 重複定義; 多個初始設定
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(32): message : 請參閱 'bit' 的宣告
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(86,66): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(86,40): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(88,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(95,43): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(96,50): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(96,45): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(97,42): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(114,66): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(114,40): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(115,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(131,38): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(135,26): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(136,23): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(141,23): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(155,26): error C2062: 未預期的類型 'int'
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(155,38): warning C4552: '<': 未使用運算式結果
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(155,50): error C2065: 'iB': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(155,54): error C2059: 語法錯誤: ')'
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(157,13): error C2059: 語法錯誤: 'if'
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(158,13): error C2143: 語法錯誤: 遺漏 ';' (在 '{' 之前)
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(159,28): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(159,38): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(176,17): error C2065: 'iB': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(178,13): error C2181: 不合法的 else (沒有相符的 if)
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(178,38): error C2065: 'iB': 未宣告的識別項
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(187,5): error C2059: 語法錯誤: 'while'
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(190,5): error C2059: 語法錯誤: 'if'
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(191,5): error C2143: 語法錯誤: 遺漏 ';' (在 '{' 之前)
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(191,5): error C2447: '{': 遺漏函式標頭 (舊樣式型式清單?)
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(204,5): error C2059: 語法錯誤: 'else'
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(205,5): error C2143: 語法錯誤: 遺漏 ';' (在 '{' 之前)
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(205,5): error C2447: '{': 遺漏函式標頭 (舊樣式型式清單?)
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(211,5): error C2059: 語法錯誤: 'delete'
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(212,5): error C2059: 語法錯誤: 'delete'
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(213,5): error C2059: 語法錯誤: 'delete'
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(214,5): error C2059: 語法錯誤: 'return'
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(215,1): error C2059: 語法錯誤: '}'
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\測試檔案.cpp(215,1): error C2143: 語法錯誤: 遺漏 ';' (在 '}' 之前)
+C:\nitghTest\BigCalculator\number.cpp(95,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(96,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(97,24): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(106,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(127,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(142,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(145,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(172,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(173,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(174,24): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(199,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(311,16): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(311,29): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\number.cpp(355,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(356,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(357,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(366,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(387,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(403,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(406,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(423,22): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\number.cpp(458,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(459,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(460,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(486,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(525,60): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(525,34): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(526,27): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(533,60): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(533,34): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(534,27): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(544,19): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(545,20): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\number.cpp(548,20): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\number.cpp(556,20): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\number.cpp(558,21): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\number.cpp(578,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\number.cpp(591,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
   正在產生程式碼...
-C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\number.cpp(603): error C4716: 'number::operator/': 必須傳回值
+  BigCalculator.vcxproj -> C:\nitghTest\BigCalculator\Debug\BigCalculator.exe

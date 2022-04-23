@@ -597,10 +597,7 @@ string number::operator *(number K)
 	return ans;
 }
 
-string number::operator /(number K)
-{
 
-}
 
 /*string operator +(string a, string b)
 {

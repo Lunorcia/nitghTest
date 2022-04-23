@@ -1,2 +1,3 @@
 C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\Debug\BigCalculator.exe
 C:\Users\admin\nitghTest\BigCalculator\Debug\BigCalculator.exe
+C:\nitghTest\BigCalculator\Debug\BigCalculator.exe

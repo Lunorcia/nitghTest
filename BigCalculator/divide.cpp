@@ -129,23 +129,15 @@ string number::operator /(number K) {
             return ansforDOne;
         }
     }
-    //---------------------------------------------------------------
-
-    if (b.num == "10") {      // 埃10
-
-    }
-
-
 
     //Чa.b礚タ璽腹
     //耞a.b琌计┪俱计埃琌计碞р计翴埃魁计计
-    unsigned long long int ait = a.num.find(".");
-    unsigned long long int bit = b.num.find(".");
+    ait = a.num.find(".");
+    bit = b.num.find(".");
     unsigned long long int countDec = 0;
     bool checkDecA = false;
     bool checkDecB = false;
     string decA = "0";//A计场だ
-
 
     if (bit != b.num.npos)//b琌计秸俱Θ俱计эa (1.555 / 0.05 = 155.5 / 5)
     {
@@ -168,6 +160,7 @@ string number::operator /(number K) {
             temp += ".";
             temp += a.num;//簿笆Ч计场だ
             a.num = temp;
+            addzero(a.num);
             ait = a.num.find(".");//穝癘魁a计翴竚
         }
         else//a琌俱计干0
@@ -219,7 +212,7 @@ string number::operator /(number K) {
             }
         }
     }
-    //numAnsIntは锣纗秈ans
+    //numAnsInt纗秈ans
     for (int i = ansLen - 1; i >= 0; i--)
     {
         ans += to_string(numAnsInt[i]);
@@ -258,39 +251,45 @@ string number::operator /(number K) {
                     ansDec += "0";
             }
         }
+        while(a.num[0]=='0'&&a.num.length()>1)//埃玡竚0 (00123>>123)
+            a.num = a.num.substr(1, a.num.length() - 1);
+
+        unsigned long long int ansDecLen = 1;//ans计计
+        while (intIsBiggerOrEqual(a.num, b.num))//砆埃计单埃计
+        {
+            a.num = subForDivide(a, b);//埃猭ノ虏て搭猭
+            //numAnsDec氮纗
+            numAnsDec[0]++;
+            if (numAnsDec[0] > 9)//ans秈
+            {
+                ansDecLen++;
+                for (int i = 0; i < ansDecLen; i++)
+                {
+                    if (numAnsDec[i] > 9)
+                    {
+                        numAnsDec[i] -= 10;
+                        numAnsDec[i + 1]++;
+                    }
+                    else //ぃ穦秈
+                        break;
+                }
+            }
+        }
+        //numAnsDec纗秈ansDec(100)
+        for (int i = ansDecLen - 1; i >= 0 && ansDec.length() < 100; i--)
+        {
+            ansDec += to_string(numAnsDec[i]);
+        }
+        ans += ansDec;
     }
-
-
-
-    //4.20------------------------------------
-
-    //挡狦锣传﹃
-    while (lena > 1 && numAns[lena - 1] == 0)//т程蔼ぃ0计玂痙俱计程ぶ计(120*5=0600)
-        len--;
-
-    if (checkDec == true)//挡狦琌计计翴干
+    if (PN == false)
     {
-        for (int i = 0; i < countDec; i++)//计
-            ans += to_string(numAns[i]);
-        ans += ".";
-        for (int i = countDec; i < lena; i++)//俱计
-            ans += to_string(numAns[i]);
-        if (ans[ans.length() - 1] == '.')//俱计场だ0
-            ans += "0";
-        if (PN == false)//挡狦琌璽计璽腹
-            ans += "-";
-        reverse(ans.begin(), ans.end());
-        addzero(ans);
+        string temp = "-";
+        temp += ans;
+        ans = temp;
     }
-    else//挡狦琌俱计钡锣传﹃
-    {
-        if (PN == false)//挡狦琌璽计璽腹
-            ans = "-";
-        for (int i = lena - 1; i >= 0; i--)
-            ans += to_string(numAns[i]);
-    }
-    delete[]numA;
-    delete[]numB;
-    delete[]numAns;
+
+    delete[]numAnsInt;
+    delete[]numAnsDec;
     return ans;
 }

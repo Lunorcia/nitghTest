@@ -203,7 +203,7 @@ string number::operator /(number K) {
             {
                 if (numAnsInt[i] > 9)
                 {
-                    if (numAnsInt[i + 1] == 0)
+                    if (numAnsInt[ansLen] == 0)
                         ansLen++;
                     numAnsInt[i] -= 10;
                     numAnsInt[i + 1]++;
@@ -268,7 +268,7 @@ string number::operator /(number K) {
                 {
                     if (numAnsDec[i] > 9)
                     {
-                        if(numAnsDec[i + 1]==0)
+                        if(numAnsDec[ansLen]==0)
                             ansDecLen++;
                         numAnsDec[i] -= 10;
                         numAnsDec[i + 1]++;

@@ -1,4 +1,74 @@
 #include "number.h"
+bool intIsBiggerOrEqual(string a, string b)
+{
+    if (a.length() > b.length())
+        return true;
+    if (a.length() < b.length())
+        return false;
+    //计
+    for (int i = 0; i < a.length(); i++)
+    {
+        if (a[i] > b[i])
+            return true;
+        if (a[i] < b[i])
+            return false;
+    }
+    //ゑ耕挡狦
+    return true;
+}
+
+string number::subForDivide(number a, number b)//倒埃猭ノ虏て搭猭
+{
+	//a.bㄢタ俱计搭a>=bans>=0
+    if (a.num == b.num)
+        return "0";
+
+	string ans = "";
+	int* numA, * numB, * numAns;//璸衡ノ皚
+    string revA(a.num.rbegin(), a.num.rend()), revB(b.num.rbegin(), b.num.rend());//﹃は锣
+     //俱计干玡竚0
+    if (revA.length() > revB.length())
+    {
+        int L = revA.length() - revB.length();
+        for (int i = 0; i < L; i++)
+            revB += "0";
+    }
+
+    unsigned long long int len = revA.length();
+    numA = new int[len];
+    numB = new int[len];
+    numAns = new int[len];
+    for (int i = 0; i < len; i++)//﹃锣计
+    {
+        numA[i] = revA[i] - 48;
+        numB[i] = revB[i] - 48;
+    }
+    for (int i = 0; i < len; i++)//氮皚耴箂
+        numAns[i] = 0;
+    //璸衡筁祘
+    int c = 0;
+    for (int i = 0; i < len; i++)
+    {
+        numAns[i] = numA[i] - numB[i] - c;
+        if (numAns[i] < 0)//秈
+        {
+            numAns[i] += 10;
+            c = 1;
+        }
+        else
+            c = 0;
+    }
+    while (len > 1 && numAns[len - 1] == 0)//т程蔼ぃ0计玂痙俱计程ぶ计(134-133=001)
+        len--;
+    //挡狦锣传﹃
+    for (int i = len - 1; i >= 0; i--)
+        ans += to_string(numAns[i]);
+
+	delete[]numA;
+	delete[]numB;
+	delete[]numAns;
+	return ans;
+}
 
 string number::operator /(number K) {
     number a(num), b(K.num);
@@ -74,10 +144,7 @@ string number::operator /(number K) {
     unsigned long long int countDec = 0;
     bool checkDecA = false;
     bool checkDecB = false;
-    string decA;//A计
-
-   // bool mk = 0;//夹癘'.'竚⊿ 1 0ゼ
-   // int pointWhere;  //'.'竚
+    string decA = "0";//A计场だ
 
 
     if (bit != b.num.npos)//b琌计秸俱Θ俱计эa (1.555 / 0.05 = 155.5 / 5)
@@ -93,6 +160,7 @@ string number::operator /(number K) {
 
         if (ait != a.num.npos)//a琌计
         {
+            addzero(a.num);//干0磷countDec秸俱禬筁﹍
             string temp = a.num.substr(0, ait);//俱计场だ
             string temp2 = a.num.substr(ait + 1, countDec);//璶簿笆计
             a.num = a.num.substr(ait + 1 + countDec, a.num.length() - (temp.length() + temp2.length() + 1));//a逞緇计
@@ -111,56 +179,86 @@ string number::operator /(number K) {
     if (ait != a.num.npos)//a琌计俱计㎝计╊秨
     {
         checkDecA = true;
-       // countDec = a.num.length() - ait - 1;     ///////////////>>>>>>>计计
-        decA = a.num.substr(ait + 1, a.num.length() - ait - 1);//////////////////a计场だ
+        decA = a.num.substr(ait + 1, a.num.length() - ait - 1);//a计场だ
         a.num = a.num.substr(0, ait);//a俱计场だ
-       // a.num.append(temp);//埃计翴a
     }
 
-    string ans = "";
+    string ans = "", ansDec = "";
     int* numAnsInt, * numAnsDec;//璸衡ノ皚
     //string revA(a.num.rbegin(), a.num.rend()), revB(b.num.rbegin(), b.num.rend());//﹃は锣
     unsigned long long int lena = a.num.length();
     unsigned long long int lenb = b.num.length(); //埃计碭计
-    if (checkDecA == true)//a琌计
-    {
-        numIntA = new int[a.num.length()];
-        numDecA = new int[decA.length()];
-        for (int i = 0; i < decA.length(); i++)//计氮皚耴箂
-            numAnsDec[i] = 0;
-        
-    }   
-    else//a琌俱计
-    {
-        numIntA = new int[a.num.length()];
-        numDecA = new int[1];
-    }
-    numB = new int[b.num.length()];
+
     numAnsInt = new int[a.num.length()];
     numAnsDec = new int[100];
 
-   /* for (int i = 0; i < a.num.length(); i++)//a俱计﹃锣计
-        numIntA[i] = a.num[i] - 48;
-    for (int i = 0; i < decA.length(); i++)//a计﹃锣计
-        numDecA[i] = decA[i] - 48;
-    for (int i = 0; i < b.num.length(); i++)//b﹃锣计
-        numB[i] = b.num[i] - 48;*/
     for (int i = 0; i < a.num.length(); i++)//俱计氮皚耴箂
         numAnsInt[i] = 0;
+    for (int i = 0; i < 100; i++)//计氮皚耴箂
+        numAnsDec[i] = 0;
 
     //璸衡筁祘
-
-    while (a.num >= b.num)//计﹃ゑ耕糶
+    unsigned long long int ansLen = 1;//ans俱计计
+    while (intIsBiggerOrEqual(a.num, b.num))//砆埃计单埃计
     {
-        string sub = a - b;
-        a.num = sub;
+        a.num = subForDivide(a, b);//埃猭ノ虏て搭猭
         //AnsInt氮纗
+        numAnsInt[0]++;
+        if (numAnsInt[0]>9)//ans秈
+        {
+            ansLen++;
+            for (int i = 0; i < ansLen; i++)
+            {
+                if (numAnsInt[i] > 9)
+                {
+                    numAnsInt[i] -= 10;
+                    numAnsInt[i + 1]++;
+                }
+                else //ぃ穦秈
+                    break;
+            }
+        }
     }
-
-
-
-
-
+    //numAnsIntは锣纗秈ans
+    for (int i = ansLen - 1; i >= 0; i--)
+    {
+        ans += to_string(numAnsInt[i]);
+    }
+    if (checkDecA == true || checkDecB == true)//惠璶璸衡计
+    {
+        ans += ".";
+        if (a.num != "0")//aΤ緇计
+        {
+            unsigned long long int remainLen = a.num.length();//緇计
+            a.num += decA;//緇计㎝计﹃钡
+            //计坝干玡竚0
+            if (!intIsBiggerOrEqual(a.num.substr(0, b.num.length()), b.num))//砆埃计(b计)埃计
+            {   //ex:(3.56/38=0.09干10) (450.123/46123=0.0097干20)
+                for (int i = 0; i < b.num.length() - remainLen; i++)
+                    ansDec += "0";
+            }
+            else//砆埃计(b计)单埃计
+            {   //ex: 450.123/45012=0.010干10(5-3-1)
+                for (int i = 0; i < b.num.length() - remainLen - 1; i++)
+                    ansDec += "0";
+            }
+        }
+        else//a礚緇计
+        {
+            a.num = decA;//a计场だ
+           //计坝干玡竚0
+            if (!intIsBiggerOrEqual(a.num.substr(0, b.num.length()), b.num))//砆埃计(b计)埃计
+            {   //ex: 0.345/35=0.009干20
+                for (int i = 0; i < b.num.length(); i++)
+                    ansDec += "0";
+            }
+            else//砆埃计(b计)单埃计
+            {   //ex: ex: 0.345/34=0.01干10
+                for (int i = 0; i < b.num.length() - 1; i++)
+                    ansDec += "0";
+            }
+        }
+    }
 
 
 

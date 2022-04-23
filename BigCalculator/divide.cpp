@@ -199,11 +199,12 @@ string number::operator /(number K) {
         numAnsInt[0]++;
         if (numAnsInt[0]>9)//ans進位
         {
-            ansLen++;
             for (int i = 0; i < ansLen; i++)
             {
                 if (numAnsInt[i] > 9)
                 {
+                    if (numAnsInt[i + 1] == 0)
+                        ansLen++;
                     numAnsInt[i] -= 10;
                     numAnsInt[i + 1]++;
                 }
@@ -262,11 +263,13 @@ string number::operator /(number K) {
             numAnsDec[0]++;
             if (numAnsDec[0] > 9)//ans進位
             {
-                ansDecLen++;
+                
                 for (int i = 0; i < ansDecLen; i++)
                 {
                     if (numAnsDec[i] > 9)
                     {
+                        if(numAnsDec[i + 1]==0)
+                            ansDecLen++;
                         numAnsDec[i] -= 10;
                         numAnsDec[i + 1]++;
                     }

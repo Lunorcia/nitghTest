@@ -190,6 +190,7 @@ string number::operator /(number K) {
         numAnsDec[i] = 0;
 
     //計算過程
+    unsigned long long int remainLen = 0;
     while (intIsBiggerOrEqual(a.num, b.num))//直式除法，取a前位數和b做減法 
     {
         int n = 0;//一次取n位數
@@ -200,23 +201,23 @@ string number::operator /(number K) {
             partA = a.num.substr(0, n);
         }
         remainA = a.num.substr(n, a.num.length() - n);
+        //取n位-前一次迴圈餘數位數 -1(除法一次可下放一位)=多借，商要補0
+        for (int i = 0; i < n - remainLen - 1; i++)
+            ans += '0';
+        //減法算商
         unsigned long long int quotient = 0;
-        while (intIsBiggerOrEqual(partA, b.num))//減法算商
+        while (intIsBiggerOrEqual(partA, b.num))
         {
             number tempA(partA);
             partA = subForDivide(tempA, b);
             quotient++;
         }
+        //餘數位數
         if (partA == "0")
-        {
-            for (int i = 0; i < n - 1; i++)//多取n位，商補0
-                ans += '0';
-        }
+            remainLen = 0;
         else
-        {
-            for (int i = 1; i < n - 1; i++)//多取n位，商補0
-                ans += '0';
-        }
+            remainLen = partA.length();
+        //商存入ans，修改a.num除完的數
         ans += to_string(quotient);
         a.num = partA + remainA;
         if (a.num[0] == '0' && a.num.length() > 1)//partA被整除的話去開頭0

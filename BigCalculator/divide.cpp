@@ -27,6 +27,41 @@ bool intIsBiggerOrEqual(string a, string b)
     return true;
 }
 
+bool checkForDivide(string a, string b)
+{
+    //(a.num.length()>=b.num.length() && a.num!="0")
+    //a的長度大於1但數字=0回傳true
+    //a長度=b長度時，a>b回傳true，a<b回傳false
+
+    //a的長度大於1但數字=0回傳true
+    if(a.length()>1)
+    {
+        bool allZeroTF = true;
+        for(int i =0; allZeroTF && i < a.length(); i++)
+        {
+            if(a[i]!='0')
+                allZeroTF = false;
+        }
+        if(allZeroTF)
+            return true;
+    }
+
+    // a長度=b長度時，a>b回傳true
+    if (a.length() == b.length())
+    {
+        for(int i = 0; i < a.length(); i++)
+        {
+            if (a[i] > b[i])
+            {
+                return true;
+            }
+            else if (a[i] < b[i])
+                return false;
+        }
+    }
+    return false;
+}
+
 string number::subForDivide(number a, number b)//給除法用的簡化版減法
 {
     //a.b為兩正整數相減，a>=b，ans>=0
@@ -161,6 +196,7 @@ string number::operator /(number K) {
 
         if (ait != a.num.npos)//a是小數
         {
+            checkDecA = true;
             addzero(a.num);//先補0避免countDec調整超過原始長度
             string temp = a.num.substr(0, ait);//整數部分
             string temp2 = a.num.substr(ait + 1, countDec);//要移動的小數位
@@ -176,32 +212,42 @@ string number::operator /(number K) {
         {
             for (int i = 0; i < countDec; i++)
                 a.num += '0';
+            a.num += ".0";
+            addzero(a.num);
+            ait = a.num.find(".");//重新記錄a小數點位置
+            checkDecA = true;
         }
     }
     if (ait != a.num.npos)//a是小數，整數和小數拆開
     {
         checkDecA = true;
+        addzero(a.num);
         decA = a.num.substr(ait + 1, a.num.length() - ait - 1);//a小數部分
         a.num = a.num.substr(0, ait);//a整數部分
     }
 
     string ans = "", ansDec = "";
-    int* numAnsInt, * numAnsDec;//計算用陣列
+    //int* numAnsInt, * numAnsDec;//計算用陣列
     //string revA(a.num.rbegin(), a.num.rend()), revB(b.num.rbegin(), b.num.rend());//字串反轉
     //unsigned long long int lena = a.num.length();
     //unsigned long long int lenb = b.num.length(); //除數的長度（幾位數）
 
-    numAnsInt = new int[a.num.length()];
-    numAnsDec = new int[100];
+    //numAnsInt = new int[a.num.length()];
+    //numAnsDec = new int[100];
 
-    for (int i = 0; i < a.num.length(); i++)//整數答案陣列歸零
-        numAnsInt[i] = 0;
-    for (int i = 0; i < 100; i++)//小數答案陣列歸零
-        numAnsDec[i] = 0;
+    //for (int i = 0; i < a.num.length(); i++)//整數答案陣列歸零
+    //    numAnsInt[i] = 0;
+    //for (int i = 0; i < 100; i++)//小數答案陣列歸零
+    //    numAnsDec[i] = 0;
 
     //計算過程
+    
+    //如果a(被除數)<b(除數)且a b皆為整數，則直接回傳0
+    if ((ait == a.num.npos) && (bit == b.num.npos) && !(intIsBiggerOrEqual(a.num, b.num)))
+        return "0";
+
     unsigned long long int remainLen = 0;
-    while (intIsBiggerOrEqual(a.num, b.num)|| a.num.length()>=b.num.length())//直式除法，取a前位數和b做減法 
+    while (intIsBiggerOrEqual(a.num, b.num) || checkForDivide(a.num, b.num))//直式除法，取a前位數和b做減法 
     {
         int n = 0;//一次取n位數
         string partA = "", remainA = "";
@@ -244,16 +290,14 @@ string number::operator /(number K) {
             quotient++;
         }
         //餘數位數
-
         if (partA == "0")
             remainLen = 0;
         else
         {
-            while (partA[0] == '0' && partA.length() > 1)//去ans開頭0(第一次迴圈商補0產生的)
+            while (partA[0] == '0' && partA.length() > 1)//去餘數多餘的0
                 partA = partA.substr(1, partA.length() - 1);
             remainLen = partA.length();
         }
-            
         //商存入ans，修改a.num除完的數
         ans += to_string(quotient);
         a.num = partA + remainA;
@@ -263,24 +307,33 @@ string number::operator /(number K) {
     while (ans[0] == '0' && ans.length() > 1)//去ans開頭0(第一次迴圈商補0產生的)
         ans = ans.substr(1, ans.length() - 1);
 
+        
     //--------------------------------------------------------------------------------------------------------------//
     //以下小數計算    
     if (checkDecA == true || checkDecB == true)//需要計算小數
     {
+        if (ans == "")
+            ans += "0";
         ans += ".";
+        
+        while (a.num[0] == '0' && a.num.length() > 1)//去a.num開頭0
+            a.num = a.num.substr(1, a.num.length() - 1);
+        cout << "before add zero,ans= " << ans << endl;
+        cout << "before add zero,a.num(dec)= " << a.num << endl;
+
         if (a.num != "0")//a有餘數
         {
-            unsigned long long int remainLen = a.num.length();//餘數長度
+            unsigned long long int reLen = a.num.length();//餘數長度
             a.num += decA;//餘數和小數串接
             //小數商補前置0
             if (!intIsBiggerOrEqual(a.num.substr(0, b.num.length()), b.num))//被除數(b位數)小於除數
             {   //ex:(3.56/38=0.09，補1個0) (450.123/46123=0.0097，補2個0)
-                for (int i = 0; i < b.num.length() - remainLen; i++)
+                for (int i = 0; i < b.num.length() - reLen; i++)
                     ansDec += "0";
             }
             else//被除數(b位數)大於等於除數
             {   //ex: 450.123/45012=0.010，補1個0(5-3-1)
-                for (int i = 0; i < b.num.length() - remainLen - 1; i++)
+                for (int i = 0; i < b.num.length() - reLen - 1; i++)
                     ansDec += "0";
             }
         }
@@ -302,7 +355,76 @@ string number::operator /(number K) {
         while (a.num[0] == '0' && a.num.length() > 1)//去除前置0 (00123>>123)
             a.num = a.num.substr(1, a.num.length() - 1);
 
-        unsigned long long int ansDecLen = 1;//ans小數位數長度
+        cout << "before counting dec,ans= " << ans << " ansDec(補0)= "<< ansDec << endl;
+        cout << "before counting dec,a.num(dec)= " << a.num << endl;
+
+        remainLen = 0;         
+        string tempAnsDec="";///////////////////////////答案計算完再跟ansDec合併 不然去前置0會錯
+
+        while (intIsBiggerOrEqual(a.num, b.num) || checkForDivide(a.num, b.num))//直式除法，取a前位數和b做減法 
+        {
+            //cout <<"now ans= " << a.num << endl;
+            int n = 0;//一次取n位數
+            string partA = "", remainA = "";
+            while (intIsBiggerOrEqual(b.num, partA) && b.num != partA && n < a.num.length())//b比partA大就再取一位數(&&排除b=a時多取一位)，當partA足夠被減時結束迴圈
+            {
+                n++;
+                partA = a.num.substr(0, n);
+            }
+            if (partA == a.num)//a取到結尾時
+            {
+                remainA = "";
+                bool allZeroTF = true;
+                for (int i = 0; i < partA.length(); i++)
+                {
+                    if (partA[i] != '0')
+                    {
+                        allZeroTF = false;
+                        break;
+                    }
+                }
+                if (allZeroTF)
+                {
+                    for (int i = 0; i < partA.length(); i++)
+                        tempAnsDec += '0';
+                    break;
+                }
+            }
+            else
+                remainA = a.num.substr(n, a.num.length() - n);
+
+            //取n位-前一次迴圈餘數位數 -1(除法一次可下放一位)=多借，商要補0
+            for (int i = 0; i < n - remainLen - 1; i++)
+                tempAnsDec += '0';
+            //減法算商
+            unsigned long long int quotient = 0;
+            while (intIsBiggerOrEqual(partA, b.num))
+            {
+                number tempA(partA);
+                partA = subForDivide(tempA, b);
+                quotient++;
+            }
+            //餘數位數
+
+            if (partA == "0")
+                remainLen = 0;
+            else
+            {
+                while (partA[0] == '0' && partA.length() > 1)//去餘數多餘的0
+                    partA = partA.substr(1, partA.length() - 1);
+                remainLen = partA.length();
+            }
+
+            //商存入ans，修改a.num除完的數
+            tempAnsDec += to_string(quotient);
+            a.num = partA + remainA;
+            if (a.num[0] == '0' && a.num.length() > 1)//partA被整除的話去開頭0
+                a.num = a.num.substr(1, a.num.length() - 1);
+        }
+        while (tempAnsDec[0] == '0' && tempAnsDec.length() > 1)//去tempAnsDec開頭0(第一次迴圈商補0產生的)
+            tempAnsDec = tempAnsDec.substr(1, tempAnsDec.length() - 1);
+        ansDec += tempAnsDec;//前置0和計算結果合併
+        /*unsigned long long int ansDecLen = 1;//ans小數位數長度
         while (intIsBiggerOrEqual(a.num, b.num))//被除數大於等於除數
         {
             a.num = subForDivide(a, b);//除法用的簡化版減法
@@ -324,12 +446,7 @@ string number::operator /(number K) {
                         break;
                 }
             }
-        }
-        //numAnsDec儲存進ansDec(只存100位)
-        for (int i = ansDecLen - 1; i >= 0 && ansDec.length() < 100; i--)
-        {
-            ansDec += to_string(numAnsDec[i]);
-        }
+        }*/
         ans += ansDec;
     }
     if (PN == false)
@@ -339,7 +456,7 @@ string number::operator /(number K) {
         ans = temp;
     }
 
-    delete[]numAnsInt;
-    delete[]numAnsDec;
+    //delete[]numAnsInt;
+    //delete[]numAnsDec;
     return ans;
 }

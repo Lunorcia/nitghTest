@@ -1,26 +1,29 @@
 ﻿  divide.cpp
-C:\nitghTest\BigCalculator\divide.cpp(19,23): warning C4018: '<': signed/unsigned 不相符
-C:\nitghTest\BigCalculator\divide.cpp(48,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(49,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(50,22): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(74,16): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(125,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(125,33): warning C4018: '<': signed/unsigned 不相符
-C:\nitghTest\BigCalculator\divide.cpp(155,66): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(155,40): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(157,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(165,43): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(166,50): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(166,45): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(167,42): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(184,59): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(184,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(185,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\nitghTest\BigCalculator\divide.cpp(197,23): warning C4018: '<': signed/unsigned 不相符
-C:\nitghTest\BigCalculator\divide.cpp(208,72): warning C4018: '<': signed/unsigned 不相符
-C:\nitghTest\BigCalculator\divide.cpp(217,31): warning C4018: '<': signed/unsigned 不相符
-C:\nitghTest\BigCalculator\divide.cpp(227,35): warning C4018: '<': signed/unsigned 不相符
-C:\nitghTest\BigCalculator\divide.cpp(318,35): warning C4018: '<': signed/unsigned 不相符
-C:\nitghTest\BigCalculator\divide.cpp(323,35): warning C4018: '<': signed/unsigned 不相符
-C:\nitghTest\BigCalculator\divide.cpp(354,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-  BigCalculator.vcxproj -> C:\nitghTest\BigCalculator\Debug\BigCalculator.exe
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(19,23): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(40,38): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(52,26): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(83,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(84,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(85,22): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(109,16): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(160,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(160,33): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(190,66): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(190,40): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(192,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(201,43): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(202,50): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(202,45): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(203,42): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(225,59): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(225,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(226,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(254,72): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(263,31): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(273,35): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(346,35): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(351,35): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(369,76): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(378,35): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\divide.cpp(388,39): warning C4018: '<': signed/unsigned 不相符
+  BigCalculator.vcxproj -> C:\Users\USER\Desktop\GIT\nighttest\BigCalculator\Debug\BigCalculator.exe

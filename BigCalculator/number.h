@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <vector>
 #include <cmath>
 #include <algorithm>
 using namespace std;
@@ -12,6 +13,7 @@ public:
 	string operator -(number K);
 	string operator *(number K);
 	string operator /(number K);
+	string operator ^(number K);
 	//friend string operator +(string a, string b);
 	//friend string operator -(string a, string b);
 	//friend string operator *(string a, string b);

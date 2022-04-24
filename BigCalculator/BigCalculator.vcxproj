@@ -144,7 +144,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="number.cpp" />
-    <ClCompile Include="測試檔案.cpp" />
+    <ClCompile Include="測試檔案.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Decimal.h" />

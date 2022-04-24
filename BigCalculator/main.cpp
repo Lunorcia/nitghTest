@@ -6,7 +6,8 @@ int main()
 	{
 		cin >> str2;
 		number num1(str1), num2(str2);
-		cout  << num1 * num2 << endl;//<< num1 + num2 << endl << num1 - num2 << endl
+		string ans = num1 ^ num2;
+		cout  << ans << endl;//<< num1 + num2 << endl << num1 - num2 << endl
 	}
 	
 }

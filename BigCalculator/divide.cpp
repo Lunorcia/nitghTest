@@ -218,6 +218,12 @@ string number::operator /(number K) {
             checkDecA = true;
         }
     }
+    if (b.num == "1")
+    {          //除以1
+        ansforDOne += a.num;
+        addzero(ansforDOne);
+        return ansforDOne;
+    }
     if (ait != a.num.npos)//a是小數，整數和小數拆開
     {
         checkDecA = true;
@@ -318,8 +324,8 @@ string number::operator /(number K) {
         
         while (a.num[0] == '0' && a.num.length() > 1)//去a.num開頭0
             a.num = a.num.substr(1, a.num.length() - 1);
-        cout << "before add zero,ans= " << ans << endl;
-        cout << "before add zero,a.num(dec)= " << a.num << endl;
+        //cout << "before add zero,ans= " << ans << endl;
+        //cout << "before add zero,a.num(dec)= " << a.num << endl;
 
         if (a.num != "0")//a有餘數
         {
@@ -352,15 +358,16 @@ string number::operator /(number K) {
                     ansDec += "0";
             }
         }
-        while (a.num[0] == '0' && a.num.length() > 1)//去除前置0 (00123>>123)
-            a.num = a.num.substr(1, a.num.length() - 1);
+        //while (a.num[0] == '0' && a.num.length() > 1)//去除前置0 (00123>>123)
+            //a.num = a.num.substr(1, a.num.length() - 1);
 
         cout << "before counting dec,ans= " << ans << " ansDec(補0)= "<< ansDec << endl;
         cout << "before counting dec,a.num(dec)= " << a.num << endl;
 
         remainLen = 0;         
         string tempAnsDec="";///////////////////////////答案計算完再跟ansDec合併 不然去前置0會錯
-
+        bool firstLoop = true;
+        int redundantZero=0;//第一次while迴圈會在商多補0，用來記錄需要去掉幾個0
         while (intIsBiggerOrEqual(a.num, b.num) || checkForDivide(a.num, b.num))//直式除法，取a前位數和b做減法 
         {
             //cout <<"now ans= " << a.num << endl;
@@ -392,7 +399,19 @@ string number::operator /(number K) {
             }
             else
                 remainA = a.num.substr(n, a.num.length() - n);
-
+            
+            if (firstLoop == true)//第一個while會在下一個for迴圈(商補0)補上不需要的0，紀錄完在離開迴圈後刪除多餘的0
+            {
+                redundantZero = n - remainLen;
+                for (int i = 0; i < partA.length(); i++)//(0.0001/10 >> 0001/10 >> 前面000不能記錄到多餘0)
+                {
+                    if (partA[i] == '0')
+                        redundantZero--;
+                    else
+                        break;
+                }
+                firstLoop = false;
+            }
             //取n位-前一次迴圈餘數位數 -1(除法一次可下放一位)=多借，商要補0
             for (int i = 0; i < n - remainLen - 1; i++)
                 tempAnsDec += '0';
@@ -421,8 +440,10 @@ string number::operator /(number K) {
             if (a.num[0] == '0' && a.num.length() > 1)//partA被整除的話去開頭0
                 a.num = a.num.substr(1, a.num.length() - 1);
         }
-        while (tempAnsDec[0] == '0' && tempAnsDec.length() > 1)//去tempAnsDec開頭0(第一次迴圈商補0產生的)
+        cout << "tempAnsDec=" << tempAnsDec<< endl;//<<" \nredundant=" << redundantZero 
+        for (int i = 0; i < redundantZero && tempAnsDec[0] == '0'; i++)//去tempAnsDec開頭0(第一次迴圈商補0產生的)
             tempAnsDec = tempAnsDec.substr(1, tempAnsDec.length() - 1);
+        cout << "tempAnsDec(removed)=" << tempAnsDec << endl;
         ansDec += tempAnsDec;//前置0和計算結果合併
         /*unsigned long long int ansDecLen = 1;//ans小數位數長度
         while (intIsBiggerOrEqual(a.num, b.num))//被除數大於等於除數

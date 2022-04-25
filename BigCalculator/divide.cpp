@@ -361,8 +361,8 @@ string number::operator /(number K) {
         //while (a.num[0] == '0' && a.num.length() > 1)//去除前置0 (00123>>123)
             //a.num = a.num.substr(1, a.num.length() - 1);
 
-        cout << "before counting dec,ans= " << ans << " ansDec(補0)= "<< ansDec << endl;
-        cout << "before counting dec,a.num(dec)= " << a.num << endl;
+        //cout << "before counting dec,ans= " << ans << " ansDec(補0)= "<< ansDec << endl;
+        //cout << "before counting dec,a.num(dec)= " << a.num << endl;
 
         remainLen = 0;         
         string tempAnsDec="";///////////////////////////答案計算完再跟ansDec合併 不然去前置0會錯
@@ -440,10 +440,10 @@ string number::operator /(number K) {
             if (a.num[0] == '0' && a.num.length() > 1)//partA被整除的話去開頭0
                 a.num = a.num.substr(1, a.num.length() - 1);
         }
-        cout << "tempAnsDec=" << tempAnsDec<< endl;//<<" \nredundant=" << redundantZero 
+
         for (int i = 0; i < redundantZero && tempAnsDec[0] == '0'; i++)//去tempAnsDec開頭0(第一次迴圈商補0產生的)
             tempAnsDec = tempAnsDec.substr(1, tempAnsDec.length() - 1);
-        cout << "tempAnsDec(removed)=" << tempAnsDec << endl;
+
         ansDec += tempAnsDec;//前置0和計算結果合併
         /*unsigned long long int ansDecLen = 1;//ans小數位數長度
         while (intIsBiggerOrEqual(a.num, b.num))//被除數大於等於除數

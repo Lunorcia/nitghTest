@@ -12,6 +12,33 @@ void addzero(string &n)//小數補0
 			n += "0";
 	}
 }
+bool isSquareRoot(number K)/*辨別是否為0.5的整數倍*/
+{ 
+	string tmp = K * number("2"); /*將K乘以2，可知K是不是0.5的整數倍，只要結果不是整數，回傳false*/
+	int decimalPoint = -1;
+	for (int i = 0; i < tmp.length(); i++) 
+	{
+		if (tmp[i] == '.') 
+		{
+			decimalPoint = i;
+		}
+	}
+	if (decimalPoint == -1) 
+	{
+		return true;
+	}
+	else if (decimalPoint != -1)
+	{
+		for (int i = decimalPoint + 1; i < tmp.length(); i++) 
+		{
+			if (tmp[i] != '0')
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+}
 string number::operator +(number K)
 {
 	//判斷a.b是否是正數
@@ -596,7 +623,128 @@ string number::operator *(number K)
 	delete[]numAns;
 	return ans;
 }
+string number::operator ^(number K) {
+	number a(num), b(K.num);
+	if (a.num[0] == '-' || b.num[0] == '-') { /*若底數或指數其中一個為負，回傳錯誤*/
+		return "input error";
+	}
+	else if (isSquareRoot(b) == false) { /*b不是0.5的整數倍，回傳錯誤*/
+		return "input error";
+	}
+	else if (b.num == "0") { /*a的0次方，回傳1*/
+		return "1";
+	}
+	/*以上都沒問題，開始計算*/
+	bool flag = false;
+	for (int i = 0; i < b.num.length(); i++) {
+		if (b.num[i] == '.') {
+			flag = true;
+		}
+	}
+	if (flag == false) {/*如果b不是小數，直接計算*/
+		number count("0");
+		number ans("1");
+		while (count - b != "0") {
+			ans.num = ans * a;
+			count.num = count + number("1");
+		}
+		return ans.num;
+	}
+	else { /*如果b為小數(0.5的整數倍)*/
+		vector<int> tmp; /*以小數點為中心，每兩個數字為一組*/
+		int dp = -1; /*紀錄a的小數點位置，dp = -1 代表沒有小數點*/
+		int result_dp = -1;  /*紀錄計算結果(result)的小數點位置*/
+		for (int i = 0; i < a.num.length(); i++) {
+			if (a.num[i] == '.') {
+				dp = i;
+			}
+		}
+		if (dp == -1) { /*整數*/
+			if (a.num.length() % 2 != 0) {/*奇數，在第一個位置補0，長度變成偶數*/
+				a.num.insert(0, 1, '0');
+			}
+			for (int i = 0; i < a.num.length(); i = i + 2) {
+				string n;
+				n.push_back(a.num[i]);
+				n.push_back(a.num[i + 1]);
+				tmp.push_back(stoi(n));
+			}
+			result_dp = tmp.size();
+			for (int i = 0; i < 100; i++) { /*開根號可能有小數，先預留100位小數*/
+				tmp.push_back(0);
+			}
+		}
+		else { /*小數*/
+			if (dp % 2 != 0) { /*小數點以前的數字長度為奇數，在第一個位置補0，長度變成偶數*/
+				a.num.insert(0, 1, '0');
+				dp++;
+			}
+			for (int i = 0; i < dp; i = i + 2) {  /*整數位兩兩一組*/
+				string n;
+				n.push_back(a.num[i]);
+				n.push_back(a.num[i + 1]);
+				tmp.push_back(stoi(n));
+			}
+			result_dp = tmp.size();
+			int decimal_len = a.num.length() - 1 - dp; /*decimal_len：小數點以後數字的長度*/
+			for (int i = 0; i < 200 - decimal_len; i++) { /*如果decimal_len為奇數，則補0到小數點後第200位*/
+				a.num.push_back('0');
+			}
+			for (int i = dp + 1; i < a.num.length(); i = i + 2) { /*小數位倆倆一組，分割後會儲存成100位*/
+				string n;
+				n.push_back(a.num[i]);
+				n.push_back(a.num[i + 1]);
+				tmp.push_back(stoi(n));
+			}
+		}
 
+		int guess = 0;
+		while (guess * guess <= tmp[0]) /*第一個數字開根號*/
+			guess++;
+		guess--;
+		number result(to_string(guess));/*result：紀錄開根號後的計算結果*/
+		int t = (tmp[0] - guess * guess) * 100 + tmp[1]; /*t：第一組數(tmp[0])和guess*guess的差，乘以100，再加下一組tmp[1]*/
+		number t_num(to_string(t)); /*t轉成number類別*/
+		number g("0");
+		while (number(t_num - number(number(number(result * number("20")) + g) * g)).num[0] != '-') { /*找最接近t_num的數字，結果記為g*/
+			g.num = g + number("1");
+		}
+		g.num = g - number("1");
+		for (int i = 2; i < tmp.size(); i++) { /*找最接近t_num的數字，結果記為g，並新增至result*/
+			t_num.num = number(number(t_num - number(number(number(result * number("20")) + g) * g)) * number("100")) + number(to_string(tmp[i])); /*新的t_num與上一個result相關，先計算*/
+			result.num.push_back(g.num[0]); /*紀錄新增的結果*/
+			g.num = "0";
+			while (number(t_num - number(number(number(result * number("20")) + g) * g)).num[0] != '-') {
+				g.num = g + number("1");
+			}
+			g.num = g - number("1");
+		}
+		result.num.insert(result_dp, "."); /*補小數點*/
+
+		if (b - number("0.5") != "0") {/*如果為1.5、2.5、3.5...，則另外計算，再與開根號結果相乘*/
+			number count("0");
+			number ans("1");
+			while ((count - number(b - number("0.5")))[0] != '0') {
+				ans.num = ans * a;
+				count.num = count + number("1");
+			}
+			result.num = result * ans;
+		}
+
+		for (int i = 0; i < result.num.length(); i++) { /*更新小數點位置*/
+			if (result.num[i] == '.') {
+				result_dp = i;
+			}
+		}
+		for (int i = result_dp + 1; i < result.num.length(); i++) { /*如果結果不為整數，則完整輸出*/
+			if (result.num[i] != '0') {
+				return result.num;
+			}
+		}
+		result.num.erase(result_dp, 101); /*如果結果為整數，則去除小數位*/
+		return result.num;
+	}
+}
 
 
 /*string operator +(string a, string b)

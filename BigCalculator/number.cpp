@@ -649,13 +649,14 @@ string number::operator ^(number K) {
 			}
 		}
 		a.num.erase(0, 1);
+		ait = a.num.find(".");
 	}
 	
 	if (b.num[0] == '-') {/*狦b璽计ぇ璶暗计笲衡*/
 		b_sign = false;
 	}
 
-	if (bit != b.num.npos && isSquareRoot(b) == true) {
+	if (bit != b.num.npos && isSquareRoot(b) == true) { /*狦b计b0.5俱计*/
 		for (int i = bit + 1; i < b.num.length(); i++) {
 			if (b.num[i] != '0') {
 				decimalDigitsAllZero = false;
@@ -668,7 +669,7 @@ string number::operator ^(number K) {
 			b_dp_change = true;
 		}
 	}
-	else if (isSquareRoot(b) == false) {
+	else if (isSquareRoot(b) == false) { /*狦bぃ0.5俱计*/
 		b.num.erase(b.num.begin() + bit, b.num.end());
 		bit = b.num.find(".");
 		b_dp_change = true;
@@ -700,19 +701,25 @@ string number::operator ^(number K) {
 		return ans.num;
 	}
 	else if (ait != a.num.npos && bit == b.num.npos) { /*┏计计计俱计挡狦莱计*/
+		/*for (int i = a.num.length() - 1; i > ait + 1; i--) {
+			if (a.num[i] == '0')
+		}*/
 		unsigned long long int aDecDigits = a.num.length() - 1 - ait;/*魁计翴计*/
 		a.num.erase(ait, 1);/*埃计翴*/
-		unsigned long long int ansDecDigits = 0;/*魁挡狦计翴计*/
-		if (b_sign == false) /*狦b璽计璽腹*/
-			b.num.erase(0, 1);
-		/*for (int i = 0; i < a.num.length() - 1; i++) {
+		long long int zero_num = 0;
+		for (int i = 0; i < a.num.length() - 1; i++) {
 			if (a.num[i] == '0') {
-				a.num.erase(a.num.begin() + i);
+				zero_num++;
 			}
 			else {
 				break;
 			}
-		}*/
+		}
+		a.num.erase(0, zero_num);
+		unsigned long long int ansDecDigits = 0;/*魁挡狦计翴计*/
+		if (b_sign == false) /*狦b璽计璽腹*/
+			b.num.erase(0, 1);
+		
 		number count("0");
 		number ans("1");
 		while (count - b != "0") {
@@ -720,6 +727,10 @@ string number::operator ^(number K) {
 			count.num = count + number("1");
 			ansDecDigits += aDecDigits;/*–Ω挡狦计翴计糤*/
 		}
+		if (zero_num != 0) {
+			/*盢0干*/
+		}
+		cout << ans.num << endl;
 		ans.num.insert(ans.num.end() - ansDecDigits, 1, '.');
 		if (ansDecDigits > 100)
 			ans.num.erase(ans.num.begin() + ans.num.find(".") + 101, ans.num.end());

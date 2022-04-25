@@ -14,6 +14,7 @@ public:
 	string operator *(number K);
 	string operator /(number K);
 	string operator ^(number K);
+	string subForDivide(number a, number b);//給除法用的簡化版減法
 	//friend string operator +(string a, string b);
 	//friend string operator -(string a, string b);
 	//friend string operator *(string a, string b);
@@ -25,3 +26,6 @@ private:
 
 };
 void addzero(string &n);//小數補0
+bool intIsBiggerOrEqual(string a, string b);
+bool checkForDivide(string a, string b);
+bool isSquareRoot(number K);

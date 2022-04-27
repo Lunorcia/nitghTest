@@ -4,7 +4,7 @@
 
 void addzero(string &n)//计干0
 {
-	unsigned long long int it = n.find(".");
+	long long int it = n.find(".");
 	if (it != n.npos)
 	{
 		long long int need = 100 - (n.length() - it - 1);
@@ -57,8 +57,8 @@ string number::operator +(number K)
 		return a - b;
 	}
 	//耞a.b琌计┪俱计
-	unsigned long long int ait = a.num.find(".");
-	unsigned long long int bit = b.num.find(".");
+	long long int ait = a.num.find(".");
+	long long int bit = b.num.find(".");
 	bool checkDec = false;
 	if (ait != a.num.npos)//a琌计
 	{
@@ -85,7 +85,7 @@ string number::operator +(number K)
 
 	string ans = "";
 	int* numA, * numB, * numAns;//璸衡ノ皚
-	unsigned long long int len;
+	long long int len;
 	if (checkDec == true)//计
 	{	//絋粄计计
 		ait = a.num.find(".");
@@ -253,8 +253,8 @@ string number::operator -(number K)
 	}
 	//a.bㄢタ计搭
 	//耞a.b琌计┪俱计
-	unsigned long long int ait = a.num.find(".");
-	unsigned long long int bit = b.num.find(".");
+	long long int ait = a.num.find(".");
+	long long int bit = b.num.find(".");
 	bool checkDec = false;
 	if (ait != a.num.npos)//a琌计
 	{
@@ -308,7 +308,7 @@ string number::operator -(number K)
 			string temp = a.num;//3-5ユ传-(5-3)
 			a.num = b.num;
 			b.num = temp;
-			unsigned long long int t = ait;
+			long long int t = ait;
 			ait = bit;
 			bit = t;
 		}
@@ -328,7 +328,7 @@ string number::operator -(number K)
 					string temp = a.num;//3-5ユ传-(5-3)
 					a.num = b.num;
 					b.num = temp;
-					unsigned long long int t = ait;
+					long long int t = ait;
 					ait = bit;
 					bit = t;
 				}
@@ -349,7 +349,7 @@ string number::operator -(number K)
 						string temp = a.num;//3-5ユ传-(5-3)
 						a.num = b.num;
 						b.num = temp;
-						unsigned long long int t = ait;
+						long long int t = ait;
 						ait = bit;
 						bit = t;
 					}
@@ -541,8 +541,8 @@ string number::operator *(number K)
 	}
 	//Чa.b礚タ璽腹
 	//耞a.b琌计┪俱计琌计碞р计翴埃魁计计
-	unsigned long long int ait = a.num.find(".");
-	unsigned long long int bit = b.num.find(".");
+	long long int ait = a.num.find(".");
+	long long int bit = b.num.find(".");
 	unsigned long long int countDec = 0;
 	bool checkDec = false;
 	if (ait != a.num.npos)//a琌计
@@ -623,77 +623,221 @@ string number::operator *(number K)
 	delete[]numAns;
 	return ans;
 }
-string number::operator ^(number K) {
+
+string number::operator ^(number K)
+{
 	number a(num), b(K.num);
-	if (a.num[0] == '-' || b.num[0] == '-') { /*璝┏计┪计ㄤい璽肚岿粇*/
-		return "input error";
+	long long int ait = a.num.find(".");
+	long long int bit = b.num.find(".");
+	bool a_sign = true;/*trueボタ计*/
+	bool b_sign = true;/*trueボタ计*/
+	bool decimalDigitsAllZero = true;
+	bool b_dp_change = false;
+
+	if (a.num[0] == '-') /*a璽玥沮b计案耞挡狦タ璽*/
+	{
+		if (bit != b.num.npos)/*狦b"Τ"计翴т计翴玡计*/
+		{
+			switch (b.num[bit - 1])
+			{
+			case '1': case '3': case '5': case '7': case '9':
+				a_sign = false;
+				break;
+			}
+		}
+		else if (bit == b.num.npos)  /*狦b"⊿Τ"计翴т程计*/
+		{
+			switch (b.num[b.num.length() - 1])
+			{
+			case '1': case '3': case '5': case '7': case '9':
+				a_sign = false;
+				break;
+			}
+		}
+		a.num.erase(0, 1);
+		ait = a.num.find(".");
 	}
-	else if (isSquareRoot(b) == false) { /*bぃ琌0.5俱计肚岿粇*/
-		return "input error";
+
+	if (b.num[0] == '-') /*狦b璽计ぇ璶暗计笲衡*/
+	{
+		b_sign = false;
 	}
-	else if (b.num == "0") { /*a0Ωよ肚1*/
-		return "1";
-	}
-	/*常⊿拜肈秨﹍璸衡*/
-	bool flag = false;
-	for (int i = 0; i < b.num.length(); i++) {
-		if (b.num[i] == '.') {
-			flag = true;
+
+	if (bit != b.num.npos && isSquareRoot(b) == true)/*狦b计b0.5俱计*/
+	{
+		for (int i = bit + 1; i < b.num.length(); i++)
+		{
+			if (b.num[i] != '0')
+			{
+				decimalDigitsAllZero = false;
+				break;
+			}
+		}
+		if (decimalDigitsAllZero == true)
+		{
+			b.num.erase(b.num.begin() + bit, b.num.end());
+			bit = b.num.find(".");
+			b_dp_change = true;
 		}
 	}
-	if (flag == false) {/*狦bぃ琌计钡璸衡*/
+	else if (isSquareRoot(b) == false)/*狦bぃ0.5俱计*/
+	{
+		b.num.erase(b.num.begin() + bit, b.num.end());
+		bit = b.num.find(".");
+		b_dp_change = true;
+	}
+
+	if (ait == a.num.npos && bit == b.num.npos)/*┏计㎝计俱计钡笲衡*/
+	{
+		if (b_sign == false) /*狦b璽计璽腹*/
+			b.num.erase(0, 1);
+		if (a.num == "0")
+		{
+			if (b.num != "1" && b.num != "-1")
+				return "0";
+			else if (b.num == "1" || b.num == "-1")
+				return "1";
+		}
 		number count("0");
 		number ans("1");
-		while (count - b != "0") {
+		while (count - b != "0")
+		{
 			ans.num = ans * a;
 			count.num = count + number("1");
 		}
+		if (b_dp_change == true)
+		{
+			ans.num.insert(ans.num.end(), 1, '.');
+			ans.num.insert(ans.num.end(), 100, '0');
+		}
+		if (b_sign == false)
+			ans.num = number("1") / ans;
+		if (a_sign == false && ans.num != "0")
+			ans.num.insert(0, 1, '-');
 		return ans.num;
 	}
-	else { /*狦b计(0.5俱计)*/
-		vector<int> tmp; /*计翴いみ–ㄢ计舱*/
-		int dp = -1; /*魁a计翴竚dp = -1 ⊿Τ计翴*/
-		int result_dp = -1;  /*魁璸衡挡狦(result)计翴竚*/
-		for (int i = 0; i < a.num.length(); i++) {
-			if (a.num[i] == '.') {
-				dp = i;
+	else if (ait != a.num.npos && bit == b.num.npos) /*┏计计计俱计挡狦莱计*/
+	{
+		/*for (int i = a.num.length() - 1; i > ait + 1; i--) {
+			if (a.num[i] == '0')
+		}*/
+		unsigned long long int aDecDigits = a.num.length() - 1 - ait;/*魁计翴计*/
+		a.num.erase(ait, 1);/*埃计翴*/
+		long long int zero_num = 0;
+		for (int i = 0; i < a.num.length() - 1; i++)
+		{
+			if (a.num[i] == '0')
+			{
+				zero_num++;
+			}
+			else
+			{
+				break;
 			}
 		}
-		if (dp == -1) { /*俱计*/
-			if (a.num.length() % 2 != 0) {/*计材竚干0跑Θ案计*/
-				a.num.insert(0, 1, '0');
+		a.num.erase(0, zero_num);
+		unsigned long long int ansDecDigits = 0;/*魁挡狦计翴计*/
+		if (b_sign == false) /*狦b璽计璽腹*/
+			b.num.erase(0, 1);
+
+		number count("0");
+		number ans("1");
+		while (count - b != "0")
+		{
+			ans.num = ans * a;
+			count.num = count + number("1");
+			ansDecDigits += aDecDigits;/*–Ω挡狦计翴计糤*/
+		}
+		if (zero_num != 0)
+		{
+			/*盢0干*/
+		}
+		cout << ans.num << endl;
+		ans.num.insert(ans.num.end() - ansDecDigits, 1, '.');
+		if (ansDecDigits > 100)
+			ans.num.erase(ans.num.begin() + ans.num.find(".") + 101, ans.num.end());
+		else if (ansDecDigits < 100)
+			for (int i = 0; i < 100 - ansDecDigits; i++)
+				ans.num += "0";
+		if (b_sign == false)
+			ans.num = number("1") / ans;
+		if (a_sign == false && ans.num != "0")
+			ans.num.insert(0, 1, '-');
+		if (ans.num.find(".") == 0)
+			ans.num.insert(0, 1, '0');
+		return ans.num;
+	}
+	else if (isSquareRoot(b) == true) /*狦b0.5俱计计*/
+	{
+		if (a.num == "0")
+		{
+			number result("0");
+			if (ait == a.num.npos || bit == b.num.npos)
+			{
+				result.num.insert(result.num.end(), 1, '.');
+				result.num.insert(result.num.end(), 100, '0');
 			}
-			for (int i = 0; i < a.num.length(); i = i + 2) {
+			return result.num;
+		}
+		unsigned long long int aDecDigits = 0;
+		ait = a.num.find(".");
+		if (ait != a.num.npos)
+		{
+			aDecDigits = a.num.length() - 1 - ait;/*魁a计翴计*/
+		}
+		unsigned long long int ansDecDigits = 0;/*魁挡狦计翴计*/
+		if (b_sign == false)/*狦b璽计璽腹*/
+		{
+			b.num.erase(0, 1);
+			bit = b.num.find(".");
+		}
+		vector<int> tmp; /*计翴いみ–ㄢ计舱*/
+		unsigned long long int result_dp;  /*魁璸衡挡狦(result)计翴竚*/
+		number _a(a.num);
+		if (ait == a.num.npos) /*俱计*/
+		{
+			if (_a.num.length() % 2 != 0) /*计材竚干0跑Θ案计*/
+			{
+				_a.num.insert(0, 1, '0');
+			}
+			for (int i = 0; i < _a.num.length(); i = i + 2)
+			{
 				string n;
-				n.push_back(a.num[i]);
-				n.push_back(a.num[i + 1]);
+				n.push_back(_a.num[i]);
+				n.push_back(_a.num[i + 1]);
 				tmp.push_back(stoi(n));
 			}
 			result_dp = tmp.size();
-			for (int i = 0; i < 100; i++) { /*秨腹Τ计箇痙100计*/
+			for (int i = 0; i < 100; i++) /*秨腹Τ计箇痙100计*/
+			{
 				tmp.push_back(0);
 			}
 		}
-		else { /*计*/
-			if (dp % 2 != 0) { /*计翴玡计计材竚干0跑Θ案计*/
-				a.num.insert(0, 1, '0');
-				dp++;
+		else/*计*/
+		{
+			if (ait % 2 != 0) /*计翴玡计计材竚干0跑Θ案计*/
+			{
+				_a.num.insert(0, 1, '0');
+				ait++;
 			}
-			for (int i = 0; i < dp; i = i + 2) {  /*俱计ㄢㄢ舱*/
+			for (int i = 0; i < ait; i = i + 2) /*俱计ㄢㄢ舱*/
+			{
 				string n;
-				n.push_back(a.num[i]);
-				n.push_back(a.num[i + 1]);
+				n.push_back(_a.num[i]);
+				n.push_back(_a.num[i + 1]);
 				tmp.push_back(stoi(n));
 			}
 			result_dp = tmp.size();
-			int decimal_len = a.num.length() - 1 - dp; /*decimal_len计翴计*/
-			for (int i = 0; i < 200 - decimal_len; i++) { /*狦decimal_len计玥干0计翴材200*/
-				a.num.push_back('0');
+			int decimal_len = _a.num.length() - 1 - ait; /*decimal_len计翴计*/
+			for (int i = 0; i < 200 - decimal_len; i++) /*狦decimal_len计玥干0计翴材200*/
+			{
+				_a.num.push_back('0');
 			}
-			for (int i = dp + 1; i < a.num.length(); i = i + 2) { /*计舱だ澄穦纗Θ100*/
+			for (int i = ait + 1; i < _a.num.length(); i = i + 2)  /*计舱だ澄穦纗Θ100*/
+			{
 				string n;
-				n.push_back(a.num[i]);
-				n.push_back(a.num[i + 1]);
+				n.push_back(_a.num[i]);
+				n.push_back(_a.num[i + 1]);
 				tmp.push_back(stoi(n));
 			}
 		}
@@ -710,7 +854,8 @@ string number::operator ^(number K) {
 			g.num = g + number("1");
 		}
 		g.num = g - number("1");
-		for (int i = 2; i < tmp.size(); i++) { /*т程钡t_num计挡狦癘g穝糤result*/
+		for (int i = 2; i < tmp.size(); i++)/*т程钡t_num计挡狦癘g穝糤result*/
+		{
 			t_num.num = number(number(t_num - number(number(number(result * number("20")) + g) * g)) * number("100")) + number(to_string(tmp[i])); /*穝t_num籔result闽璸衡*/
 			result.num.push_back(g.num[0]); /*魁穝糤挡狦*/
 			g.num = "0";
@@ -719,33 +864,37 @@ string number::operator ^(number K) {
 			}
 			g.num = g - number("1");
 		}
-		result.num.insert(result_dp, "."); /*干计翴*/
+		result.num.insert(result_dp, 1, '.');
 
-		if (b - number("0.5") != "0") {/*狦1.52.53.5...玥璸衡籔秨腹挡狦*/
-			number count("0");
+		ait = a.num.find(".");
+		if (ait != a.num.npos)
+		{
+			a.num.erase(ait, 1);/*埃计翴*/
+		}
+		b.num.erase(b.num.begin() + bit, b.num.end());
+		if (b.num != "0")
+		{
 			number ans("1");
-			while ((count - number(b - number("0.5")))[0] != '0') {
+			number count("0");
+			while (count - b != "0")
+			{
 				ans.num = ans * a;
 				count.num = count + number("1");
+				ansDecDigits += aDecDigits;/*–Ω挡狦计翴计糤*/
 			}
+			ans.num.insert(ans.num.end() - ansDecDigits, 1, '.'); /*临计翴竚*/
+			if (ansDecDigits > 100) /*计翴璝禬筁100玥埃禬筁场だ*/
+				ans.num.erase(ans.num.begin() + ans.num.find(".") + 101, ans.num.end());
+			long long int ansit = ans.num.find(".");
+			ansDecDigits = 100 + ans.num.length() - 1 - ansit;
+			result.num.erase(result_dp, 1);
+			ans.num.erase(ansit, 1);
 			result.num = result * ans;
+			result.num.insert(result.num.length() - ansDecDigits + 1, 1, '.');
 		}
 
-		for (int i = 0; i < result.num.length(); i++) { /*穝计翴竚*/
-			if (result.num[i] == '.') {
-				result_dp = i;
-			}
-		}
-		for (int i = result_dp + 1; i < result.num.length(); i++) { /*狦挡狦ぃ俱计玥Ч俱块*/
-			if (result.num[i] != '0') {
-				return result.num;
-			}
-		}
-		result.num.erase(result_dp, 101); /*狦挡狦俱计玥埃计*/
-		return result.num;
 	}
 }
-
 
 /*string operator +(string a, string b)
 {

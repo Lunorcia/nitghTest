@@ -7,7 +7,7 @@ void addzero(string &n)//¤p¼Æ¸É0
 	unsigned long long int it = n.find(".");
 	if (it != n.npos)
 	{
-		unsigned long long int need = 100 - (n.length() - it - 1);
+		long long int need = 100 - (n.length() - it - 1);
 		for (int i = 0; i < need; i++)
 			n += "0";
 	}

@@ -191,7 +191,7 @@ string number::operator /(number K) {
         countDec = temp.length();
         b.num = b.num.substr(0, bit);//整數部分
         b.num.append(temp);//去除小數點的b
-        while (b.num[0] == '0')//去除b的前置0 (005>>5)
+        while (b.num[0] == '0'&&b.num.length()>1)//去除b的前置0 (005>>5)
             b.num = b.num.substr(1, b.num.length() - 1);
 
         if (ait != a.num.npos)//a是小數
@@ -233,18 +233,6 @@ string number::operator /(number K) {
     }
 
     string ans = "", ansDec = "";
-    //int* numAnsInt, * numAnsDec;//計算用陣列
-    //string revA(a.num.rbegin(), a.num.rend()), revB(b.num.rbegin(), b.num.rend());//字串反轉
-    //unsigned long long int lena = a.num.length();
-    //unsigned long long int lenb = b.num.length(); //除數的長度（幾位數）
-
-    //numAnsInt = new int[a.num.length()];
-    //numAnsDec = new int[100];
-
-    //for (int i = 0; i < a.num.length(); i++)//整數答案陣列歸零
-    //    numAnsInt[i] = 0;
-    //for (int i = 0; i < 100; i++)//小數答案陣列歸零
-    //    numAnsDec[i] = 0;
 
     //計算過程
     
@@ -361,8 +349,6 @@ string number::operator /(number K) {
         //while (a.num[0] == '0' && a.num.length() > 1)//去除前置0 (00123>>123)
             //a.num = a.num.substr(1, a.num.length() - 1);
 
-        //cout << "before counting dec,ans= " << ans << " ansDec(補0)= "<< ansDec << endl;
-        //cout << "before counting dec,a.num(dec)= " << a.num << endl;
 
         remainLen = 0;         
         string tempAnsDec="";///////////////////////////答案計算完再跟ansDec合併 不然去前置0會錯
@@ -370,7 +356,6 @@ string number::operator /(number K) {
         int redundantZero=0;//第一次while迴圈會在商多補0，用來記錄需要去掉幾個0
         while (intIsBiggerOrEqual(a.num, b.num) || checkForDivide(a.num, b.num))//直式除法，取a前位數和b做減法 
         {
-            //cout <<"now ans= " << a.num << endl;
             int n = 0;//一次取n位數
             string partA = "", remainA = "";
             while (intIsBiggerOrEqual(b.num, partA) && b.num != partA && n < a.num.length())//b比partA大就再取一位數(&&排除b=a時多取一位)，當partA足夠被減時結束迴圈
@@ -445,29 +430,7 @@ string number::operator /(number K) {
             tempAnsDec = tempAnsDec.substr(1, tempAnsDec.length() - 1);
 
         ansDec += tempAnsDec;//前置0和計算結果合併
-        /*unsigned long long int ansDecLen = 1;//ans小數位數長度
-        while (intIsBiggerOrEqual(a.num, b.num))//被除數大於等於除數
-        {
-            a.num = subForDivide(a, b);//除法用的簡化版減法
-            //numAnsDec答案儲存
-            numAnsDec[0]++;
-            if (numAnsDec[0] > 9)//ans進位
-            {
-
-                for (int i = 0; i < ansDecLen; i++)
-                {
-                    if (numAnsDec[i] > 9)
-                    {
-                        if (numAnsDec[ansDecLen] == 0)
-                            ansDecLen++;
-                        numAnsDec[i] -= 10;
-                        numAnsDec[i + 1]++;
-                    }
-                    else //後面不會再進位
-                        break;
-                }
-            }
-        }*/
+       
         ans += ansDec;
     }
     if (PN == false)
@@ -476,8 +439,5 @@ string number::operator /(number K) {
         temp += ans;
         ans = temp;
     }
-
-    //delete[]numAnsInt;
-    //delete[]numAnsDec;
     return ans;
 }

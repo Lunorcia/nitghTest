@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  number.cpp
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(19,20): warning C4018: '<': signed/unsigned 不相符
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(32,36): warning C4018: '<': signed/unsigned 不相符
@@ -65,3 +66,7 @@ C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(41): warning C4715: 'isSquareRoot': 不是所有控制路徑都傳回值
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(927): warning C4715: 'number::operator^': 不是所有控制路徑都傳回值
   BigCalculator.vcxproj -> C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\Debug\BigCalculator.exe
+=======
+﻿  main.cpp
+  BigCalculator.vcxproj -> C:\Users\USER\Desktop\GIT\nitghTest\BigCalculator\Debug\BigCalculator.exe
+>>>>>>> b986d0b1c03fafcf2cdb2cc71fb51b92619a31a9

@@ -1,4 +1,35 @@
-﻿  number.cpp
+﻿  divide.cpp
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(19,23): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(40,38): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(52,26): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(83,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(84,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(85,22): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(109,16): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(160,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(160,33): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(190,66): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(190,40): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(192,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(201,43): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(202,50): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(202,45): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(203,42): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(231,59): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(231,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(232,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(260,72): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(269,31): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(279,35): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(352,35): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(357,35): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(376,76): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(385,35): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(395,39): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(405,35): warning C4244: '=': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(406,35): warning C4018: '<': signed/unsigned 不相符
+  main.cpp
+  number.cpp
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(19,20): warning C4018: '<': signed/unsigned 不相符
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(32,36): warning C4018: '<': signed/unsigned 不相符
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(122,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
@@ -62,6 +93,7 @@ C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(900,54): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(901,34): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(915,23): warning C4018: '<': signed/unsigned 不相符
+  正在產生程式碼...
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(41): warning C4715: 'isSquareRoot': 不是所有控制路徑都傳回值
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(927): warning C4715: 'number::operator^': 不是所有控制路徑都傳回值
   BigCalculator.vcxproj -> C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\Debug\BigCalculator.exe

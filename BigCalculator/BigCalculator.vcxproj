@@ -147,6 +147,7 @@
     <ClCompile Include="factorial.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="number.cpp" />
+    <ClCompile Include="string prevention.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Decimal.h" />

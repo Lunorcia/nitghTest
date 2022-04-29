@@ -6,6 +6,14 @@
 #include <algorithm>
 #include <sstream>
 using namespace std;
+bool checkValid(vector<string>& formula, string originInput);
+bool checkBracketAmount(const string& line);
+bool checkOperator(string line);
+bool checkDPs(const string& num);
+bool negativeRoot(const string& num);
+void mergePN(string& num);
+//bool convertPower(vector<string>& formula);
+void Compute(vector<string>& formula);
 class number
 {
 public:

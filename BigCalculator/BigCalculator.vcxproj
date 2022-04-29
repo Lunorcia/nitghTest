@@ -143,11 +143,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="abandoned code.cpp" />
+    <ClCompile Include="Decimal.cpp" />
     <ClCompile Include="divide.cpp" />
     <ClCompile Include="factorial.cpp" />
+    <ClCompile Include="Integer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="number.cpp" />
-    <ClCompile Include="string prevention.cpp" />
+    <ClCompile Include="prevention and compute.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Decimal.h" />

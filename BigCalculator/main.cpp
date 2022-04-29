@@ -1,13 +1,9 @@
 #include "number.h"
-bool checkBracketAmount(const string& line);
-bool checkOperator(string line);
-bool checkDPs(const string& num);
-bool negativeRoot(const string& num);
-void mergePN(string& num);
-bool convertPower(vector<string>& formula);
-void checkValidCompute(vector<string> formula);
+#include "Integer.h"
+#include "Decimal.h"
+
 int main()
-{	//次方功能還沒做>>Power(2,3)>>輸入整串不要空格，進計算用函式轉成
+{
 	string str1("a"), str2;
 	while (cin >> str1 && str1 != "-1")
 	{
@@ -22,7 +18,6 @@ int main()
 	string input;
 	while (getline(cin, input))
 	{
-		//先判斷有沒有關鍵字Set
 		
 		vector<string> formula;//儲存算式用
 		stringstream ss(input);
@@ -31,64 +26,90 @@ int main()
 			formula.push_back(tempss);
 		ss.str("");
 		ss.clear();
-
-		//如果vector size=1，代表尋找並輸出變數
-		//如果第二個字串是等號，最後結果只要assign，不用輸出
-
-		if (!checkBracketAmount(input))//檢查括號數
+		//先判斷有沒有關鍵字Set
+		//如果Set變數有計算(A=3+5-0.8)下面過程先算完，最後叫class Int/Dec(值，名)(儲存變數要先確定名字有沒有存在，已存在就修改值，沒有就存新的)
+		///////////////////class寫好的話要改成Integer temp(算式or單一值,名); cout<<temp;	值的計算在呼叫Integer時呼叫函式(下面這些步驟寫成global function)
+		bool setInt = false, setDec = false;
+		string variableName = "";
+		if (formula[0] == "Set" && formula.size()>4)
 		{
-			cout << "括號不完全" << endl;
-			continue;//讀下一個輸入算式
+			if (formula[1] == "Integer" && formula[3] == "=")
+			{
+				setInt = true;
+				variableName = formula[2];
+				formula.erase(formula.begin(), formula.begin() + 4);//去Set//去Integer//去變數//去等號
+			}
+			else if (formula[1] == "Decimal" && formula[3] == "=")
+			{
+				setDec = true;
+				variableName = formula[2];
+				formula.erase(formula.begin(), formula.begin() + 4);//去Set//去Decimal//去變數//去等號
+			}
+			else
+			{
+				cout << "輸入格式錯誤" << endl;
+				continue;//讀下一個輸入算式
+			}
 		}
-		if (!checkOperator(input))//檢查連續運算子
+		if (formula[1] == "=")		//如果第二個字串是等號，最後結果只要assign，不用輸出
 		{
-			cout << "不可連續輸入(正.負號.階乘)以外的運算子+-*/^" << endl;
-			continue;//讀下一個輸入算式
-		}
-		/////////////////////////////Power轉換後會需要重複用檢查的部分，之後獨立成一個函式
-		bool checkValid = true;
-		for (int i = 0; i < formula.size(); i++)
-		{
-			//Integer&Decimal變數照樣傳入
-			//移除前置0的處理寫到class number的construct裡，把字串存成數字時自動做
-			
-			string temp = formula[i];
-			if (temp == "(" || temp == ")" || temp == "+" || temp == "-" || temp == "*" || temp == "/" || temp == "!" || temp == "^" || temp.substr(0, 5) == "Power")//一般運算子不用處理
-				continue;
-			mergePN(temp);//正負號整合(如果有小數點沒有前置0也會補上)
-			if (temp == "WRONG_NAME")
+			string var = formula[0];
+			int pos = Integer::searchIntName(formula[0]);
+			if (pos != -1)//名字在Integer
+			{
+				setInt = true;
+				variableName = formula[0];
+				formula.erase(formula.begin(), formula.begin() + 2);//去變數//去等號
+			}
+			else if (Decimal::searchDecName(formula[0]) != -1)//名字在Decimal
+			{
+				setDec = true;
+				variableName = formula[0];
+				formula.erase(formula.begin(), formula.begin() + 2);//去變數//去等號
+			}
+			else
 			{
 				cout << "找不到變數" << endl;
-				checkValid = false;
-				break;
+				continue;//讀下一個輸入算式
 			}
-			if (!checkDPs(temp))//數字有複數個小數點
-			{
-				cout << "小數點輸入錯誤" << endl;
-				break;
-			}
+		}
 
-			formula[i] = temp;//檢測正確，把正負號整合完& Int or Dec的值結果存回取代
+		//assign前置結束，檢查算式
+		bool Valid = checkValid(formula,input);//檢查&修正&取代formula儲存的數字or變數，有違規輸入同時輸出警示
+		if (Valid == false)//輸入數字檢測不符規定
+			continue;//讀下一個輸入算式
+
+		////////////////算式計算/////////////////
+		Compute(formula);
+		string errorMessage = formula[0];
+		if (!isdigit(errorMessage[0]))//第一格存的是錯誤訊息
+		{
+			cout << errorMessage << endl;
+			continue; //讀下一個輸入算式
 		}
 		
-		if (checkValid == false)//輸入數字檢測不符規定
-			continue;//讀下一個輸入算式
-		checkValid = convertPower(formula);//轉換Power(a,b)>>a^b
-		if (!checkValid)
-		{
-			cout << "Power輸入錯誤" << endl;
-			continue;//讀下一個輸入算式
-		}
+		if (setInt == true)//結果assign就好不用輸出
+		{	//找變數存不存在
+			int pos = Integer::searchIntName(variableName);
+			if (pos != -1)//存在改值
+				Integer::setValue(formula[0], pos);
 
+			else//不存在，存新值
+				Integer temp(formula[0], variableName);//存入static list
+		}
+		else if (setDec == true)
+		{	//找變數存不存在
+			int pos = Decimal::searchDecName(variableName);
+			if (pos != -1)//存在改值
+				Decimal::setValue(formula[0], pos);
+
+			else//不存在，存新值
+				Decimal temp(formula[0], variableName);//存入static list
+		}
+		else//結果要輸出
+		{
+			cout << formula[0];
+		}
 	}
 
-	//防呆用函式是全域，直接傳入字串檢測
-	//Power(5, 2)
-	//拆解數字前防呆:括號數，連續運算符+-*/^
-	//拆解後單獨數字一律先進正負號整合,ex: +-+5 >> -5，然後進小數點數量確認(不管是不是小數)
-	//計算優先度:階乘>指數
-	//計算前(底線標示輸入算式的空格):	階乘不能是負數,ex:-5_!
-	//									除數不能是0,ex: 5_/_0	
-	//									負數不能開根號,ex: -2.5_^_0.5
-	//									指數計算前>>根號0=0
 }

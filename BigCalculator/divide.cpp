@@ -143,8 +143,8 @@ string number::operator /(number K) {
     if (PN == false)              //負數則+負號
         ansforDOne += '-';
 
-    unsigned long long int ait = a.num.find(".");
-    unsigned long long int bit = b.num.find(".");
+    long long int ait = a.num.find(".");
+    long long int bit = b.num.find(".");
     if (b.num == "1")
     {          //除以1
         ansforDOne += a.num;

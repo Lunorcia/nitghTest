@@ -35,7 +35,13 @@
     <ClCompile Include="factorial.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="string prevention.cpp">
+    <ClCompile Include="prevention and compute.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="Integer.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="Decimal.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>

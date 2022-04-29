@@ -815,7 +815,7 @@ string number::operator ^(number K) {
 				tmp.push_back(stoi(n));
 			}
 			resultit = tmp.size();
-			for (int i = 0; i < 100; i++) { /*秨腹Τ计箇痙100计*/
+			for (int i = 0; i < 101; i++) { /*秨腹Τ计箇痙100计*/
 				tmp.push_back(0);
 			}
 		}
@@ -832,7 +832,7 @@ string number::operator ^(number K) {
 			}
 			resultit = tmp.size();
 			int decimal_len = _a.num.length() - 1 - ait; /*decimal_len计翴计*/
-			for (int i = 0; i < 200 - decimal_len; i++) { /*狦decimal_len计玥干0计翴材200*/
+			for (int i = 0; i < 202 - decimal_len; i++) { /*狦decimal_len计玥干0计翴材200*/
 				_a.num.push_back('0');
 			}
 			for (int i = ait + 1; i < _a.num.length(); i = i + 2) { /*计舱だ澄穦纗Θ100*/

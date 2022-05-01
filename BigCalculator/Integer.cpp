@@ -116,20 +116,24 @@ Integer::Integer(string a, string setN) :number(a)//Τ㏑"穝"Int
 }
 Integer Integer::operator =(string a)//a琌计(虫ノㄓэthis计
 {
-	int pos = searchIntName(this->name);//˙эstatic
-	Integer temp(a);//р计暗矪瞶(玡竚0&计翴
-	this->numInt = temp.numInt;
-	numIntList[pos] = this->numInt;
+	if (this->name != "") {/*狦thisΤ*/
+		int pos = searchIntName(this->name);/*琩тnameIntListず琌Τthis˙эstatic*/
+		Integer temp(a);//р计暗矪瞶(玡竚0&计翴)
+		this->numInt = temp.numInt;/*temp计(a)倒this*/
+		numIntList[pos] = this->numInt;/*狦this穝计*/
+	}
 	return *this;
 }
 
 Integer Integer::operator =(const Integer& var)//var琌跑计(this计㎝常э
 {
-	int pos = searchIntName(this->name);//˙эstatic
-	nameIntList[pos] = var.name;
-	numIntList[pos] = var.numInt;
-	this->numInt = var.numInt;
-	this->name = var.name;
+	if (this->name != "") {
+		int pos = searchIntName(this->name);//˙эstatic
+		nameIntList[pos] = var.name;
+		numIntList[pos] = var.numInt;
+		this->numInt = var.numInt;
+		this->name = var.name;
+	}
 	return *this;
 }
 

@@ -509,11 +509,13 @@ void Compute(vector<string>& formula)
 						if (denominator[founda] == denominator[foundb])//分母相同->不需通分 分子相加後結果儲存到a裡
 						{
 							numerator[founda] = numerator[founda] + numerator[foundb];
+							cout << numerator[founda].num << endl;
 						}
 						else//分母不同->通分
 						{
 							numerator[founda] = number(numerator[founda] * denominator[foundb]) + number(numerator[foundb] * denominator[founda]);
 							denominator[founda] = denominator[founda] * denominator[foundb];
+							cout << numerator[founda].num << endl;
 						}
 					}
 

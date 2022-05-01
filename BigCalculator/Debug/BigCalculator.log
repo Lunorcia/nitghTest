@@ -1,4 +1,15 @@
-﻿  number.cpp
+﻿  Decimal.cpp
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\Decimal.cpp(42,45): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\Decimal.cpp(64,26): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\Decimal.cpp(114,46): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\Decimal.cpp(139,26): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\Decimal.cpp(188,20): warning C4018: '<': signed/unsigned 不相符
+  Integer.cpp
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\Integer.cpp(51,30): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\Integer.cpp(108,30): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\Integer.cpp(154,20): warning C4018: '<': signed/unsigned 不相符
+  main.cpp
+  number.cpp
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(19,20): warning C4018: '<': signed/unsigned 不相符
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(32,36): warning C4018: '<': signed/unsigned 不相符
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(122,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
@@ -48,20 +59,31 @@ C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(719,21): warning C4018: '<': signed/unsigned 不相符
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(749,54): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(750,34): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(756,38): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(766,23): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(783,23): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(811,22): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(834,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(838,15): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(838,28): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(858,21): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(878,16): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(880,22): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(889,15): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(900,54): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(901,34): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(915,23): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(763,23): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(780,23): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(808,22): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(831,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(835,15): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(835,28): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(855,21): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(875,16): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(877,22): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(886,15): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(897,54): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(898,34): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
+  prevention and compute.cpp
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\prevention and compute.cpp(17,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\prevention and compute.cpp(43,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\prevention and compute.cpp(77,23): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+  正在產生程式碼...
 C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(41): warning C4715: 'isSquareRoot': 不是所有控制路徑都傳回值
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(927): warning C4715: 'number::operator^': 不是所有控制路徑都傳回值
-  BigCalculator.vcxproj -> C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\Debug\BigCalculator.exe
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(925): warning C4715: 'number::operator^': 不是所有控制路徑都傳回值
+main.obj : error LNK2005: "private: static class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > Integer::numIntList" (?numIntList@Integer@@0V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A) 已在 Integer.obj 中定義過了
+main.obj : error LNK2005: "private: static class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > Integer::nameIntList" (?nameIntList@Integer@@0V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A) 已在 Integer.obj 中定義過了
+main.obj : error LNK2005: "private: static class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > Decimal::numDecList" (?numDecList@Decimal@@0V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A) 已在 Decimal.obj 中定義過了
+main.obj : error LNK2005: "private: static class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > Decimal::nameDecList" (?nameDecList@Decimal@@0V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A) 已在 Decimal.obj 中定義過了
+prevention and compute.obj : error LNK2005: "private: static class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > Integer::numIntList" (?numIntList@Integer@@0V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A) 已在 Integer.obj 中定義過了
+prevention and compute.obj : error LNK2005: "private: static class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > Integer::nameIntList" (?nameIntList@Integer@@0V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A) 已在 Integer.obj 中定義過了
+prevention and compute.obj : error LNK2005: "private: static class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > Decimal::numDecList" (?numDecList@Decimal@@0V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A) 已在 Decimal.obj 中定義過了
+prevention and compute.obj : error LNK2005: "private: static class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > Decimal::nameDecList" (?nameDecList@Decimal@@0V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A) 已在 Decimal.obj 中定義過了
+C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\Debug\BigCalculator.exe : fatal error LNK1169: 找到有一或多個已定義的符號

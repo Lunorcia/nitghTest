@@ -31,19 +31,19 @@ int main()
 		///////////////////class寫好的話要改成Integer temp(算式or單一值,名); cout<<temp;	值的計算在呼叫Integer時呼叫函式(下面這些步驟寫成global function)
 		bool setInt = false, setDec = false;
 		string variableName = "";
-		if (formula[0] == "Set" && formula.size()>4)
+		if (formula[0] == "Set" && formula.size()>4) /*formula[0]為Set，表示指派變數，例如：Set Integer A = 100(formula長度最少是5才成立)*/
 		{
-			if (formula[1] == "Integer" && formula[3] == "=")
+			if (formula[1] == "Integer" && formula[3] == "=") /*建立型別為Integer的變數*/
 			{
 				setInt = true;
-				variableName = formula[2];
-				formula.erase(formula.begin(), formula.begin() + 4);//去Set//去Integer//去變數//去等號
+				variableName = formula[2]; /*formula[2]為變數名稱*/
+				formula.erase(formula.begin(), formula.begin() + 4);//去Set//去Integer//去變數//去等號//留運算式
 			}
-			else if (formula[1] == "Decimal" && formula[3] == "=")
+			else if (formula[1] == "Decimal" && formula[3] == "=") /*建立型別為Decimal的變數*/
 			{
 				setDec = true;
-				variableName = formula[2];
-				formula.erase(formula.begin(), formula.begin() + 4);//去Set//去Decimal//去變數//去等號
+				variableName = formula[2]; /*formula[2]為變數名稱*/
+				formula.erase(formula.begin(), formula.begin() + 4);//去Set//去Decimal//去變數//去等號//留運算式
 			}
 			else
 			{

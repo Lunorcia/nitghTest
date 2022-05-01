@@ -925,7 +925,50 @@ string number::operator ^(number K) {
 		return ans.num;
 	}
 }
+bool number::operator ==(number K)
+{
+	if (num == K.num)
+		return true;
+	else
+		return false;
+}
+bool isAllZero(string a)//常0->T Τ獶0->F  “猔種 礚跌计翴
+{
+	for (unsigned long long  i = 0; i < a.length(); i++)
+	{
+		if (a[i] != '0'&& a[i] != '.')
+			return false;
+	}
+	return true;
+}
+bool isDec(string a) //琌计T ぃ琌计or计翴0->F
+{
+	for (long long  i = 0; i < a.length(); i++)
+	{
+		if (a[i] == '.')
+		{
+			if(isAllZero(a.substr(i + 1, a.length()- i)))
+				return false;
+			else
+				return true;
+		}
+	}
+	return false;
+}
 
+bool isDot5(string a) //^ノ 絋粄琌秨腹 X.5
+{
+	long long int i;
+	for (i = 0; i < a.length(); i++)
+	{
+		if (a[i] == '.')
+			break;
+	}
+	if (a[i + 1] == '5')
+		return true;
+	else
+		return false;
+}
 
 /*string operator +(string a, string b)
 {

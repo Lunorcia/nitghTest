@@ -142,7 +142,6 @@
     <None Include="..\..\..\物件導向\project\pro1\CPP程式設計題-大數計算機.pdf" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="abandoned code.cpp" />
     <ClCompile Include="Decimal.cpp" />
     <ClCompile Include="divide.cpp" />
     <ClCompile Include="factorial.cpp" />

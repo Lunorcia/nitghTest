@@ -1,4 +1,6 @@
 #include "Integer.h"
+vector<string>Integer::numIntList;
+vector<string>Integer::nameIntList;
 Integer::Integer(string a) :number(a)//繼承//沒有命名的Int(可以直接當暫用變數
 {
 	long long int space = a.find(" ");//如果字串有空格代表a是算式，要計算再儲存

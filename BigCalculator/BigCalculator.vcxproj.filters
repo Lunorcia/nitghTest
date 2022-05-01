@@ -29,9 +29,6 @@
     <ClCompile Include="divide.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="abandoned code.cpp">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
     <ClCompile Include="factorial.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>

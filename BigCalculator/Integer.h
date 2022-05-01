@@ -20,5 +20,3 @@ private:
 	static vector<string>numIntList;
 	static vector<string>nameIntList;
 };
-vector<string>Integer::numIntList;
-vector<string>Integer::nameIntList;

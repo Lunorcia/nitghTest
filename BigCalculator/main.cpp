@@ -1,10 +1,10 @@
-#include "number.h"
+
 #include "Integer.h"
 #include "Decimal.h"
 
 int main()
 {
-	string str1("a"), str2;
+	/*string str1("a"), str2;
 	while (cin >> str1 && str1 != "-1")
 	{
 		cin >> str2;
@@ -14,7 +14,7 @@ int main()
 		cout << "exp = " << ans << endl;//<< num1 + num2 << endl << num1 - num2 << endl
 		//ans = num1.factorial();
 		//cout << "fact = " << ans << endl;
-	}
+	}*/
 	string input;
 	while (getline(cin, input))
 	{
@@ -80,11 +80,12 @@ int main()
 			continue;//讀下一個輸入算式
 
 		////////////////算式計算/////////////////
+
 		Compute(formula);
 		string errorMessage = formula[0];
-		if (!isdigit(errorMessage[0]))//第一格存的是錯誤訊息
+		if (errorMessage=="err")//第一格存的是錯誤訊息
 		{
-			cout << errorMessage << endl;
+			//cout << "err" << endl;
 			continue; //讀下一個輸入算式
 		}
 		
@@ -99,16 +100,16 @@ int main()
 		}
 		else if (setDec == true)
 		{	//找變數存不存在
-			int pos = Decimal::searchDecName(variableName);
+			/*int pos = Decimal::searchDecName(variableName);
 			if (pos != -1)//存在改值
 				Decimal::setValue(formula[0], pos);
 
 			else//不存在，存新值
-				Decimal temp(formula[0], variableName);//存入static list
+				Decimal temp(formula[0], variableName);//存入static list*/
 		}
 		else//結果要輸出
 		{
-			cout << formula[0];
+			cout << formula[0] << endl;
 		}
 	}
 

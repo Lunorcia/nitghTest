@@ -35,6 +35,7 @@ public:
 	string operator *(number K);
 	string operator /(number K);
 	string operator ^(number K);
+	bool operator ==(number K); 
 	string factorial();
 	string subForDivide(number a, number b);//給除法用的簡化版減法
 	//friend string operator +(string a, string b);
@@ -52,3 +53,6 @@ bool intIsBiggerOrEqual(string a, string b);
 bool checkForDivide(string a, string b);
 bool isSquareRoot(number K);
 void fact(unsigned long long int ansArr[], unsigned long long numA);//階乘用計算
+bool isAllZero(string a); //都0->T 有非0->F （※注意 無視小數點）
+bool isDec(string a); //是小數T 不是小數or小數點後皆為0->F
+bool isDot5(string a); //^用 確認是否含開根號 X.5

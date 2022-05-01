@@ -20,5 +20,3 @@ private:
 	static vector<string>numDecList;
 	static vector<string>nameDecList;
 };
-vector<string>Decimal::numDecList;
-vector<string>Decimal::nameDecList;

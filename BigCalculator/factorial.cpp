@@ -39,7 +39,6 @@ string number::factorial()
     unsigned long long int numA = 0;/////////////輸入大數不能超過unsigned LL
     for (int i = 0; i < num.length(); i++)//字串轉數字
         numA = numA * 10 + (num[i] - 48);
-    cout <<"A=" << numA << endl;
     fact(ansArr, numA);//計算
     int checkMSB = 0;
     for (int i = 0; i < maxLen; i++) {

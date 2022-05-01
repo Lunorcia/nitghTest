@@ -90,7 +90,7 @@ bool negativeRoot(const string& num)//負數不能開根號
 void mergePN(string& num)
 {
 	int P = 0, N = 0, c = 0;
-	while (num[c] == '+' || num[c] == '+')
+	while (num[c] == '+' || num[c] == '-')
 	{
 		if (num[c] == '+')
 			P++;
@@ -101,7 +101,7 @@ void mergePN(string& num)
 
 	//遇到不是數字(Integer&Decimal的名稱)要先搜尋(註解行class功能還沒寫)，沒搜尋到回傳"WRONG_NAME"
 
-	if (P + N < 0)//正負合併結果是負
+	if (P + N < 0 && abs(P + N) % 2 == 1)//正負合併結果是負
 	{
 		num = "-" + num.substr(c, num.length() - c);
 		if (num[1] == '.')//例如-.2
@@ -192,6 +192,16 @@ void mergePN(string& num)
 	}
 	return true;
 }*/
+
+long long int findFra(unsigned long long int n, vector<long long int>foundOP) {
+	int lastOne = 0;
+	for (int i = 0; i < foundOP.size(); i++)
+	{
+		if (n == foundOP[i])
+			lastOne = i;
+	}
+	return lastOne;
+}
 void Compute(vector<string>& formula)
 {
 	/////////////計算方法/////////////////
@@ -207,4 +217,372 @@ void Compute(vector<string>& formula)
 	// 除數不能是0,ex: 5_/_0	
 	// 負數不能開根號,ex: -2.5_^_0.5
 	// 指數計算前>>根號0=0
+
+	vector<number>denominator, numerator;
+	vector<long long int>foundOP;
+	bool Fraction = false;
+
+	while (formula.size() > 1 || (formula.size() == 3 && formula[1] == "/"))
+	{
+		long long int found1 = -1; //找最後的左括弧位置
+		long long int found2 = -1; //找第一個右括弧的位置
+		for (int i = 0; i < formula.size(); i++)
+		{
+			if (formula[i] == "(")
+				found1 = i;
+		}
+		for (int i = found1 + 1; i < formula.size(); i++)
+		{
+			if (formula[i] == ")")
+			{
+				found2 = i;
+				break;
+			}
+		}
+
+		if (found1 != -1 && found2 != -1 && found1 < found2) //找得到括弧的話
+		{
+			if (found1 + 1 == found2)
+			{
+				formula[0] = "err";
+				cout << "()內無數字\n";
+				return;
+			}
+		}
+		else//沒找到括弧
+		{
+			found1 = -1;
+			found2 = formula.size();
+		}
+
+		for (int i = found1 + 1; i < found2; i++)//處理階乘
+		{
+			if (formula[i] == "!" && i != found1 + 1)
+			{
+				if (formula[i - 1][0] == '-')
+				{
+					formula[0] = "err";
+					cout << "負數不能算階乘\n";
+					return;
+				}
+				else if (!isDec(formula[i - 1]))
+				{
+					string a = number(formula[i-1]).factorial();
+					formula[i - 1] = a;
+					formula.erase(formula.begin() + i, formula.begin() + i+1);
+					found2 -= 1;
+					i--;
+					
+				}
+				else
+				{
+					formula[0] = "err";
+					cout << "小數不能算階乘\n";
+					return;
+				}
+			}
+		}
+		for (int i = found2 - 1; i > found1; i--)//處理指數
+		{
+			if (formula[i] == "^" && i != found1 + 1)
+			{
+				string temp = formula[i - 1];
+				if (temp[0] == '-' && isDot5(formula[i + 1]))//如果是負數開根號
+				{
+					formula[0] = "err";
+					cout << "負數不能開根號\n";
+					return;
+				}
+				else if (isAllZero(temp))//底數為0
+				{
+					formula.erase(formula.begin() + i, formula.begin() + i + 2);
+					found2 -= 2;
+					i--;
+				}
+				else
+				{
+					formula[i - 1] = number(formula[i - 1]) ^ number(formula[i + 1]);
+					formula.erase(formula.begin() + i, formula.begin() + i + 2);
+					found2 -= 2;
+					i--;
+				}
+			}
+		}
+
+		for (int i = found1 + 1; i < found2; i++) //處理乘除
+		{
+			if (formula[i] == "/" || formula[i] == "*")
+			{
+				if (formula[i] == "/")
+				{
+					if (isAllZero(formula[i + 1]))
+					{
+						formula[0] = "除數不能為 0";
+						return;
+					}
+					else
+					{
+						if (!isDec(formula[i + 1]) && !isDec(formula[i - 1]))
+						{
+							formula[i - 1] = number(formula[i - 1]) / number(formula[i + 1]);
+							formula.erase(formula.begin() + i, formula.begin() + i+2);
+							found2 -= 2;
+						}
+						else if (!Fraction)
+						{
+							denominator.push_back(number(formula[i + 1])); //設定分母
+							numerator.push_back(number(formula[i - 1]));  //設定分子
+							foundOP.push_back(i - 1);
+							formula.erase(formula.begin() + i, formula.begin() + i + 2);
+							found2 -= 2;
+							formula[i - 1] = "Fraction";
+							Fraction = true;
+						}
+						else // a/b
+						{
+							if (formula[i + 1] == "Fraction" && formula[i - 1] != "Fraction")// a不是分數 b是分數 
+							{
+								long long int foundDen = findFra(i + 1, foundOP);
+								number temp(denominator[foundDen].num);
+								number a(formula[i - 1]);
+								denominator[foundDen].num = numerator[foundDen].num;
+								numerator[foundDen].num = temp * a;
+								foundOP[foundDen] = i - 1;
+								formula.erase(formula.begin() + i, formula.begin() + i + 2);
+								found2 -= 2;
+								formula[i - 1] = "Fraction";
+							}
+							else if (formula[i + 1] != "Fraction" && formula[i - 1] == "Fraction") //a是分數 b不是分數
+							{
+								long long int foundNum = findFra(i - 1, foundOP);
+								number a(formula[i + 1]);
+								denominator[foundNum].num = denominator[foundNum] * a;
+								foundOP[foundNum] = i - 1;
+								formula.erase(formula.begin() + i, formula.begin() + i + 2);
+								found2 -= 2;
+								formula[i - 1] = "Fraction";
+							}
+							else if (formula[i + 1] == "Fraction" && formula[i - 1] == "Fraction") //a b都是分數
+							{
+								long long int foundNum = findFra(i - 1, foundOP); //a
+								long long int foundDen = findFra(i + 1, foundOP); //b
+
+								numerator[foundNum].num = numerator[foundNum] * denominator[foundDen];//a的分子=a的分子*b的分母
+								denominator[foundNum].num = denominator[foundNum] * numerator[foundDen];//a的分母=a的分母*b的分子
+
+								foundOP[foundNum] = i - 1;
+								foundOP.erase(foundOP.begin() + foundDen); //刪除b的位置紀錄
+								numerator.erase(numerator.begin() + foundDen); //刪除b的分子
+								denominator.erase(denominator.begin() + foundDen);//刪除b的分母
+
+								formula.erase(formula.begin() + i, formula.begin() + i + 2);
+								found2 -= 2;
+								formula[i - 1] = "Fraction";
+							}
+							else //a b 都不是分數
+							{
+								denominator.push_back(number(formula[i + 1])); //設定分母
+								numerator.push_back(number(formula[i - 1]));  //設定分子
+								foundOP.push_back(i - 1);
+								formula.erase(formula.begin() + i, (formula.begin() + i + 2));
+								found2 -= 2;
+								formula[i - 1] = "Fraction";
+							}
+						}
+						i-=2;
+					}
+				}
+				else if (formula[i] == "*")
+				{
+					if (formula[i + 1] == "Fraction" && formula[i - 1] != "Fraction")// a不是分數 b是分數 
+					{
+						long long int foundDen = findFra(i + 1, foundOP);
+						number a(formula[i - 1]);
+						numerator[foundDen].num = numerator[foundDen] * a;
+						foundOP[foundDen] = i - 1;
+						formula.erase(formula.begin() + i, formula.begin() + i + 2);
+						found2 -= 2;
+						formula[i - 1] = "Fraction";
+					}
+					else if (formula[i + 1] != "Fraction" && formula[i - 1] == "Fraction") //a是分數 b不是分數
+					{
+						long long int foundNum = findFra(i - 1, foundOP);
+						number a(formula[i + 1]);
+						numerator[foundNum].num = numerator[foundNum] * a;
+						foundOP[foundNum] = i - 1;
+						formula.erase(formula.begin() + i, formula.begin() + i + 2);
+						found2 -= 2;
+						formula[i - 1] = "Fraction";
+					}
+					else if (formula[i + 1] == "Fraction" && formula[i - 1] == "Fraction") //a b都是分數
+					{
+						long long int foundNum = findFra(i - 1, foundOP); //a
+						long long int foundDen = findFra(i + 1, foundOP); //b
+
+						numerator[foundNum].num = numerator[foundNum] * numerator[foundDen];//a的分子=a的分子*b的分子
+						denominator[foundNum].num = denominator[foundNum] * denominator[foundDen];//a的分母=a的分母*b的分母
+
+						foundOP[foundNum] = i - 1;
+						foundOP.erase(foundOP.begin() + foundDen); //刪除b的位置紀錄
+						numerator.erase(numerator.begin() + foundDen); //刪除b的分子
+						denominator.erase(denominator.begin() + foundDen);//刪除b的分母
+
+						formula.erase(formula.begin() + i, formula.begin() + i + 2);
+						found2 -= 2;
+						formula[i - 1] = "Fraction";
+					}
+					else //a b 都不是分數
+					{
+						formula[i - 1] = number(formula[i - 1]) * number(formula[i + 1]);
+						formula.erase(formula.begin() + i, (formula.begin() + i + 2));
+						found2 -= 2;
+					}
+					i--;
+				}
+			}
+		}
+		for (int i = found1 + 1; i < found2; i++) //處理加減
+		{
+			if (formula[i] == "+" || formula[i] == "-")
+			{
+				if (!Fraction)//此段()內無分數
+				{
+					if (i == found1 + 1 && formula[i] == "+") // (+ 123) = 123 ; (+ -123) = -123
+					{
+						formula[found1 + 1] = formula[1];
+					}
+					else if (i == found1 + 1 && formula[i] == "-")
+					{
+						number zero("0");
+						number b(formula[i + 1]);
+						formula[found1 + 1] = zero - b;
+					}
+					else if (formula[i] == "+") //(1 + 2) = 3
+					{
+						number a(formula[found1 + 1]);
+						number b(formula[i + 1]);
+						formula[found1 + 1] = a + b;
+					}
+					else if (formula[i] == "-")
+					{
+						number a(formula[found1 + 1]);
+						number b(formula[i + 1]);
+						formula[found1 + 1] = a - b;
+					}
+					i++;
+				}
+				else //此段()內有分數
+				{
+					if (i == found1 + 1 && formula[i] == "+" && formula[i + 1] == "Fraction")//(+ 1/3)= 1/3
+					{
+						long long int foundFra = findFra(i + 1, foundOP);
+						foundOP[foundFra] = found1 + 1;
+						formula[found1 + 1] = "Fraction";
+					}
+					else if (i == found1 + 1 && formula[i] == "-" && formula[i + 1] == "Fraction")//(- -1/3)= +1/3
+					{
+						long long int foundFra = findFra(i + 1, foundOP);
+						number zero("0");
+						numerator[foundFra].num = zero - numerator[foundFra];
+						denominator[foundFra].num = zero - denominator[foundFra];
+						foundOP[foundFra] = found1 + 1;
+						formula[found1 + 1] = "Fraction";
+					}
+					else if (formula[i] == "+" && formula[i + 1] == "Fraction" && formula[found1 + 1] != "Fraction") // (1 + 1/3) = (1*3+1)/3
+					{
+						long long int foundFra = findFra(i + 1, foundOP);
+						number a(formula[found1 + 1]);
+						numerator[foundFra].num = numerator[foundFra] + a * denominator[foundFra];
+						foundOP[foundFra] = found1 + 1;
+						formula[found1 + 1] = "Fraction";
+					}
+					else if (formula[i] == "+" && formula[i + 1] != "Fraction" && formula[found1 + 1] == "Fraction") // (1/3 + 1) = (1+1*3)/3
+					{
+						long long int foundFra = findFra(found1 + 1, foundOP);
+						number a(formula[i + 1]);
+						numerator[foundFra].num = numerator[foundFra] + number(a * denominator[foundFra]);
+					}
+					else if (formula[i] == "+" && formula[i + 1] == "Fraction" && formula[found1 + 1] == "Fraction") // (1/3 + 1/3) = (2/3)
+					{
+						long long int founda = findFra(found1 + 1, foundOP);
+						long long int foundb = findFra(i + 1, foundOP);
+						if (denominator[founda] == denominator[foundb])//分母相同->不需通分 分子相加後結果儲存到a裡
+						{
+							numerator[founda] = numerator[founda] + numerator[foundb];
+						}
+						else//分母不同->通分
+						{
+							numerator[founda] = number(numerator[founda] * denominator[foundb]) + number(numerator[foundb] * denominator[founda]);
+							denominator[founda] = denominator[founda] * denominator[foundb];
+						}
+					}
+
+					else if (formula[i] == "-" && formula[i + 1] == "Fraction" && formula[found1 + 1] != "Fraction") // (1 - 1/3) = (1*3-1)/3
+					{
+						long long int foundFra = findFra(i + 1, foundOP);
+						number a(formula[found1 + 1]);
+						numerator[foundFra].num = number(a * denominator[foundFra]) - numerator[foundFra];
+						foundOP[foundFra] = found1 + 1;
+						formula[found1 + 1] = "Fraction";
+					}
+					else if (formula[i] == "-" && formula[i + 1] != "Fraction" && formula[found1 + 1] == "Fraction") // (1/3 - 1) = (1-1*3)/3
+					{
+						long long int foundFra = findFra(found1 + 1, foundOP);
+						number a(formula[i + 1]);
+						numerator[foundFra].num = numerator[foundFra] - number(a * denominator[foundFra]);
+					}
+					else if (formula[i] == "-" && formula[i + 1] == "Fraction" && formula[found1 + 1] == "Fraction") // (1/3 - 1/3) = (0)
+					{
+						long long int founda = findFra(found1 + 1, foundOP);
+						long long int foundb = findFra(i + 1, foundOP);
+						if (denominator[founda] == denominator[foundb])//分母相同->不需通分 分子相加後結果儲存到a裡
+						{
+							numerator[founda] = numerator[founda] - numerator[foundb];
+						}
+						else//分母不同->通分
+						{
+							numerator[founda] = number(numerator[founda] * denominator[foundb]) - number(numerator[foundb] * denominator[founda]);
+							denominator[founda] = denominator[founda] * denominator[foundb];
+						}
+					}
+				}
+
+			}
+		}
+
+		if (found1 == -1)//沒括弧的運算
+		{
+			if (!Fraction)//如果沒分數
+				formula.erase(formula.begin() + 1, formula.end());
+			else
+			{
+				long long int foundFra = findFra(found1 + 1, foundOP);
+				formula[0] = numerator[foundFra] / denominator[foundFra];
+				formula.erase(formula.begin() + 1, formula.end());
+				numerator.erase(numerator.begin(), numerator.end());
+				denominator.erase(denominator.begin(), denominator.end());
+				foundOP.erase(foundOP.begin(), foundOP.end());
+			}
+		}
+		else
+		{
+			if (!Fraction)//如果沒分數
+			{
+				formula[found1] = formula[found1 + 1];
+				formula.erase(formula.begin() + found1 + 1, formula.begin() + found2+1);
+			}
+			else //有分數
+			{
+				long long int foundFra = findFra(found1 + 1, foundOP);
+				formula[found1] = numerator[foundFra].num;
+				formula[found1 + 1] = "/";
+				formula[found1 + 2] = denominator[foundFra].num;
+				formula.erase(formula.begin() + found1 + 3, formula.begin() + found2+1);
+				numerator.erase(numerator.begin(), numerator.end());
+				denominator.erase(denominator.begin(), denominator.end());
+				foundOP.erase(foundOP.begin(), foundOP.end());
+			}
+		}
+	}
 }
+

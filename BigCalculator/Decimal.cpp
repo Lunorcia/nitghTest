@@ -1,4 +1,6 @@
 #include "Decimal.h"
+vector<string>Decimal::numDecList;
+vector<string>Decimal::nameDecList;
 Decimal::Decimal(string a) :number(a)//繼承//沒有命名的Decimal(可以直接用
 {
 	long long int space = a.find(" ");//如果字串有空格代表a是算式

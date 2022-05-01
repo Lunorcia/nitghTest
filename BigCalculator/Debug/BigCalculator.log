@@ -1,108 +1,124 @@
-<<<<<<< HEAD
-﻿  divide.cpp
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(19,23): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(40,38): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(52,26): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(83,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(84,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(85,22): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(109,16): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(160,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(160,33): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(190,66): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(190,40): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(192,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(201,43): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(202,50): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(202,45): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(203,42): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(231,59): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(231,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(232,33): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(260,72): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(269,31): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(279,35): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(352,35): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(357,35): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(376,76): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(385,35): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(395,39): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(405,35): warning C4244: '=': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\divide.cpp(406,35): warning C4018: '<': signed/unsigned 不相符
-  main.cpp
-  number.cpp
-=======
-<<<<<<< HEAD
-﻿  number.cpp
->>>>>>> 59a76f7bdab82aae99a9c52b821c21148e286c0e
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(19,20): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(32,36): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(122,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(123,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(124,24): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(133,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(154,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(169,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(172,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(199,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(200,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(201,24): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(226,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(338,16): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(338,29): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(382,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(383,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(384,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(393,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(414,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(430,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(433,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(450,22): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(485,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(486,18): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(487,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(513,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(552,60): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(552,34): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(553,27): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(560,60): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(560,34): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(561,27): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(571,19): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(572,20): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(575,20): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(583,20): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(585,21): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(605,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(618,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(638,22): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(660,14): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(660,27): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(667,32): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(673,31): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(717,15): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(719,21): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(749,54): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(750,34): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(756,38): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(766,23): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(783,23): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(811,22): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(834,20): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(838,15): warning C4244: '正在初始化': 將 'unsigned __int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(838,28): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(858,21): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(878,16): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(880,22): warning C4018: '<': signed/unsigned 不相符
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(889,15): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(900,54): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(901,34): warning C4244: '引數': 將 'unsigned __int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(915,23): warning C4018: '<': signed/unsigned 不相符
-  正在產生程式碼...
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(41): warning C4715: 'isSquareRoot': 不是所有控制路徑都傳回值
-C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\number.cpp(927): warning C4715: 'number::operator^': 不是所有控制路徑都傳回值
-  BigCalculator.vcxproj -> C:\Users\USER\Desktop\大四下\物件導向實習專案\nitghTest\BigCalculator\Debug\BigCalculator.exe
-=======
-﻿  main.cpp
-  BigCalculator.vcxproj -> C:\Users\USER\Desktop\GIT\nitghTest\BigCalculator\Debug\BigCalculator.exe
->>>>>>> b986d0b1c03fafcf2cdb2cc71fb51b92619a31a9
+﻿  prevention and compute.cpp
+C:\nitghTest\BigCalculator\prevention and compute.cpp(17,20): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\prevention and compute.cpp(43,20): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\prevention and compute.cpp(77,23): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(198,20): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\prevention and compute.cpp(229,21): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\prevention and compute.cpp(234,14): warning C4244: '正在初始化': 將 '__int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(234,30): warning C4018: '<': signed/unsigned 不相符
+C:\nitghTest\BigCalculator\prevention and compute.cpp(258,14): warning C4244: '正在初始化': 將 '__int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(285,14): warning C4244: '正在初始化': 將 '__int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(312,14): warning C4244: '正在初始化': 將 '__int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(346,33): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(348,21): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(348,47): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(349,19): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(350,17): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(359,21): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(359,49): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(360,17): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(370,19): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(370,45): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(370,69): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(371,21): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(371,49): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(371,71): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(373,17): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(374,41): warning C4244: '引數': 將 '__int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(375,45): warning C4244: '引數': 將 '__int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(376,49): warning C4244: '引數': 將 '__int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(401,17): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(401,43): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(402,15): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(411,17): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(411,43): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(412,15): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(422,17): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(422,43): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(422,65): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(423,19): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(423,47): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(423,71): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(425,15): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(426,39): warning C4244: '引數': 將 '__int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(427,43): warning C4244: '引數': 將 '__int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(428,47): warning C4244: '引數': 將 '__int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(444,14): warning C4244: '正在初始化': 將 '__int64' 轉換為 'int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(452,22): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(458,22): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(462,31): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(464,22): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(468,31): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(470,22): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(479,15): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(480,22): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(486,17): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(486,50): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(487,19): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(487,54): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(488,15): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(489,22): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(491,83): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(494,31): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(495,17): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(495,43): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(495,71): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(496,15): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(497,22): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(499,83): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(503,17): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(503,43): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(503,78): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(505,83): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(509,23): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(509,46): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(511,18): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(511,38): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(511,58): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(515,18): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(515,45): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(515,67): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(515,95): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(515,117): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(516,20): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(516,42): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(516,64): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(520,83): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(523,31): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(524,17): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(524,56): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(524,79): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(525,15): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(526,22): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(528,83): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(532,17): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(532,43): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(532,78): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(534,83): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(538,23): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(538,46): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(540,18): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(540,38): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(540,58): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(544,18): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(544,45): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(544,67): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(544,95): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(544,117): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(545,20): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(545,42): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(545,64): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(560,28): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(560,52): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(571,13): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(571,38): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(572,37): warning C4244: '引數': 將 '__int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(572,67): warning C4244: '引數': 將 '__int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(577,13): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(577,33): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(578,20): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(579,20): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(579,39): warning C4244: '引數': 將 '__int64' 轉換為 'const unsigned int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(580,37): warning C4244: '引數': 將 '__int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
+C:\nitghTest\BigCalculator\prevention and compute.cpp(580,67): warning C4244: '引數': 將 '__int64' 轉換為 'const int'，由於類型不同，可能導致資料遺失
+  BigCalculator.vcxproj -> C:\nitghTest\BigCalculator\Debug\BigCalculator.exe

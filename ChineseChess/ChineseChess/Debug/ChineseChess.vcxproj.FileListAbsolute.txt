@@ -1,0 +1,4 @@
+C:\Users\USER\Desktop\GIT\nitghTest\ChineseChess\ChineseChess\Debug\ChineseChess.vcxproj.AssemblyReference.cache
+C:\Users\USER\Desktop\GIT\nitghTest\ChineseChess\ChineseChess\Debug\ChineseChess.MyForm.resources
+C:\Users\USER\Desktop\GIT\nitghTest\ChineseChess\ChineseChess\Debug\ChineseChess.vcxproj.GenerateResource.cache
+C:\Users\USER\Desktop\GIT\nitghTest\ChineseChess\ChineseChess\Debug\ChineseChess.exe

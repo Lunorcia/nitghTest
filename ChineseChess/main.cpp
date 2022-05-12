@@ -1,3 +1,4 @@
+#include "board.h"
 #include "mainwindow.h"
 
 #include <QApplication>
@@ -19,7 +20,7 @@ int main(int argc, char *argv[])
     }
     /*  中文文字翻譯  */
 
-    MainWindow w;
+    Board w;
     w.show();
     return a.exec();
 }

@@ -7,10 +7,12 @@ using namespace std;
 class Chess
 {
 public:
-    Chess(int color,int x,int y){};
+    Chess(int color,int x,int y){colorRB=color;position.first=x;position.second=y;dead=false;chessType=MANDARIN;};
+    enum Type{NONE,GENERAL,MANDARIN,ELEPHANT,ROOK,HORSE,CANNON,SOLDIER};
     bool isDead();
     virtual void canMovePos(){};
     int colorRB;//紅0黑1
+    int chessType;//棋種Base預設NONE
     bool dead;//預設false
     pair<int, int> position;//first=x,second=y
 };

@@ -13,3 +13,16 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_pushButton_clicked()//開始遊戲
+{
+    this->close();
+
+}
+
+
+void MainWindow::on_MainWindow_iconSizeChanged(const QSize &iconSize)
+{
+
+}
+

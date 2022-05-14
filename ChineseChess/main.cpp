@@ -1,4 +1,6 @@
-#include "board.h"
+#include "gamemanager.h"
+//#include "board.h"
+
 #include "mainwindow.h"
 
 #include <QApplication>
@@ -19,8 +21,9 @@ int main(int argc, char *argv[])
         }
     }
     /*  中文文字翻譯  */
+    GameManager w;
+    //Board w;
+    w.viewMenu();
 
-    Board w;
-    w.show();
     return a.exec();
 }

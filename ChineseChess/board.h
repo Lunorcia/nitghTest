@@ -44,8 +44,6 @@ public:
     bool isCheckmate();//是否將軍
     void writeRecord(pair<int,int> nowPos, pair<int,int> nextPos);//寫檔
     bool endOrNot;//預設false
-    int current_player;//輪到紅0/黑1玩家//預設起始紅0
-    void changePlayer();
 private:
     vector<Chess*> BoardChessState;//盤面全部棋子的位置
     bool selectOrNot;//是否選取要移動的棋子,預設false

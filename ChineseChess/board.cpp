@@ -1,4 +1,4 @@
-#include "board.h"
+#include "gamemanager.h"
 
 Board::Board(QWidget *parent)
     : QWidget{parent}
@@ -9,7 +9,6 @@ Board::Board(QWidget *parent)
 }
 void Board::reset()
 {
-    current_player=0;//預設起始紅0
     endOrNot=false;
     cancelChoose();//選棋重置
     BoardChessState.clear();
@@ -49,9 +48,9 @@ void Board::reset()
     //帥將
     BoardChessState.push_back(new General(0,4,9));//紅帥x=4,y=9
     BoardChessState.push_back(new General(1,4,0));//黑將x=4,y=0
-    QMessageBox msgBox;
+    /*QMessageBox msgBox;
     msgBox.setText(QString::number(BoardChessState.size()));
-    msgBox.exec();
+    msgBox.exec();*/
 }
 
 void Board::paintEvent(QPaintEvent*)
@@ -90,11 +89,6 @@ void Board::paintEvent(QPaintEvent*)
 
         drawChess(painter,BoardChessState[i]);
     }
-
-    /*Chess C(1,3,0);
-    Chess *c=&C;
-    drawChess(painter,c);*/
-
 }
 
 void Board::drawChess(QPainter& painter, const Chess* c)//畫棋子
@@ -319,7 +313,7 @@ void Board::chooseMovePosition(pair<int,int> pos)//選擇棋子要移動的位�
 
 bool Board::isSameColor(const Chess& ch)
 {
-    if(ch.colorRB==current_player)
+    if(ch.colorRB==GameManager::current_player)
         return true;
     return false;
 }
@@ -359,7 +353,7 @@ void Board::move(pair<int,int> nowPos, pair<int,int> nextPos)//移動
     MovingChess->position.second=nextPos.second;
     isCheckmate();
     cancelChoose();
-    changePlayer();
+    GameManager::changePlayer();
 
 }
 
@@ -371,8 +365,4 @@ bool Board::isCheckmate()//是否將軍
 void Board::writeRecord(pair<int,int> nowPos, pair<int,int> nextPos)//寫檔
 {
     //遊戲誰贏也要寫
-}
-void Board::changePlayer()
-{
-    current_player=(current_player+1) % 2;
 }

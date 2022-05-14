@@ -12,7 +12,7 @@ public:
     GameManager();
     ~GameManager();
     vector<Chess> on_board;//還在盤面上的棋子有哪些
-    int current_player;//輪到紅/黑玩家//預設起始紅
+    int current_player;//輪到紅0/黑1玩家//預設起始紅
     Board board;//控制盤面狀況
     Viewer viewer;//盤面顯示更新
 

@@ -9,7 +9,8 @@ Board::Board(QWidget *parent)
 }
 void Board::reset()
 {
-    endOrNot=false;
+    count=0;
+    GameManager::endOrNot=false;
     cancelChoose();//選棋重置
     BoardChessState.clear();
     //座標column=x,row=y
@@ -22,7 +23,7 @@ void Board::reset()
     }
     for(int i=1;i<=7;i+=6)//炮砲
     {
-        BoardChessState.push_back(new Cannon(0,i,5));//紅炮x=i(1.7),y=5
+        BoardChessState.push_back(new Cannon(0,i,7));//紅炮x=i(1.7),y=7
         BoardChessState.push_back(new Cannon(1,i,2));//黑砲x=i(1.7),y=2
     }
     for(int i=0;i<=8;i+=8)//俥車
@@ -51,6 +52,167 @@ void Board::reset()
     /*QMessageBox msgBox;
     msgBox.setText(QString::number(BoardChessState.size()));
     msgBox.exec();*/
+}
+
+void Board::stringControl(QString moveCmd)//讀檔移動
+{
+    QStringList list=moveCmd.split(" ");//字串用空白切割
+
+    //Player: 1, Action: Soldier (4, 6) -> (4, 5)
+    //[0]"Player:"
+    //[1]"1,">>助教題目預設紅1黑2>>程式寫的用紅0黑1
+    //[2]"Action:"
+    //[3]"Soldier"
+    //[4]"(4,"
+    //[5]"6)"
+    //[6]"->"
+    //[7]"(4,"
+    //[8]"5)"
+    if(list[1].mid(0,1) != QString::number(GameManager::current_player + 1))//移動不是攻方
+    {
+        QMessageBox msgBox;
+        msgBox.setText("移動棋子非攻方");
+        msgBox.exec();
+        return;
+    }
+    list[1]=list[1].mid(0,1);//去逗號
+    int player=-1, tempType=0, nowX=-1, nowY=-1, nextX=-1, nextY=-1;
+    //棋種轉換
+    if(list[3]=="Soldier")
+    {
+        tempType=Chess::Type::SOLDIER;
+    }
+    else if(list[3]=="Cannon")
+    {
+        tempType=Chess::Type::CANNON;
+    }
+    else if(list[3]=="Chariot")
+    {
+        tempType=Chess::Type::CHARIOT;
+    }
+    else if(list[3]=="Horse")
+    {
+        tempType=Chess::Type::HORSE;
+    }
+    else if(list[3]=="Elephant")
+    {
+        tempType=Chess::Type::ELEPHANT;
+    }
+    else if(list[3]=="Advisor")
+    {
+        tempType=Chess::Type::ADVISOR;
+    }
+    else if(list[3]=="General")
+    {
+        tempType=Chess::Type::GENERAL;
+    }
+    else//棋種輸入錯誤
+    {
+        QMessageBox msgBox;
+        msgBox.setText("棋種輸入錯誤");
+        msgBox.exec();
+        return;
+    }
+
+    //玩家和座標轉數字
+    if(list[4].length()>3 || list[5].length()>2 || list[7].length()>3 || list[8].length()>2)//輸入座標格式錯誤
+    {
+        QMessageBox msgBox;
+        msgBox.setText(list[0]+list[1]+" 輸入座標不合法/格式錯誤");
+        msgBox.exec();
+        return;
+    }
+    player=list[1].toInt() - 1;
+    nowX=list[4].mid(1,1).toInt();
+    nowY=list[5].mid(0,1).toInt();
+    nextX=list[7].mid(1,1).toInt();
+    nextY=list[8].mid(0,1).toInt();
+    if(nowX<0||nowX>=COLUMN||nowY<0||nowY>=ROW || nextX<0||nextX>=COLUMN||nextY<0||nextY>=ROW)//輸入座標超出棋盤範圍
+    {
+        QMessageBox msgBox;
+        msgBox.setText(list[0]+list[1]+" 輸入座標不合法");
+        msgBox.exec();
+        return;
+    }
+    int i=0;
+    for(;i<BoardChessState.size();i++)  //找在點上且活著的攻方棋子
+    {
+        if(player==BoardChessState[i]->colorRB &&
+           nowX==BoardChessState[i]->position.first &&
+           nowY==BoardChessState[i]->position.second &&
+                !(BoardChessState[i]->isDead()))
+            break;
+    }
+    if(i>=BoardChessState.size())//沒找到對應的棋子
+    {
+        QMessageBox msgBox;
+        msgBox.setText(list[0]+list[1]+"找不到棋子"+list[3]);
+        msgBox.exec();
+        return;
+    }
+    chooseMovePiece(pair<int,int>{nowX,nowY});//選棋
+    if(selectOrNot)//選棋成功
+    {
+        if(!existChess(pair<int,int>{nextX,nextY}))//點擊位置沒有棋子
+        {
+            if(checkValidMove(*MovingChess, pair<int,int>{nextX,nextY}))//有效move,無效取消選擇
+            {
+                stringMove(pair<int,int>{nextX,nextY});//讀檔用移棋子(移動不寫檔)
+            }
+            else
+                cancelChoose();
+        }
+        else//點擊位置有棋子
+        {
+            stringChooseMovePosition(pair<int,int>{nextX,nextY},moveCmd);
+        }
+    }
+}
+
+void Board::stringChooseMovePosition(pair<int,int> pos, QString moveCmd)//選擇棋子要移動的位置(pos必定有棋)(移動不寫檔)
+{
+    int i=0;
+    for(;i<BoardChessState.size();i++)
+    {   //位置相符且棋子沒死
+        if(pos.first==BoardChessState[i]->position.first && pos.second==BoardChessState[i]->position.second && !(BoardChessState[i]->isDead()))
+            break;//點擊位置有棋子
+    }
+    if(i!=BoardChessState.size())
+    {
+        if(isSameColor(*BoardChessState[i]))//要移動的位置是攻方棋
+        {
+            cancelChoose();
+            QMessageBox msgBox;
+            msgBox.setText("移動位置已有同陣營棋子存在/移動位置無效");
+            msgBox.exec();
+            return;
+        }
+        else//點的棋子是守方
+        {
+            if(checkValidMove(*MovingChess, pos))//有效移動
+            {
+                killChess(pos);//吃子
+                stringMove(pos);//讀檔用移棋子(移動不寫檔)
+            }
+            else//無效移動
+            {
+                cancelChoose();
+                QMessageBox msgBox;
+                msgBox.setText("移動位置無效");
+                msgBox.exec();
+                return;
+            }
+        }
+    }
+}
+
+void Board::stringMove(pair<int,int> nextPos)//讀檔用移棋子(移動不寫檔)
+{
+    MovingChess->position.first=nextPos.first;
+    MovingChess->position.second=nextPos.second;
+    isCheckmate();
+    cancelChoose();
+    GameManager::changePlayer();
 }
 
 void Board::paintEvent(QPaintEvent*)
@@ -198,7 +360,7 @@ QPoint Board::location(const Chess& ch)//棋子的棋盤座標轉介面座標
 
 void Board::mouseReleaseEvent(QMouseEvent* ev)//滑鼠左鍵點擊
 {
-    if(endOrNot==true)//棋局已結束
+    if(GameManager::endOrNot==true)//棋局已結束
         return;
     else if(ev->button()!=Qt::LeftButton)//左鍵以外的滑鼠點擊
         return;
@@ -223,7 +385,9 @@ void Board::click(QPoint p)//有滑鼠點擊事件發生
         if(!existChess(pos))//點擊位置沒有棋子
         {
             if(checkValidMove(*MovingChess, pos))//有效move,無效取消選擇
-                move(pos,pos);
+                move(pos);
+            else
+                cancelChoose();
         }
         else//點擊位置有棋子
             chooseMovePosition(pos);
@@ -303,7 +467,7 @@ void Board::chooseMovePosition(pair<int,int> pos)//選擇棋子要移動的位�
             if(checkValidMove(*MovingChess, pos))//有效移動
             {
                 killChess(pos);//吃子
-                move(BoardChessState[i]->position, pos);//移動棋子
+                move(pos);//移動棋子
             }
             else//無效移動,取消選擇
                 cancelChoose();
@@ -346,23 +510,71 @@ void Board::killChess(pair<int,int> pos)//吃子
     }
 }
 
-void Board::move(pair<int,int> nowPos, pair<int,int> nextPos)//移動
+void Board::move(pair<int,int> nextPos)//移動
 {
-    writeRecord(nowPos,nextPos);
+    writeRecord(MovingChess->position,nextPos);
     MovingChess->position.first=nextPos.first;
     MovingChess->position.second=nextPos.second;
     isCheckmate();
     cancelChoose();
     GameManager::changePlayer();
+    count++;
+    if(count==3)
+    {
+        count=0;
+        GameManager::endOrNot=true;
+
+    }
 
 }
 
-bool Board::isCheckmate()//是否將軍
+void Board::isCheckmate()//是否將軍
 {
-    return false;
 }
 
 void Board::writeRecord(pair<int,int> nowPos, pair<int,int> nextPos)//寫檔
 {
+    QFile file(GameManager::fileN);
+    if (!file.open(QIODevice::Append | QIODevice::Text))
+    {
+        qDebug() << "Cannot open file for writing:" << qPrintable(file.errorString());
+        return;
+    }
+    QTextStream output(&file);
+    QString str("Player: ");
+    str+=QString::number(GameManager::current_player + 1);
+    str+=", Action: ";
+    switch(MovingChess->chessType)
+    {
+    case  Chess::Type::GENERAL:
+        str+="General ";
+        break;
+    case  Chess::Type::ADVISOR:
+        str+="Advisor ";
+        break;
+    case  Chess::Type::ELEPHANT:
+        str+="Elephant ";
+        break;
+    case  Chess::Type::CHARIOT:
+        str+="Chariot ";
+        break;
+    case  Chess::Type::HORSE:
+        str+="Horse ";
+        break;
+    case  Chess::Type::CANNON:
+        str+="Cannon ";
+        break;
+    case  Chess::Type::SOLDIER:
+        str+="Soldier ";
+        break;
+    default:
+        break;
+    }
+    //(6, 3) -> (6, 4)
+    str+="("+QString::number(nowPos.first)+", "+QString::number(nowPos.second)
+            +") -> ("+QString::number(nextPos.first)+", "+QString::number(nextPos.second)+")";
+    output<< str << "\n";
+    file.close();
+
     //遊戲誰贏也要寫
 }

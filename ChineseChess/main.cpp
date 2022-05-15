@@ -3,7 +3,7 @@
 
 #include "mainwindow.h"
 
-#include <QApplication>
+//#include <QApplication>
 #include <QLocale>
 #include <QTranslator>
 
@@ -21,9 +21,24 @@ int main(int argc, char *argv[])
         }
     }
     /*  中文文字翻譯  */
+
     GameManager w;
-    //Board w;
-    w.viewMenu();
+     w.viewMenu();
+    /*while(1)
+    {
+        while(!w.isEnd())
+        {
+            //遊戲進行
+        }
+        if(w.askNewGame())
+        {
+            w.newGame();
+        }
+
+    }*/
+
+
+
 
     return a.exec();
 }

@@ -18,11 +18,11 @@ class Board : public QWidget
 public:
     explicit Board(QWidget *parent = nullptr);
     void reset();//重置所有棋子狀態&endOrNot
-    //void createChess();//建構棋子>>寫在reset
+    void stringControl(QString moveCmd);//讀檔移動
+    void stringChooseMovePosition(pair<int,int> pos, QString moveCmd);//選擇棋子要移動的位置(移動不寫檔)
+    void stringMove(pair<int,int> nextPos);//讀檔用移棋子(移動不寫檔)
 
     void getCanMove();//取得目前棋子可以移動的位置
-
-    bool isEnd() { return endOrNot; };//遊戲是否結束
 
     virtual void paintEvent(QPaintEvent*);//畫棋盤
     void drawChess(QPainter& painter, const Chess* c);//畫棋子
@@ -36,16 +36,19 @@ public:
     bool existChess(pair<int,int> pos);//點擊位置有沒有棋子
     void chooseMovePiece(pair<int,int> pos);//選擇要移動的棋子
     void chooseMovePosition(pair<int,int> pos);//選擇棋子要移動的位置
+
     bool isSameColor(const Chess& ch);//點選的棋子和目前攻方是否同色
     bool checkValidMove(const Chess & ch, pair<int,int> nextPos);//選取的位置能不能移動
     void cancelChoose();
     void killChess(pair<int,int> pos);//吃子
-    void move(pair<int,int> nowPos, pair<int,int> nextPos);//移動
-    bool isCheckmate();//是否將軍
+    void move(pair<int,int> nextPos);//移動
+    void isCheckmate();//是否將軍
+    int count=0;
     void writeRecord(pair<int,int> nowPos, pair<int,int> nextPos);//寫檔
-    bool endOrNot;//預設false
-private:
+
     vector<Chess*> BoardChessState;//盤面全部棋子的位置
+private:
+
     bool selectOrNot;//是否選取要移動的棋子,預設false
     Chess *MovingChess;//預設空Chess
 

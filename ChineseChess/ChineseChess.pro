@@ -14,19 +14,16 @@ SOURCES += \
     chess.cpp \
     gamemanager.cpp \
     main.cpp \
-    mainwindow.cpp \
     viewer.cpp
 
 HEADERS += \
     board.h \
     chess.h \
     gamemanager.h \
-    mainwindow.h \
     viewer.h
 
 FORMS += \
-    gamemanager.ui \
-    mainwindow.ui
+    gamemanager.ui
 
 TRANSLATIONS += \
     ChineseChess_zh_TW.ts

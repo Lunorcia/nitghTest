@@ -10,6 +10,8 @@ public:
     ~Viewer();
     void viewMenu();
     void viewBoard(Board &board);
+    void closeBoard(Board &board);
+    bool askNewGame();
 };
 
 #endif // VIEWER_H

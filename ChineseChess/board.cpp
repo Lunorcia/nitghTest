@@ -671,7 +671,7 @@ bool Board::checkValidMove(const Chess & ch, pair<int,int> nextPos)//選取的�
             {
                 return true;//移動合法
             }
-            if(ch.position.second<6)//士兵過河
+            if(ch.position.second<5)//士兵過河
             {
                 if((ch.position.second == nextPos.second && ch.position.first+1 == nextPos.first)||(ch.position.second == nextPos.second && ch.position.first-1 == nextPos.first))//士兵為往左或往右一格
                 {
@@ -686,7 +686,7 @@ bool Board::checkValidMove(const Chess & ch, pair<int,int> nextPos)//選取的�
             {
                 return true;//移動合法
             }
-            if(ch.position.second>5)//士兵過河
+            if(ch.position.second>4)//士兵過河
             {
                 if((ch.position.second == nextPos.second && ch.position.first+1 == nextPos.first)||(ch.position.second == nextPos.second && ch.position.first-1 == nextPos.first))//士兵為往左或往右一格
                 {
@@ -733,7 +733,7 @@ void Board::move(pair<int,int> nextPos)//移動
     cancelChoose();
     GameManager::changePlayer();
     count++;
-    if(count==3)
+    if(count==50)
     {
         count=0;
         GameManager::endOrNot=true;
@@ -755,17 +755,17 @@ void Board::isCheckmate(const Chess & ch, pair<int,int> pos)//是否將軍
     { /*GameManager::endOrNot==true;*/
         if (ch.chessType == 4) //CHARIOT
         {
-            if(ch.position.first == BoardChessState[i]->position.first)//兩點在同一條Y軸上
+            if(pos.first == BoardChessState[i]->position.first)//兩點在同一條Y軸上
             {
-                if(numOfChessesBetweenChesses(ch.position,BoardChessState[i]->position,1)==0)//中間是否只有一顆任一方棋子
+                if(numOfChessesBetweenChesses(pos,BoardChessState[i]->position,1)==0)//中間是否只有一顆任一方棋子
                 {
                     GameManager::endOrNot=true;
                 }
 
             }
-            else if(ch.position.second == BoardChessState[i]->position.second)//兩點在同一條X軸上
+            else if(pos.second == BoardChessState[i]->position.second)//兩點在同一條X軸上
             {
-                if(numOfChessesBetweenChesses(ch.position,BoardChessState[i]->position,0)==0)//中間是否只有一顆任一方棋子
+                if(numOfChessesBetweenChesses(pos,BoardChessState[i]->position,0)==0)//中間是否只有一顆任一方棋子
                 {
                     GameManager::endOrNot=true;
                 }
@@ -773,13 +773,13 @@ void Board::isCheckmate(const Chess & ch, pair<int,int> pos)//是否將軍
         }
         else if (ch.chessType == 5) //HORSE
         {
-            if((ch.position.second+2 == BoardChessState[i]->position.second && ch.position.first+1 == BoardChessState[i]->position.first)||(ch.position.second-2 == BoardChessState[i]->position.second && ch.position.first-1 == BoardChessState[i]->position.first)||(ch.position.second+2 == BoardChessState[i]->position.second && ch.position.first-1 == BoardChessState[i]->position.first)||(ch.position.second-2 == BoardChessState[i]->position.second && ch.position.first+1 == BoardChessState[i]->position.first)||(ch.position.second+1 == BoardChessState[i]->position.second && ch.position.first+2 == BoardChessState[i]->position.first)||(ch.position.second-1 == BoardChessState[i]->position.second && ch.position.first-2 == BoardChessState[i]->position.first)||(ch.position.second+1 == BoardChessState[i]->position.second && ch.position.first-2 == BoardChessState[i]->position.first)||(ch.position.second-1 == BoardChessState[i]->position.second && ch.position.first+2 == BoardChessState[i]->position.first))
+            if((pos.second+2 == BoardChessState[i]->position.second && pos.first+1 == BoardChessState[i]->position.first)||(pos.second-2 == BoardChessState[i]->position.second && pos.first-1 == BoardChessState[i]->position.first)||(pos.second+2 == BoardChessState[i]->position.second && pos.first-1 == BoardChessState[i]->position.first)||(pos.second-2 == BoardChessState[i]->position.second && pos.first+1 == BoardChessState[i]->position.first)||(pos.second+1 == BoardChessState[i]->position.second && pos.first+2 == BoardChessState[i]->position.first)||(pos.second-1 == BoardChessState[i]->position.second && pos.first-2 == BoardChessState[i]->position.first)||(pos.second+1 == BoardChessState[i]->position.second && pos.first-2 == BoardChessState[i]->position.first)||(pos.second-1 == BoardChessState[i]->position.second && pos.first+2 == BoardChessState[i]->position.first))
             {   //如果移動是一步一尖
-                pair<int, int> center(ch.position.first,ch.position.second);
-                if((ch.position.first+BoardChessState[i]->position.first)%2==0)
-                    center.first = (ch.position.first+BoardChessState[i]->position.first)/2;
+                pair<int, int> center(pos.first,pos.second);
+                if((pos.first+BoardChessState[i]->position.first)%2==0)
+                    center.first = (pos.first+BoardChessState[i]->position.first)/2;
                 else
-                    center.second = (ch.position.second+BoardChessState[i]->position.second)/2;
+                    center.second = (pos.second+BoardChessState[i]->position.second)/2;
                 if(!existChess(center))//如果沒有蹩馬腿
                 {
                         GameManager::endOrNot=true;
@@ -788,17 +788,17 @@ void Board::isCheckmate(const Chess & ch, pair<int,int> pos)//是否將軍
         }
         else if (ch.chessType == 6) //CANNON
         {
-            if(ch.position.first == BoardChessState[i]->position.first)//兩點在同一條Y軸上
+            if(pos.first == BoardChessState[i]->position.first)//兩點在同一條Y軸上
             {
-                if(numOfChessesBetweenChesses(ch.position,BoardChessState[i]->position,1)==1)//中間是否只有一顆任一方棋子
+                if(numOfChessesBetweenChesses(pos,BoardChessState[i]->position,1)==1)//中間是否只有一顆任一方棋子
                 {
                     GameManager::endOrNot=true;
                 }
 
             }
-            else if(ch.position.second == BoardChessState[i]->position.second)//兩點在同一條X軸上
+            else if(pos.second == BoardChessState[i]->position.second)//兩點在同一條X軸上
             {
-                if(numOfChessesBetweenChesses(ch.position,BoardChessState[i]->position,0)==1)//中間是否只有一顆任一方棋子
+                if(numOfChessesBetweenChesses(pos,BoardChessState[i]->position,0)==1)//中間是否只有一顆任一方棋子
                 {
                     GameManager::endOrNot=true;
                 }
@@ -808,13 +808,13 @@ void Board::isCheckmate(const Chess & ch, pair<int,int> pos)//是否將軍
         {
             if(ch.colorRB==0)//紅棋(下方)
             {
-                if(ch.position.second-1 == BoardChessState[i]->position.second && ch.position.first == BoardChessState[i]->position.first)//士兵為往前一格
+                if(pos.second-1 == BoardChessState[i]->position.second && pos.first == BoardChessState[i]->position.first)//士兵為往前一格
                 {
                     GameManager::endOrNot=true;
                 }
-                if(ch.position.second<6)//士兵過河
+                if(pos.second<6)//士兵過河
                 {
-                    if((ch.position.second == BoardChessState[i]->position.second && ch.position.first+1 == BoardChessState[i]->position.first)||(ch.position.second == BoardChessState[i]->position.second && ch.position.first-1 == BoardChessState[i]->position.first))//士兵為往左或往右一格
+                    if((pos.second == BoardChessState[i]->position.second && pos.first+1 == BoardChessState[i]->position.first)||(pos.second == BoardChessState[i]->position.second && pos.first-1 == BoardChessState[i]->position.first))//士兵為往左或往右一格
                     {
                         GameManager::endOrNot=true;
                     }
@@ -822,13 +822,13 @@ void Board::isCheckmate(const Chess & ch, pair<int,int> pos)//是否將軍
             }
             else //黑棋(上方)
             {
-                if(ch.position.second+1 == BoardChessState[i]->position.second && ch.position.first == BoardChessState[i]->position.first)//士兵為往前一格
+                if(pos.second+1 == BoardChessState[i]->position.second &&pos.first == BoardChessState[i]->position.first)//士兵為往前一格
                 {
                     GameManager::endOrNot=true;
                 }
-                if(ch.position.second>5)//士兵過河
+                if(pos.second>5)//士兵過河
                 {
-                    if((ch.position.second == BoardChessState[i]->position.second && ch.position.first+1 == BoardChessState[i]->position.first)||(ch.position.second == BoardChessState[i]->position.second && ch.position.first-1 == BoardChessState[i]->position.first))//士兵為往左或往右一格
+                    if((pos.second == BoardChessState[i]->position.second && pos.first+1 == BoardChessState[i]->position.first)||(pos.second == BoardChessState[i]->position.second && pos.first-1 == BoardChessState[i]->position.first))//士兵為往左或往右一格
                     {
                         GameManager::endOrNot=true;
                     }

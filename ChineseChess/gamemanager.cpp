@@ -1,6 +1,6 @@
     #include "gamemanager.h"
 #include "ui_gamemanager.h"
-int GameManager::current_player=50;
+int GameManager::current_player=0;
 QString GameManager::fileN=0;
 bool GameManager::endOrNot=false;
 GameManager::GameManager(QWidget *parent) :

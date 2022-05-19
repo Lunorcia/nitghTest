@@ -1,0 +1,1 @@
+Player: 1, Action: Horse (7, 9) -> (8, 0)

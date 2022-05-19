@@ -42,9 +42,11 @@ public:
     void cancelChoose();
     void killChess(pair<int,int> pos);//吃子
     void move(pair<int,int> nextPos);//移動
-    void isCheckmate();//是否將軍
+    void isCheckmate(const Chess & ch, pair<int,int> pos);//是否將軍
     int count=0;
     void writeRecord(pair<int,int> nowPos, pair<int,int> nextPos);//寫檔
+
+    int numOfChessesBetweenChesses(pair<int,int> nowPos,pair<int,int> nextPos,int XorY); //回傳兩顆棋子之間有多少棋子 X = 0 Y = 1
 
     vector<Chess*> BoardChessState;//盤面全部棋子的位置
 private:

@@ -215,6 +215,20 @@ void Board::stringMove(pair<int,int> nextPos)//讀檔用移棋子(移動不寫�
     GameManager::changePlayer();
 }
 
+void Board::drawCanMovePos(QPainter & painter, const Chess* c){
+    if (c->dead==true)
+        return;
+    if (MovingChess==c){
+        vector<pair<int, int>> nextPos= c->canMovePos(BoardChessState);
+        for (int i = 0; i < nextPos.size(); i++){
+            QPoint pos = location(nextPos[i].second, nextPos[i].first);
+//            QRect rec(pos.x()-CHESSSIZE*1.5,pos.y()-CHESSSIZE*1.5,CHESSSIZE,CHESSSIZE);
+            painter.setPen(Qt::blue);
+            painter.drawRect(pos.x()-CHESSSIZE*1.5,pos.y()-CHESSSIZE*1.5,CHESSSIZE,CHESSSIZE);
+        }
+    }
+}
+
 void Board::paintEvent(QPaintEvent*)
 {
     QPainter painter(this);
@@ -250,6 +264,7 @@ void Board::paintEvent(QPaintEvent*)
     {
 
         drawChess(painter,BoardChessState[i]);
+        drawCanMovePos(painter,BoardChessState[i]);
     }
 }
 

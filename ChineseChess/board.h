@@ -22,7 +22,7 @@ public:
     void stringChooseMovePosition(pair<int,int> pos, QString moveCmd);//選擇棋子要移動的位置(移動不寫檔)
     void stringMove(pair<int,int> nextPos);//讀檔用移棋子(移動不寫檔)
 
-    void getCanMove();//取得目前棋子可以移動的位置
+    void drawCanMovePos(QPainter & painter, const Chess* c);//取得目前棋子可以移動的位置
 
     virtual void paintEvent(QPaintEvent*);//畫棋盤
     void drawChess(QPainter& painter, const Chess* c);//畫棋子

@@ -1,0 +1,2 @@
+Player: 1, Action: Advisor (3, 9) -> (4, 8)
+Player: 2, Action: General (4, 0) -> (4, 1)

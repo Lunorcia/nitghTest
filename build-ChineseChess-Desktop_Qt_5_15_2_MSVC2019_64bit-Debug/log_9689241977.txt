@@ -1,0 +1,1 @@
+Player: 1, Action: Soldier (2, 6) -> (2, 5)

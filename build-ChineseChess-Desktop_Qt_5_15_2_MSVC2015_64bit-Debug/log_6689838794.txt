@@ -1,0 +1,3 @@
+Player: 1, Action: General (4, 9) -> (3, 5)
+Player: 2, Action: General (4, 0) -> (3, 2)
+Player: 1, Action: General (3, 5) -> (5, 2)

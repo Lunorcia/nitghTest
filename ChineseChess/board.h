@@ -22,7 +22,7 @@ public:
     void stringChooseMovePosition(pair<int,int> pos, QString moveCmd);//選擇棋子要移動的位置(移動不寫檔)
     void stringMove(pair<int,int> nextPos);//讀檔用移棋子(移動不寫檔)
 
-    void getCanMove();//取得目前棋子可以移動的位置
+    void drawCanMovePos(QPainter & painter, const Chess* c);//取得目前棋子可以移動的位置
 
     virtual void paintEvent(QPaintEvent*);//畫棋盤
     void drawChess(QPainter& painter, const Chess* c);//畫棋子
@@ -42,9 +42,11 @@ public:
     void cancelChoose();
     void killChess(pair<int,int> pos);//吃子
     void move(pair<int,int> nextPos);//移動
-    void isCheckmate();//是否將軍
+    void isCheckmate(const Chess & ch, pair<int,int> pos);//是否將軍
     int count=0;
     void writeRecord(pair<int,int> nowPos, pair<int,int> nextPos);//寫檔
+
+    int numOfChessesBetweenChesses(pair<int,int> nowPos,pair<int,int> nextPos,int XorY); //回傳兩顆棋子之間有多少棋子 X = 0 Y = 1
 
     vector<Chess*> BoardChessState;//盤面全部棋子的位置
 private:

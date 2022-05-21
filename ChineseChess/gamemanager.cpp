@@ -1,6 +1,7 @@
     #include "gamemanager.h"
 #include "ui_gamemanager.h"
 int GameManager::current_player=0;
+int GameManager::winPlayer=-1;
 QString GameManager::fileN=0;
 bool GameManager::endOrNot=false;
 GameManager::GameManager(QWidget *parent) :
@@ -30,13 +31,14 @@ void GameManager::viewMenu()//主畫面
     viewer.viewMenu();
     this->show();
     qDebug() <<this;
-    qDebug() <<w;
+    //qDebug() <<w;
 }
 
 void GameManager::newGame()//建立新局
 {
     on_board.clear();
     current_player=0;
+    winPlayer=-1;
     endOrNot=false;
     fileN="";
     board.reset();
@@ -53,12 +55,17 @@ void GameManager::newGame()//建立新局
             QCoreApplication::processEvents();
         }
     }
+    viewer.showWhoWin();
     if(askNewGame())
     {
         newGame();
     }
     else
+    {
+        viewer.closeBoard(board);
         viewMenu();
+    }
+
 }
 
 void GameManager::createNewFile()//建立新遊戲txt檔
@@ -117,6 +124,7 @@ void GameManager::loadGame()//讀txt檔
         }
 
     }
+    viewer.showWhoWin();
     if(askNewGame())
     {
         board.reset();

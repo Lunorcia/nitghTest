@@ -1,2 +1,0 @@
-Player: 1, Action: Cannon (1, 7) -> (2, 7)
-Player: 2, Action: Cannon (1, 2) -> (2, 2)

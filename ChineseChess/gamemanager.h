@@ -22,6 +22,7 @@ public:
     vector<Chess*> on_board;//還在盤面上的棋子有哪些
     static int current_player;//輪到紅0/黑1玩家//預設起始紅
     static QString fileN;//檔案名
+    static int winPlayer;//勝利方紅0黑1
     Board board;//控制盤面狀況
     Viewer viewer;//盤面顯示更新
     void resetOn_Board();

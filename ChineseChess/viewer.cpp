@@ -20,6 +20,16 @@ void Viewer::viewBoard(Board &board)
     board.show();
 }
 
+void Viewer::showWhoWin()
+{
+    QMessageBox msgBox;
+    if(GameManager::winPlayer==0)
+        msgBox.setText("紅方勝利");
+    else
+        msgBox.setText("黑方勝利");
+    msgBox.exec();
+}
+
 void Viewer::closeBoard(Board &board)
 {
     board.close();

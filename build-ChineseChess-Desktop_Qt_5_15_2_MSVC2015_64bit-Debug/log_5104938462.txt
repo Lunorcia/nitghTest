@@ -1,3 +1,0 @@
-Player: 1, Action: Horse (7, 9) -> (6, 7)
-Player: 2, Action: Horse (7, 0) -> (6, 2)
-Player: 1, Action: Horse (6, 7) -> (4, 8)

@@ -1,2 +1,0 @@
-Player: 1, Action: General (4, 9) -> (6, 0)
-Player: 2, Action: Soldier (6, 3) -> (3, 7)

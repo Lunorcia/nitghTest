@@ -1,12 +1,15 @@
 #include "board.h"
-bool chessIsSameColor(const pair<int, int> &pos, const vector<Chess*>& BoardChessState, const int color) {
+bool chessIsSameColor(const pair<int, int> &pos, const vector<Chess*>& BoardChessState, const int color)
+{
     int i = 0;
-    for (; i < BoardChessState.size(); i++) {
+    for (; i < BoardChessState.size(); i++)
+    {
         if ((pos.first == BoardChessState[i]->position.first) && (pos.second == BoardChessState[i]->position.second) && !(BoardChessState[i]->isDead())) {
             break;
         }
     }
-    if (BoardChessState[i]->colorRB == color) {
+    if (BoardChessState[i]->colorRB == color)
+    {
         return true;
     }
     return false;
@@ -89,7 +92,6 @@ vector<pair<int, int>> Chess::canMovePos(const vector<Chess*> &BoardChessState) 
 vector<pair<int, int>> General::canMovePos(const vector<Chess*> &BoardChessState) const{//帥和將 移動方案
     vector<pair<int, int>> nextPos;
     pair<int, int> p(position.first+1, position.second);
-    Board tool;
 
     int fieldY ;
     if(colorRB==0)//紅棋(下方)
@@ -107,12 +109,13 @@ vector<pair<int, int>> General::canMovePos(const vector<Chess*> &BoardChessState
     //此時BoardChessState[i]為對方將or帥
 
     if (p.first >= 3 && p.first <= 5 && p.second >= fieldY-2 && p.second <= fieldY){
-        if (existChess(p, BoardChessState) == false || (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false))
+        if (existChess(p, BoardChessState) == false || (existChess(p, BoardChessState) == true && (!chessIsSameColor(p, BoardChessState, this->colorRB))))
         {
             if(enemyGeneral.first==p.first)
             {
 
-                if(tool.numOfChessesBetweenChesses(enemyGeneral,p,1)>0)//如果目標點跟對面最底部之間有任何棋子
+                if(numOfChessesBetweenChesses(enemyGeneral,p,1,BoardChessState)>0)
+                    //如果目標點跟對面最底部之間有任何棋子
                     nextPos.push_back(p);
             }
             else
@@ -123,11 +126,11 @@ vector<pair<int, int>> General::canMovePos(const vector<Chess*> &BoardChessState
     p.first = position.first-1;
     p.second = position.second;
     if (p.first >= 3 && p.first <= 5 && p.second >= fieldY-2 && p.second <= fieldY){
-        if (existChess(p, BoardChessState) == false || (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false))
+        if (existChess(p, BoardChessState) == false || (existChess(p, BoardChessState) == true && (!chessIsSameColor(p, BoardChessState, this->colorRB))))
         {
             if(enemyGeneral.first==p.first)
             {
-                if(tool.numOfChessesBetweenChesses(enemyGeneral,p,1)>0)//如果目標點跟對面最底部之間有任何棋子
+                if(numOfChessesBetweenChesses(enemyGeneral,p,1,BoardChessState)>0)//如果目標點跟對面最底部之間有任何棋子
                     nextPos.push_back(p);
             }
             else
@@ -138,11 +141,11 @@ vector<pair<int, int>> General::canMovePos(const vector<Chess*> &BoardChessState
     p.first = position.first;
     p.second = position.second+1;
     if (p.first >= 3 && p.first <= 5 && p.second >= fieldY-2 && p.second <= fieldY){
-        if (existChess(p, BoardChessState) == false || (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false))
+        if (existChess(p, BoardChessState) == false || (existChess(p, BoardChessState) == true && (!chessIsSameColor(p, BoardChessState, this->colorRB))))
         {
             if(enemyGeneral.first==p.first)
             {
-                if(tool.numOfChessesBetweenChesses(enemyGeneral,p,1)>0)//如果目標點跟對面最底部之間有任何棋子
+                if(numOfChessesBetweenChesses(enemyGeneral,p,1,BoardChessState)>0)//如果目標點跟對面最底部之間有任何棋子
                 nextPos.push_back(p);
             }
             else
@@ -153,18 +156,71 @@ vector<pair<int, int>> General::canMovePos(const vector<Chess*> &BoardChessState
     p.first = position.first;
     p.second = position.second-1;
     if (p.first >= 3 && p.first <= 5 && p.second >= fieldY-2 && p.second <= fieldY){
-        if (existChess(p, BoardChessState) == false || (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false))
+        if (existChess(p, BoardChessState) == false || (existChess(p, BoardChessState) == true && (!chessIsSameColor(p, BoardChessState, this->colorRB))))
         {
             if(enemyGeneral.first==p.first)
             {
-                if(tool.numOfChessesBetweenChesses(enemyGeneral,p,1)>0)//如果目標點跟對面最底部之間有任何棋子
+                if(numOfChessesBetweenChesses(enemyGeneral,p,1,BoardChessState)>0)//如果目標點跟對面最底部之間有任何棋子
                 nextPos.push_back(p);
             }
             else
                 nextPos.push_back(p);
         }
     }
+
+    //王見王
+    if(enemyGeneral.first==position.first)
+    {
+        if(numOfChessesBetweenChesses(enemyGeneral,position,1,BoardChessState)==0)//如果目標點跟對面最底部之間沒有棋子
+        nextPos.push_back(enemyGeneral);//可以直接吃王
+    }
+
     return nextPos;
+}
+
+int General::numOfChessesBetweenChesses(pair<int,int> nowPos,pair<int,int> nextPos,int XorY,const vector<Chess*> &BoardChessState) const //回傳兩顆棋子之間有多少棋子 X = 0 Y = 1
+{
+    int num=0,bigNum,smallNum;
+    pair<int, int> checkedPos(nowPos.first, nowPos.second);
+    if(XorY==0)//檢查兩棋之間的X軸
+    {
+        if(nowPos.first>nextPos.first)
+        {
+            bigNum = nowPos.first;
+            smallNum = nextPos.first+1;
+        }
+        else
+        {
+            bigNum = nextPos.first;
+            smallNum = nowPos.first+1;
+        }
+        for(int i = smallNum;i<bigNum;i++)
+        {
+            checkedPos.first = i;
+            if(existChess(checkedPos,BoardChessState))
+                num++;
+        }
+    }
+    else//檢查兩棋之間的Y軸
+    {
+        if(nowPos.second>nextPos.second)
+        {
+            bigNum = nowPos.second;
+            smallNum = nextPos.second+1;
+        }
+        else
+        {
+            bigNum = nextPos.second;
+            smallNum = nowPos.second+1;
+        }
+        for(int i = smallNum;i<bigNum;i++)
+        {
+            checkedPos.second = i;
+            if(existChess(checkedPos,BoardChessState))
+                num++;
+        }
+    }
+    return num;
 }
 
 vector<pair<int, int>> Advisor::canMovePos(const vector<Chess*> &BoardChessState) const{//士 移動方案

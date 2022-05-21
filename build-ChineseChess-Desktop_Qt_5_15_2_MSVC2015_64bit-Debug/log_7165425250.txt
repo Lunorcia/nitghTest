@@ -1,1 +1,0 @@
-Player: 1, Action: Elephant (2, 9) -> (4, 7)

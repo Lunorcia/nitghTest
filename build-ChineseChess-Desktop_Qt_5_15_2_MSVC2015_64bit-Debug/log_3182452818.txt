@@ -1,8 +1,0 @@
-Player: 1, Action: Soldier (4, 6) -> (4, 5)
-Player: 2, Action: Soldier (4, 3) -> (4, 4)
-Player: 1, Action: General (4, 9) -> (4, 8)
-Player: 2, Action: Soldier (4, 4) -> (4, 5)
-Player: 1, Action: General (4, 8) -> (3, 8)
-Player: 2, Action: Soldier (4, 5) -> (5, 5)
-Player: 1, Action: General (3, 8) -> (3, 7)
-Player: 2, Action: Soldier (5, 5) -> (5, 6)

@@ -10,6 +10,7 @@ public:
     ~Viewer();
     void viewMenu();
     void viewBoard(Board &board);
+    void showWhoWin();
     void closeBoard(Board &board);
     bool askNewGame();
 };

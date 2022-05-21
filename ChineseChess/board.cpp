@@ -9,7 +9,6 @@ Board::Board(QWidget *parent)
 }
 void Board::reset()
 {
-    count=0;
     GameManager::endOrNot=false;
     cancelChoose();//選棋重置
     BoardChessState.clear();
@@ -211,28 +210,11 @@ void Board::stringMove(pair<int,int> nextPos)//讀檔用移棋子(移動不寫�
     MovingChess->position.first=nextPos.first;
     MovingChess->position.second=nextPos.second;
     isCheckmate();
+    stringisGeneralDead();
     cancelChoose();
     GameManager::changePlayer();
 }
 
-void Board::drawCanMovePos(QPainter & painter, const Chess* c){
-   /* if (c->dead==true)
-        return;
-    if (MovingChess==c)
-    {*/
-        vector<pair<int, int>> nextPos= c->canMovePos(BoardChessState);
-        for (int i = 0; i < nextPos.size(); i++)
-        {
-            QPoint pos = location(nextPos[i].second, nextPos[i].first);
-//          QRect rec(pos.x()-CHESSSIZE*1.5,pos.y()-CHESSSIZE*1.5,CHESSSIZE,CHESSSIZE);
-            //painter.setPen(Qt::blue);
-            //painter.drawRect(pos.x()-CHESSSIZE*1.5,pos.y()-CHESSSIZE*1.5,CHESSSIZE,CHESSSIZE);
-            painter.setPen(QColor(255,80,80,150));
-            painter.setBrush(QBrush(QColor(255,80,80,150)));//棋底顏色
-            painter.drawEllipse(pos, CHESSSIZE, CHESSSIZE);//畫圓
-        }
-    //}
-}
 
 void Board::paintEvent(QPaintEvent*)
 {
@@ -269,13 +251,12 @@ void Board::paintEvent(QPaintEvent*)
     {
         drawChess(painter,BoardChessState[i]);
     }
-    //畫選擇的棋子的可移動位置
-    for(i=0;i<BoardChessState.size();i++)
+
+    if(selectOrNot==true)//畫棋子的選擇框&可移動位置
     {
-        drawMovingChess(painter,BoardChessState[i]);
+        drawMovingChess(painter,MovingChess);
     }
 }
-
 
 void Board::drawChess(QPainter& painter, const Chess* c)//畫棋子
 {
@@ -354,26 +335,35 @@ void Board::drawChess(QPainter& painter, const Chess* c)//畫棋子
         }
     }
 }
-void Board::drawMovingChess(QPainter& painter, const Chess* c)//畫選擇的棋子的可移動位置
+
+void Board::drawMovingChess(QPainter& painter, const Chess* c)//畫棋子的選擇框&可移動位置
 {
 
     if(c->dead==true)//棋子已死不用畫
         return;
-    QPoint p=location(*c);//棋子中心位置
+    drawCanMovePos(painter,c);//畫棋子可移動位置
 
-    if(MovingChess==c)//要移動的棋子
-    {
-        drawCanMovePos(painter,c);//畫棋子可移動位置
-        QRect rs(p.x()-CHESSSIZE,p.y()-CHESSSIZE,CHESSSIZE*2,CHESSSIZE*2);//畫字的格子
-        QPen p;
-        p.setWidth(3);
-        p.setColor(QColor(50,50,250));
-        painter.setBrush(Qt::NoBrush);//方框設成中空
-        painter.setPen(p);
-        painter.drawRect(rs);//畫選擇棋的方框
-    }
+    QPoint p=location(*c);//棋子中心位置
+    QRect rs(p.x()-CHESSSIZE,p.y()-CHESSSIZE,CHESSSIZE*2,CHESSSIZE*2);//畫字的格子
+    QPen pen;
+    pen.setWidth(3);
+    pen.setColor(QColor(50,50,250));
+    painter.setBrush(Qt::NoBrush);//方框設成中空
+    painter.setPen(pen);
+    painter.drawRect(rs);//畫選擇棋的方框
 }
 
+void Board::drawCanMovePos(QPainter & painter, const Chess* c)
+{
+    vector<pair<int, int>> nextPos= c->canMovePos(BoardChessState);
+    for (int i = 0; i < nextPos.size(); i++)
+    {
+        QPoint pos = location(nextPos[i].second, nextPos[i].first);
+        painter.setPen(QColor(255,80,80,150));
+        painter.setBrush(QBrush(QColor(255,80,80,150)));//棋底顏色
+        painter.drawEllipse(pos, CHESSSIZE, CHESSSIZE);//畫圓
+    }
+}
 
 QPoint Board::location(int row, int column)//棋盤座標轉介面座標
 {
@@ -404,11 +394,11 @@ void Board::mouseReleaseEvent(QMouseEvent* ev)//滑鼠左鍵點擊
 void Board::click(QPoint p)//有滑鼠點擊事件發生
 {
     pair<int,int> pos=isClickChess(0,0,p);//點擊位置是否有效
-    if(pos.first<0||pos.second<0)//無效點擊
+    if(pos.first<0||pos.second<0)//無效點擊取消選擇
+    {
+        cancelChoose();
         return;
-    /*QMessageBox msgBox;
-    msgBox.setText("valid x,y="+QString::number(pos.first)+" "+QString::number(pos.second));
-    msgBox.exec();*/
+    }
     if(selectOrNot==false)//還沒點棋子
     {
         if(existChess(pos))//點擊位置有棋子
@@ -427,6 +417,7 @@ void Board::click(QPoint p)//有滑鼠點擊事件發生
             chooseMovePosition(pos);
     }
 }
+
 pair<int,int> Board::isClickChess(int row, int column,QPoint p)//判斷有沒有點到交叉格(可能有棋子的位置)
 {
     for(row=0;row<10;row++)
@@ -535,6 +526,8 @@ bool Board::checkValidMove(const Chess & ch, pair<int,int> nextPos)//選取的�
 
         if(BoardChessState[i]->position.first==nextPos.first) //如果對方的將帥跟欲移動位置在同一x點上
         {
+            if(isMeetGeneral() && BoardChessState[i]->position.second==nextPos.second)//王已經見王
+                return true;
             pair<int, int> enemyGeneral=BoardChessState[i]->position;
             if(numOfChessesBetweenChesses(enemyGeneral,nextPos,1)==0)//如果目標點跟對面最底部之間沒有任何棋子
             {
@@ -725,6 +718,27 @@ bool Board::checkValidMove(const Chess & ch, pair<int,int> nextPos)//選取的�
     return false;
 }
 
+bool Board::isMeetGeneral()//王見王
+{
+    int RG=-1,BG=-1;
+    for(int i=0;i<BoardChessState.size();i++)
+    {
+        if(BoardChessState[i]->chessType==Chess::Type::GENERAL)
+        {
+            if(BoardChessState[i]->colorRB==0)
+                RG=i;
+            else
+                BG=i;
+        }
+    }
+    if(BoardChessState[RG]->position.first==BoardChessState[BG]->position.first)
+    {
+        if(numOfChessesBetweenChesses(BoardChessState[RG]->position,BoardChessState[BG]->position,1)==0)//如果王跟王之間沒有任何棋子
+            return true;
+    }
+    return false;
+}
+
 void Board::cancelChoose()
 {
     selectOrNot=false;
@@ -754,28 +768,32 @@ void Board::move(pair<int,int> nextPos)//移動
     MovingChess->position.first=nextPos.first;
     MovingChess->position.second=nextPos.second;
     isCheckmate();
+    isGeneralDead();
     cancelChoose();
     GameManager::changePlayer();
-    count++;
-    if(count==50)
-    {
-        count=0;
-        GameManager::endOrNot=true;
-
-    }
 
 }
 
 void Board::isCheckmate()//是否將軍
 {
     vector<pair<int, int>> nextPos;
-    for(int k = 0;k<BoardChessState.size();k++)
+    QMessageBox msgBox;
+    if(isMeetGeneral())//王見王時是下一個移動方將軍
+    {
+        if(GameManager::current_player==0)//下一手是黑棋進攻
+            msgBox.setText("黑方將軍");
+        else                              //下一手是紅棋進攻
+            msgBox.setText("紅方將軍");
+        msgBox.exec();
+        return;
+    }
+    for(int k = 0; k < BoardChessState.size(); k++)
     {
         nextPos= BoardChessState[k]->canMovePos(BoardChessState);
         int j=0;
         for(;j<BoardChessState.size();j++)
         {   //位置相符且棋子沒死
-            if(BoardChessState[j]->chessType==1&&BoardChessState[k]->colorRB!=BoardChessState[j]->colorRB)
+            if(BoardChessState[j]->chessType==1&&BoardChessState[k]->colorRB != BoardChessState[j]->colorRB)
                 break;
         }
         //至此BoardChessState[j]為對方將or帥
@@ -783,14 +801,63 @@ void Board::isCheckmate()//是否將軍
         for (int i = 0; i < nextPos.size(); i++)
         {
 
-            if(nextPos[i].first==BoardChessState[j]->position.first && nextPos[i].second==BoardChessState[j]->position.second&&GameManager::current_player==BoardChessState[j]->colorRB)//如果可移動位置裡有對方的將帥
+            if(nextPos[i].first==BoardChessState[j]->position.first && nextPos[i].second==BoardChessState[j]->position.second)//如果可移動位置裡有對方的將帥
             {
+                if(BoardChessState[k]->colorRB==0)//紅方將軍黑方
+                    msgBox.setText("紅方將軍");
+                else
+                    msgBox.setText("黑方將軍");
+                msgBox.exec();
+                break;
+            }
+        }
+    }
+}
+
+void Board::isGeneralDead()//是否有一方將軍已死
+{
+    for(int i=0;i<BoardChessState.size();i++)
+    {
+        if(BoardChessState[i]->chessType==Chess::Type::GENERAL)
+        {
+            if(BoardChessState[i]->isDead())//將帥已死
+            {
+                if(BoardChessState[i]->colorRB==0)//紅方將軍死亡
+                {
+                    GameManager::winPlayer=1;
+                    writeWhoWin(1);//黑1
+                }
+                else//黑方將軍死亡
+                {
+                    GameManager::winPlayer=0;
+                    writeWhoWin(0);//紅0
+                }
+                //msgBox.exec();
                 GameManager::endOrNot=true;
                 break;
             }
         }
     }
+}
 
+void Board::stringisGeneralDead()//是否有一方將軍已死(不寫檔
+{
+    for(int i=0;i<BoardChessState.size();i++)
+    {
+        if(BoardChessState[i]->chessType==Chess::Type::GENERAL)
+        {
+            if(BoardChessState[i]->isDead())//將帥已死
+            {
+                if(BoardChessState[i]->colorRB==0)//紅方將軍死亡
+                    GameManager::winPlayer=1;
+                else//黑方將軍死亡
+                    GameManager::winPlayer=0;
+
+                GameManager::endOrNot=true;
+                break;
+            }
+        }
+    }
 }
 
 void Board::writeRecord(pair<int,int> nowPos, pair<int,int> nextPos)//寫檔
@@ -838,6 +905,22 @@ void Board::writeRecord(pair<int,int> nowPos, pair<int,int> nextPos)//寫檔
     file.close();
 
     //遊戲誰贏也要寫
+}
+
+void Board::writeWhoWin(int wincolor)//寫檔(勝利玩家
+{
+    QFile file(GameManager::fileN);
+    if (!file.open(QIODevice::Append | QIODevice::Text))
+    {
+        qDebug() << "Cannot open file for writing:" << qPrintable(file.errorString());
+        return;
+    }
+    QTextStream output(&file);
+    if(wincolor==0)//紅方勝利
+        output<< "Red Win" << "\n";
+    else//黑方勝利
+        output<< "Black Win" << "\n";
+    file.close();
 }
 
 int Board::numOfChessesBetweenChesses(pair<int,int> nowPos,pair<int,int> nextPos,int XorY)  //回傳兩顆棋子之間有多少棋子 X = 0 Y = 1(???????????????

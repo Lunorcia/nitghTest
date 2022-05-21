@@ -26,6 +26,8 @@ class General:public Chess//將/帥
 public:
     General(int color,int x,int y);
     vector<pair<int, int>> canMovePos(const vector<Chess*> &BoardChessState) const;//九宮格
+    int numOfChessesBetweenChesses(pair<int,int> nowPos,pair<int,int> nextPos,int XorY,const vector<Chess*> &BoardChessState) const; //回傳兩顆棋子之間有多少棋子 X = 0 Y = 1
+
 };
 
 class Advisor :public Chess//士

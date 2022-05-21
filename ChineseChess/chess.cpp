@@ -1,11 +1,13 @@
 #include "board.h"
 bool chessIsSameColor(const pair<int, int> &pos, const vector<Chess*>& BoardChessState, const int color) {
-    for (int i = 0; i < BoardChessState.size(); i++) {
+    int i = 0;
+    for (; i < BoardChessState.size(); i++) {
         if ((pos.first == BoardChessState[i]->position.first) && (pos.second == BoardChessState[i]->position.second) && !(BoardChessState[i]->isDead())) {
-            if (BoardChessState[i]->colorRB == color) {
-                return true;
-            }
+            break;
         }
+    }
+    if (BoardChessState[i]->colorRB == color) {
+        return true;
     }
     return false;
 }
@@ -87,59 +89,80 @@ vector<pair<int, int>> Chess::canMovePos(const vector<Chess*> &BoardChessState) 
 vector<pair<int, int>> General::canMovePos(const vector<Chess*> &BoardChessState) const{//帥和將 移動方案
     vector<pair<int, int>> nextPos;
     pair<int, int> p(position.first+1, position.second);
-    if (colorRB == 0 && p.first >= 3 && p.first <= 5 && p.second >= 7 && p.second <= 9){//帥
-        if (existChess(p, BoardChessState) == false)
-            nextPos.push_back(p);
-        else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false)
-            nextPos.push_back(p);
+    Board tool;
+
+    int fieldY ;
+    if(colorRB==0)//紅棋(下方)
+        fieldY = 9;
+    else //黑棋(上方)
+        fieldY = 2;
+
+    int i=0;
+    for(;i<BoardChessState.size();i++)
+    {   //位置相符且棋子沒死
+        if(this->colorRB!=BoardChessState[i]->colorRB && BoardChessState[i]->chessType==1)
+            break;
     }
-    else if (colorRB == 1 && p.first >= 3 && p.first <= 5 && p.second >= 0 && p.second <= 2){//將
-        if (existChess(p, BoardChessState) == false)
-            nextPos.push_back(p);
-        else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false)
-            nextPos.push_back(p);
+    pair<int, int> enemyGeneral=BoardChessState[i]->position;
+    //此時BoardChessState[i]為對方將or帥
+
+    if (p.first >= 3 && p.first <= 5 && p.second >= fieldY-2 && p.second <= fieldY){
+        if (existChess(p, BoardChessState) == false || (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false))
+        {
+            if(enemyGeneral.first==p.first)
+            {
+
+                if(tool.numOfChessesBetweenChesses(enemyGeneral,p,1)>0)//如果目標點跟對面最底部之間有任何棋子
+                    nextPos.push_back(p);
+            }
+            else
+                nextPos.push_back(p);
+        }
     }
+
     p.first = position.first-1;
     p.second = position.second;
-    if (colorRB == 0 && p.first >= 3 && p.first <= 5 && p.second >= 7 && p.second <= 9){//帥
-        if (existChess(p, BoardChessState) == false)
-            nextPos.push_back(p);
-        else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false)
-            nextPos.push_back(p);
+    if (p.first >= 3 && p.first <= 5 && p.second >= fieldY-2 && p.second <= fieldY){
+        if (existChess(p, BoardChessState) == false || (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false))
+        {
+            if(enemyGeneral.first==p.first)
+            {
+                if(tool.numOfChessesBetweenChesses(enemyGeneral,p,1)>0)//如果目標點跟對面最底部之間有任何棋子
+                    nextPos.push_back(p);
+            }
+            else
+                nextPos.push_back(p);
+        }
     }
-    else if (colorRB == 1 && p.first >= 3 && p.first <= 5 && p.second >= 0 && p.second <= 2){//將
-        if (existChess(p, BoardChessState) == false)
-            nextPos.push_back(p);
-        else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false)
-            nextPos.push_back(p);
-    }
+
     p.first = position.first;
     p.second = position.second+1;
-    if (colorRB == 0 && p.first >= 3 && p.first <= 5 && p.second >= 7 && p.second <= 9){//帥
-        if (existChess(p, BoardChessState) == false)
-            nextPos.push_back(p);
-        else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false)
-            nextPos.push_back(p);
+    if (p.first >= 3 && p.first <= 5 && p.second >= fieldY-2 && p.second <= fieldY){
+        if (existChess(p, BoardChessState) == false || (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false))
+        {
+            if(enemyGeneral.first==p.first)
+            {
+                if(tool.numOfChessesBetweenChesses(enemyGeneral,p,1)>0)//如果目標點跟對面最底部之間有任何棋子
+                nextPos.push_back(p);
+            }
+            else
+                nextPos.push_back(p);
+        }
     }
-    else if (colorRB == 1 && p.first >= 3 && p.first <= 5 && p.second >= 0 && p.second <= 2){//將
-        if (existChess(p, BoardChessState) == false)
-            nextPos.push_back(p);
-        else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false)
-            nextPos.push_back(p);
-    }
+
     p.first = position.first;
     p.second = position.second-1;
-    if (colorRB == 0 && p.first >= 3 && p.first <= 5 && p.second >= 7 && p.second <= 9){//帥
-        if (existChess(p, BoardChessState) == false)
-            nextPos.push_back(p);
-        else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false)
-            nextPos.push_back(p);
-    }
-    else if (colorRB == 1 && p.first >= 3 && p.first <= 5 && p.second >= 0 && p.second <= 2){//將
-        if (existChess(p, BoardChessState) == false)
-            nextPos.push_back(p);
-        else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false)
-            nextPos.push_back(p);
+    if (p.first >= 3 && p.first <= 5 && p.second >= fieldY-2 && p.second <= fieldY){
+        if (existChess(p, BoardChessState) == false || (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false))
+        {
+            if(enemyGeneral.first==p.first)
+            {
+                if(tool.numOfChessesBetweenChesses(enemyGeneral,p,1)>0)//如果目標點跟對面最底部之間有任何棋子
+                nextPos.push_back(p);
+            }
+            else
+                nextPos.push_back(p);
+        }
     }
     return nextPos;
 }
@@ -233,7 +256,8 @@ vector<pair<int, int>> Elephant::canMovePos(const vector<Chess*> &BoardChessStat
     pair<int, int> p(position.first-2, position.second-2);
     pair<int, int> testp(position.first-1, position.second-1);
     if (existChess(testp, BoardChessState) == false){
-        if (p.first >= 0 && p.first <= 8 && p.second >= 0 && p.second <= 9){
+        if((colorRB==0&&(p.first >= 0 && p.first <= 8 && p.second >= 4 && p.second <= 9))||(colorRB==1&&(p.first >= 0 && p.first <= 8 && p.second >=0 && p.second < 5)))//紅方
+        { // ||前的是紅方判斷 ||後的是黑方判斷
             if (existChess(p, BoardChessState) == false)
                 nextPos.push_back(p);
             else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false )
@@ -245,7 +269,8 @@ vector<pair<int, int>> Elephant::canMovePos(const vector<Chess*> &BoardChessStat
     testp.first = position.first+1;
     testp.second = position.second-1;
     if (existChess(testp, BoardChessState) == false){
-        if (p.first >= 0 && p.first <= 8 && p.second >= 0 && p.second <= 9){
+        if((colorRB==0&&(p.first >= 0 && p.first <= 8 && p.second >= 4 && p.second <= 9))||(colorRB==1&&(p.first >= 0 && p.first <= 8 && p.second >=0 && p.second < 5)))//紅方
+        { // ||前的是紅方判斷 ||後的是黑方判斷
             if (existChess(p, BoardChessState) == false)
                 nextPos.push_back(p);
             else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false )
@@ -257,7 +282,8 @@ vector<pair<int, int>> Elephant::canMovePos(const vector<Chess*> &BoardChessStat
     testp.first = position.first-1;
     testp.second = position.second+1;
     if (existChess(testp, BoardChessState) == false){
-        if (p.first >= 0 && p.first <= 8 && p.second >= 0 && p.second <= 9){
+        if((colorRB==0&&(p.first >= 0 && p.first <= 8 && p.second >= 4 && p.second <= 9))||(colorRB==1&&(p.first >= 0 && p.first <= 8 && p.second >=0 && p.second < 5)))//紅方
+        { // ||前的是紅方判斷 ||後的是黑方判斷
             if (existChess(p, BoardChessState) == false)
                 nextPos.push_back(p);
             else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false )
@@ -269,7 +295,8 @@ vector<pair<int, int>> Elephant::canMovePos(const vector<Chess*> &BoardChessStat
     testp.first = position.first+1;
     testp.second = position.second+1;
     if (existChess(testp, BoardChessState) == false){
-        if (p.first >= 0 && p.first <= 8 && p.second >= 0 && p.second <= 9){
+        if((colorRB==0&&(p.first >= 0 && p.first <= 8 && p.second >= 4 && p.second <= 9))||(colorRB==1&&(p.first >= 0 && p.first <= 8 && p.second >=0 && p.second < 5)))//紅方
+        { // ||前的是紅方判斷 ||後的是黑方判斷
             if (existChess(p, BoardChessState) == false)
                 nextPos.push_back(p);
             else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false )
@@ -517,34 +544,22 @@ vector<pair<int, int>> Cannon::canMovePos(const vector<Chess*> &BoardChessState)
 vector<pair<int, int>> Soldier::canMovePos(const vector<Chess*> &BoardChessState) const{ //兵卒 移動方案
     vector<pair<int, int>> nextPos;
     pair<int, int> p;
-    if(crossRiver==false){
-        if(colorRB==0){//兵
-            p.first = position.first;
-            p.second = position.second-1;
-        }
-        else if(colorRB==1){//卒
-            p.first = position.first;
-            p.second = position.second+1;
-        }
-        if (p.first >= 0 && p.first <= 8 && p.second >= 0 && p.second <= 9) {
-            if (existChess(p, BoardChessState) == false)
-                nextPos.push_back(p);
-            else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false) {
-                nextPos.push_back(p);
-            }
+    if(colorRB==0){//兵
+        p.first = position.first;
+        p.second = position.second-1;
+    }
+    else if(colorRB==1){//卒
+        p.first = position.first;
+        p.second = position.second+1;
+    }
+    if (p.first >= 0 && p.first <= 8 && p.second >= 0 && p.second <= 9) {
+        if (existChess(p, BoardChessState) == false)
+            nextPos.push_back(p);
+        else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, colorRB) == false) {
+            nextPos.push_back(p);
         }
     }
-    else if (crossRiver==true){
-        if(colorRB==0){//兵
-            p.first = position.first;
-            p.second = position.second-1;
-            if (p.first >= 0 && p.first <= 8 && p.second >= 0 && p.second <= 9) {
-                if (existChess(p, BoardChessState) == false)
-                    nextPos.push_back(p);
-                else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false) {
-                    nextPos.push_back(p);
-                }
-            }
+   if (position.second<5&& colorRB==0){//過河後的兵
             p.first = position.first-1;
             p.second = position.second;
             if (p.first >= 0 && p.first <= 8 && p.second >= 0 && p.second <= 9) {
@@ -564,33 +579,23 @@ vector<pair<int, int>> Soldier::canMovePos(const vector<Chess*> &BoardChessState
                 }
             }
         }
-        if (colorRB == 1) {//卒
-            p.first = position.first;
-            p.second = position.second+1;
-            if (p.first >= 0 && p.first <= 8 && p.second >= 0 && p.second <= 9) {
-                if (existChess(p, BoardChessState) == false)
-                    nextPos.push_back(p);
-                else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false) {
-                    nextPos.push_back(p);
-                }
+    else if (position.second>4&& colorRB==1){//過河後的卒
+        p.first = position.first - 1;
+        p.second = position.second;
+        if (p.first >= 0 && p.first <= 8 && p.second >= 0 && p.second <= 9) {
+            if (existChess(p, BoardChessState) == false)
+                nextPos.push_back(p);
+            else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false) {
+                nextPos.push_back(p);
             }
-            p.first = position.first - 1;
-            p.second = position.second;
-            if (p.first >= 0 && p.first <= 8 && p.second >= 0 && p.second <= 9) {
-                if (existChess(p, BoardChessState) == false)
-                    nextPos.push_back(p);
-                else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false) {
-                    nextPos.push_back(p);
-                }
-            }
-            p.first = position.first + 1;
-            p.second = position.second;
-            if (p.first >= 0 && p.first <= 8 && p.second >= 0 && p.second <= 9) {
-                if (existChess(p, BoardChessState) == false)
-                    nextPos.push_back(p);
-                else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false) {
-                    nextPos.push_back(p);
-                }
+        }
+        p.first = position.first + 1;
+        p.second = position.second;
+        if (p.first >= 0 && p.first <= 8 && p.second >= 0 && p.second <= 9) {
+            if (existChess(p, BoardChessState) == false)
+                nextPos.push_back(p);
+            else if (existChess(p, BoardChessState) == true && chessIsSameColor(p, BoardChessState, this->colorRB) == false) {
+                nextPos.push_back(p);
             }
         }
     }

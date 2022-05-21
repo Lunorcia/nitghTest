@@ -210,7 +210,7 @@ void Board::stringMove(pair<int,int> nextPos)//讀檔用移棋子(移動不寫�
 {
     MovingChess->position.first=nextPos.first;
     MovingChess->position.second=nextPos.second;
-    isCheckmate(*MovingChess, nextPos);
+    isCheckmate();
     cancelChoose();
     GameManager::changePlayer();
 }
@@ -227,8 +227,8 @@ void Board::drawCanMovePos(QPainter & painter, const Chess* c){
 //          QRect rec(pos.x()-CHESSSIZE*1.5,pos.y()-CHESSSIZE*1.5,CHESSSIZE,CHESSSIZE);
             //painter.setPen(Qt::blue);
             //painter.drawRect(pos.x()-CHESSSIZE*1.5,pos.y()-CHESSSIZE*1.5,CHESSSIZE,CHESSSIZE);
-            painter.setPen(QColor(0,0,0));
-            painter.setBrush(QBrush(QColor(150,250,100)));//棋底顏色
+            painter.setPen(QColor(255,80,80,150));
+            painter.setBrush(QBrush(QColor(255,80,80,150)));//棋底顏色
             painter.drawEllipse(pos, CHESSSIZE, CHESSSIZE);//畫圓
         }
     //}
@@ -269,7 +269,13 @@ void Board::paintEvent(QPaintEvent*)
     {
         drawChess(painter,BoardChessState[i]);
     }
+    //畫選擇的棋子的可移動位置
+    for(i=0;i<BoardChessState.size();i++)
+    {
+        drawMovingChess(painter,BoardChessState[i]);
+    }
 }
+
 
 void Board::drawChess(QPainter& painter, const Chess* c)//畫棋子
 {
@@ -347,6 +353,14 @@ void Board::drawChess(QPainter& painter, const Chess* c)//畫棋子
                 break;
         }
     }
+}
+void Board::drawMovingChess(QPainter& painter, const Chess* c)//畫選擇的棋子的可移動位置
+{
+
+    if(c->dead==true)//棋子已死不用畫
+        return;
+    QPoint p=location(*c);//棋子中心位置
+
     if(MovingChess==c)//要移動的棋子
     {
         drawCanMovePos(painter,c);//畫棋子可移動位置
@@ -359,6 +373,7 @@ void Board::drawChess(QPainter& painter, const Chess* c)//畫棋子
         painter.drawRect(rs);//畫選擇棋的方框
     }
 }
+
 
 QPoint Board::location(int row, int column)//棋盤座標轉介面座標
 {
@@ -487,7 +502,6 @@ void Board::chooseMovePosition(pair<int,int> pos)//選擇棋子要移動的位�
             {
                 killChess(pos);//吃子
                 move(pos);//移動棋子
-                isCheckmate(*MovingChess, pos);
             }
             else//無效移動,取消選擇
                 cancelChoose();
@@ -510,38 +524,29 @@ bool Board::checkValidMove(const Chess & ch, pair<int,int> nextPos)//選取的�
     if(ch.chessType == 1) //GENERAL
     {
         int fieldY;
+
+        int i=0;
+        for(;i<BoardChessState.size();i++)
+        {   //位置相符且棋子沒死
+            if(ch.colorRB!=BoardChessState[i]->colorRB && BoardChessState[i]->chessType==1)
+                break;
+        }
+        //此時BoardChessState[i]為對方將or帥
+
+        if(BoardChessState[i]->position.first==nextPos.first) //如果對方的將帥跟欲移動位置在同一x點上
+        {
+            pair<int, int> enemyGeneral=BoardChessState[i]->position;
+            if(numOfChessesBetweenChesses(enemyGeneral,nextPos,1)==0)//如果目標點跟對面最底部之間沒有任何棋子
+            {
+                if(BoardChessState[i]->chessType==1)//如果會將帥對臉
+                    return false;
+            }
+        }
+
         if(ch.colorRB==0)//紅棋(下方)
-        {
-            pair<int, int> black(ch.position.first,0);
-            if(numOfChessesBetweenChesses(black,nextPos,1)==0)//如果目標點跟對面最底部之間沒有任何棋子
-            {
-                int i=0;
-                for(;i<BoardChessState.size();i++)
-                {   //位置相符且棋子沒死
-                    if(black.first==BoardChessState[i]->position.first && black.second==BoardChessState[i]->position.second && !(BoardChessState[i]->isDead()))
-                        break;//點擊位置有棋子
-                }
-                if(BoardChessState[i]->chessType==1)//如果會將帥對臉
-                    return false;
-            }
             fieldY = 9;
-        }
-        else            //黑棋(上方)
-        {
-            pair<int, int> red(ch.position.first,9);
-            if(numOfChessesBetweenChesses(red,nextPos,1)==0)//如果目標點跟對面最底部之間沒有任何棋子
-            {
-                int i=0;
-                for(;i<BoardChessState.size();i++)
-                {   //位置相符且棋子沒死
-                    if(red.first==BoardChessState[i]->position.first && red.second==BoardChessState[i]->position.second && !(BoardChessState[i]->isDead()))
-                        break;//點擊位置有棋子
-                }
-                if(BoardChessState[i]->chessType==1)//如果會將帥對臉
-                    return false;
-            }
+        else //黑棋(上方)
             fieldY = 2;
-        }
 
         if((nextPos.first==3||nextPos.first==4||nextPos.first==5)&&(nextPos.second==fieldY||nextPos.second==fieldY-1||nextPos.second==fieldY-2))//如果目標點在九宮格內
         {
@@ -748,7 +753,7 @@ void Board::move(pair<int,int> nextPos)//移動
     writeRecord(MovingChess->position,nextPos);
     MovingChess->position.first=nextPos.first;
     MovingChess->position.second=nextPos.second;
-    isCheckmate(*MovingChess, nextPos);
+    isCheckmate();
     cancelChoose();
     GameManager::changePlayer();
     count++;
@@ -761,100 +766,31 @@ void Board::move(pair<int,int> nextPos)//移動
 
 }
 
-void Board::isCheckmate(const Chess & ch, pair<int,int> pos)//是否將軍
+void Board::isCheckmate()//是否將軍
 {
-
-    int i=0;
-    /*for(;i<BoardChessState.size();i++)
+    vector<pair<int, int>> nextPos;
+    for(int k = 0;k<BoardChessState.size();k++)
     {
-        if(BoardChessState[i]->chessType==1&&BoardChessState[i]->colorRB!=ch.colorRB)
-            break;
-    }*/
-    if(BoardChessState[i]->chessType==1)//如果被吃的是將帥
-    { /*GameManager::endOrNot==true;*/
-        if (ch.chessType == 4) //CHARIOT
-        {
-            if(pos.first == BoardChessState[i]->position.first)//兩點在同一條Y軸上
-            {
-                if(numOfChessesBetweenChesses(pos,BoardChessState[i]->position,1)==0)//車在Y軸上移動並且中間沒有其他棋子
-                {
-                    GameManager::endOrNot=true;
-                }
+        nextPos= BoardChessState[k]->canMovePos(BoardChessState);
+        int j=0;
+        for(;j<BoardChessState.size();j++)
+        {   //位置相符且棋子沒死
+            if(BoardChessState[j]->chessType==1&&BoardChessState[k]->colorRB!=BoardChessState[j]->colorRB)
+                break;
+        }
+        //至此BoardChessState[j]為對方將or帥
 
-            }
-            else if(pos.second == BoardChessState[i]->position.second)//兩點在同一條X軸上
-            {
-                if(numOfChessesBetweenChesses(pos,BoardChessState[i]->position,0)==0)//車在X軸上移動並且中間沒有其他棋子
-                {
-                    GameManager::endOrNot=true;
-                }
-            }
-        }
-        else if (ch.chessType == 5) //HORSE
+        for (int i = 0; i < nextPos.size(); i++)
         {
-            if((pos.second+2 == BoardChessState[i]->position.second && pos.first+1 == BoardChessState[i]->position.first)||(pos.second-2 == BoardChessState[i]->position.second && pos.first-1 == BoardChessState[i]->position.first)||(pos.second+2 == BoardChessState[i]->position.second && pos.first-1 == BoardChessState[i]->position.first)||(pos.second-2 == BoardChessState[i]->position.second && pos.first+1 == BoardChessState[i]->position.first)||(pos.second+1 == BoardChessState[i]->position.second && pos.first+2 == BoardChessState[i]->position.first)||(pos.second-1 == BoardChessState[i]->position.second && pos.first-2 == BoardChessState[i]->position.first)||(pos.second+1 == BoardChessState[i]->position.second && pos.first-2 == BoardChessState[i]->position.first)||(pos.second-1 == BoardChessState[i]->position.second && pos.first+2 == BoardChessState[i]->position.first))
-            {   //如果移動是一步一尖
-                pair<int, int> center(pos.first,pos.second);
-                if((pos.first+BoardChessState[i]->position.first)%2==0)
-                    center.first = (pos.first+BoardChessState[i]->position.first)/2;
-                else
-                    center.second = (pos.second+BoardChessState[i]->position.second)/2;
-                if(!existChess(center))//如果沒有蹩馬腿
-                {
-                        GameManager::endOrNot=true;
-                }
-            }
-        }
-        else if (ch.chessType == 6) //CANNON
-        {
-            if(pos.first == BoardChessState[i]->position.first)//兩點在同一條Y軸上
-            {
-                if(numOfChessesBetweenChesses(pos,BoardChessState[i]->position,1)==1)//中間是否只有一顆任一方棋子
-                {
-                    GameManager::endOrNot=true;
-                }
 
-            }
-            else if(pos.second == BoardChessState[i]->position.second)//兩點在同一條X軸上
+            if(nextPos[i].first==BoardChessState[j]->position.first && nextPos[i].second==BoardChessState[j]->position.second&&GameManager::current_player==BoardChessState[j]->colorRB)//如果可移動位置裡有對方的將帥
             {
-                if(numOfChessesBetweenChesses(pos,BoardChessState[i]->position,0)==1)//中間是否只有一顆任一方棋子
-                {
-                    GameManager::endOrNot=true;
-                }
-            }
-        }
-        else if (ch.chessType == 7) //SOLDIER
-        {
-            if(ch.colorRB==0)//紅棋(下方)
-            {
-                if(pos.second-1 == BoardChessState[i]->position.second && pos.first == BoardChessState[i]->position.first)//士兵為往前一格
-                {
-                    GameManager::endOrNot=true;
-                }
-                if(pos.second<5)//士兵過河
-                {
-                    if((pos.second == BoardChessState[i]->position.second && pos.first+1 == BoardChessState[i]->position.first)||(pos.second == BoardChessState[i]->position.second && pos.first-1 == BoardChessState[i]->position.first))//士兵為往左或往右一格
-                    {
-                        GameManager::endOrNot=true;
-                    }
-                }
-            }
-            else //黑棋(上方)
-            {
-                if(pos.second+1 == BoardChessState[i]->position.second &&pos.first == BoardChessState[i]->position.first)//士兵為往前一格
-                {
-                    GameManager::endOrNot=true;
-                }
-                if(pos.second>4)//士兵過河
-                {
-                    if((pos.second == BoardChessState[i]->position.second && pos.first+1 == BoardChessState[i]->position.first)||(pos.second == BoardChessState[i]->position.second && pos.first-1 == BoardChessState[i]->position.first))//士兵為往左或往右一格
-                    {
-                        GameManager::endOrNot=true;
-                    }
-                }
+                GameManager::endOrNot=true;
+                break;
             }
         }
     }
+
 }
 
 void Board::writeRecord(pair<int,int> nowPos, pair<int,int> nextPos)//寫檔

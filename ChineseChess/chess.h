@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 
+
 using namespace std;
 
 class Chess
@@ -17,6 +18,7 @@ public:
     int chessType;//棋種Base預設NONE
     bool dead;//預設false
     pair<int, int> position;//first=x,second=y
+
 };
 
 class General:public Chess//將/帥

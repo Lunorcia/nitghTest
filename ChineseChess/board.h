@@ -26,6 +26,7 @@ public:
 
     virtual void paintEvent(QPaintEvent*);//畫棋盤
     void drawChess(QPainter& painter, const Chess* c);//畫棋子
+    void Board::drawMovingChess(QPainter& painter, const Chess* c);//畫選擇的棋子的可移動位置
 
     QPoint location(int row, int column);//棋盤座標轉介面座標
     QPoint location(const Chess& ch);//棋子的棋盤座標轉介面座標
@@ -42,7 +43,7 @@ public:
     void cancelChoose();
     void killChess(pair<int,int> pos);//吃子
     void move(pair<int,int> nextPos);//移動
-    void isCheckmate(const Chess & ch, pair<int,int> pos);//是否將軍
+    void isCheckmate();//是否將軍
     int count=0;
     void writeRecord(pair<int,int> nowPos, pair<int,int> nextPos);//寫檔
 

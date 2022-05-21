@@ -1,0 +1,4 @@
+Player: 1, Action: Elephant (2, 9) -> (4, 7)
+Player: 2, Action: Elephant (2, 0) -> (4, 2)
+Player: 1, Action: Elephant (4, 7) -> (6, 5)
+Player: 2, Action: Elephant (4, 2) -> (2, 4)

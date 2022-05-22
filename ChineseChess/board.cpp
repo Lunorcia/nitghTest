@@ -69,9 +69,9 @@ void Board::stringControl(QString moveCmd)//讀檔移動
     //[8]"5)"
     if(list[1].mid(0,1) != QString::number(GameManager::current_player + 1))//移動不是攻方
     {
-        QMessageBox msgBox;
+        /*QMessageBox msgBox;
         msgBox.setText("移動棋子非攻方");
-        msgBox.exec();
+        msgBox.exec();*/
         return;
     }
     list[1]=list[1].mid(0,1);//去逗號
@@ -107,18 +107,18 @@ void Board::stringControl(QString moveCmd)//讀檔移動
     }
     else//棋種輸入錯誤
     {
-        QMessageBox msgBox;
+        /*QMessageBox msgBox;
         msgBox.setText("棋種輸入錯誤");
-        msgBox.exec();
+        msgBox.exec();*/
         return;
     }
 
     //玩家和座標轉數字
     if(list[4].length()>3 || list[5].length()>2 || list[7].length()>3 || list[8].length()>2)//輸入座標格式錯誤
     {
-        QMessageBox msgBox;
+        /*QMessageBox msgBox;
         msgBox.setText(list[0]+list[1]+" 輸入座標不合法/格式錯誤");
-        msgBox.exec();
+        msgBox.exec();*/
         return;
     }
     player=list[1].toInt() - 1;
@@ -128,9 +128,9 @@ void Board::stringControl(QString moveCmd)//讀檔移動
     nextY=list[8].mid(0,1).toInt();
     if(nowX<0||nowX>=COLUMN||nowY<0||nowY>=ROW || nextX<0||nextX>=COLUMN||nextY<0||nextY>=ROW)//輸入座標超出棋盤範圍
     {
-        QMessageBox msgBox;
+        /*QMessageBox msgBox;
         msgBox.setText(list[0]+list[1]+" 輸入座標不合法");
-        msgBox.exec();
+        msgBox.exec();*/
         return;
     }
     int i=0;
@@ -144,9 +144,9 @@ void Board::stringControl(QString moveCmd)//讀檔移動
     }
     if(i>=BoardChessState.size())//沒找到對應的棋子
     {
-        QMessageBox msgBox;
+        /*QMessageBox msgBox;
         msgBox.setText(list[0]+list[1]+"找不到棋子"+list[3]);
-        msgBox.exec();
+        msgBox.exec();*/
         return;
     }
     chooseMovePiece(pair<int,int>{nowX,nowY});//選棋
@@ -181,9 +181,9 @@ void Board::stringChooseMovePosition(pair<int,int> pos, QString moveCmd)//選擇
         if(isSameColor(*BoardChessState[i]))//要移動的位置是攻方棋
         {
             cancelChoose();
-            QMessageBox msgBox;
+            /*QMessageBox msgBox;
             msgBox.setText("移動位置已有同陣營棋子存在/移動位置無效");
-            msgBox.exec();
+            msgBox.exec();*/
             return;
         }
         else//點的棋子是守方

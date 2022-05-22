@@ -30,7 +30,7 @@ void GameManager::viewMenu()//主畫面
     GameManager *w=new GameManager(this);
     viewer.viewMenu();
     this->show();
-    qDebug() <<this;
+    //qDebug() <<this;
     //qDebug() <<w;
 }
 

@@ -2,7 +2,7 @@ QT       += core gui
 CONFIG += c++11 console
 CONFIG -=app_bundle
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-QMAKE_CXXFLAGS += /utf-8
+#QMAKE_CXXFLAGS += /utf-8
 CONFIG += c++17
 
 # You can make your code fail to compile if it uses deprecated APIs.

@@ -9,7 +9,7 @@
         "-I",
         "C:\\Qt\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-CLcPZq\\clang-uiheader-rzpLUm",
+        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-ckQhXI\\clang-uiheader-TBrDKJ",
         "-nostdinc",
         "-nostdinc++",
         "-std=gnu++1z",
@@ -31,7 +31,7 @@
         "-DQT_GUI_LIB",
         "-DQT_CORE_LIB",
         "-I",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess",
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess",
         "-I",
         "C:\\Qt\\5.15.2\\mingw81_64\\include",
         "-I",
@@ -69,10 +69,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess\\board.cpp"
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess\\board.cpp"
     ],
     "directory": "C:/Users/USER/Desktop/GIT/nitghTest/build-ChineseChess-Desktop_Qt_5_15_2_MinGW_64_bit-Release/.qtc_clangd",
-    "file": "C:/Users/USER/Desktop/GIT/nitghTest/ChineseChess/board.cpp"
+    "file": "C:/Users/USER/Desktop/物件導向/project/pro2/新增資料夾/ChineseChess/board.cpp"
 },
 {
     "arguments": [
@@ -84,7 +84,7 @@
         "-I",
         "C:\\Qt\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-CLcPZq\\clang-uiheader-rzpLUm",
+        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-ckQhXI\\clang-uiheader-TBrDKJ",
         "-nostdinc",
         "-nostdinc++",
         "-std=gnu++1z",
@@ -106,7 +106,7 @@
         "-DQT_GUI_LIB",
         "-DQT_CORE_LIB",
         "-I",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess",
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess",
         "-I",
         "C:\\Qt\\5.15.2\\mingw81_64\\include",
         "-I",
@@ -144,10 +144,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess\\chess.cpp"
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess\\chess.cpp"
     ],
     "directory": "C:/Users/USER/Desktop/GIT/nitghTest/build-ChineseChess-Desktop_Qt_5_15_2_MinGW_64_bit-Release/.qtc_clangd",
-    "file": "C:/Users/USER/Desktop/GIT/nitghTest/ChineseChess/chess.cpp"
+    "file": "C:/Users/USER/Desktop/物件導向/project/pro2/新增資料夾/ChineseChess/chess.cpp"
 },
 {
     "arguments": [
@@ -159,7 +159,7 @@
         "-I",
         "C:\\Qt\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-CLcPZq\\clang-uiheader-rzpLUm",
+        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-ckQhXI\\clang-uiheader-TBrDKJ",
         "-nostdinc",
         "-nostdinc++",
         "-std=gnu++1z",
@@ -181,7 +181,7 @@
         "-DQT_GUI_LIB",
         "-DQT_CORE_LIB",
         "-I",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess",
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess",
         "-I",
         "C:\\Qt\\5.15.2\\mingw81_64\\include",
         "-I",
@@ -219,10 +219,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess\\gamemanager.cpp"
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess\\gamemanager.cpp"
     ],
     "directory": "C:/Users/USER/Desktop/GIT/nitghTest/build-ChineseChess-Desktop_Qt_5_15_2_MinGW_64_bit-Release/.qtc_clangd",
-    "file": "C:/Users/USER/Desktop/GIT/nitghTest/ChineseChess/gamemanager.cpp"
+    "file": "C:/Users/USER/Desktop/物件導向/project/pro2/新增資料夾/ChineseChess/gamemanager.cpp"
 },
 {
     "arguments": [
@@ -234,7 +234,7 @@
         "-I",
         "C:\\Qt\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-CLcPZq\\clang-uiheader-rzpLUm",
+        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-ckQhXI\\clang-uiheader-TBrDKJ",
         "-nostdinc",
         "-nostdinc++",
         "-std=gnu++1z",
@@ -256,7 +256,7 @@
         "-DQT_GUI_LIB",
         "-DQT_CORE_LIB",
         "-I",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess",
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess",
         "-I",
         "C:\\Qt\\5.15.2\\mingw81_64\\include",
         "-I",
@@ -294,10 +294,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess\\main.cpp"
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess\\main.cpp"
     ],
     "directory": "C:/Users/USER/Desktop/GIT/nitghTest/build-ChineseChess-Desktop_Qt_5_15_2_MinGW_64_bit-Release/.qtc_clangd",
-    "file": "C:/Users/USER/Desktop/GIT/nitghTest/ChineseChess/main.cpp"
+    "file": "C:/Users/USER/Desktop/物件導向/project/pro2/新增資料夾/ChineseChess/main.cpp"
 },
 {
     "arguments": [
@@ -309,7 +309,7 @@
         "-I",
         "C:\\Qt\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-CLcPZq\\clang-uiheader-rzpLUm",
+        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-ckQhXI\\clang-uiheader-TBrDKJ",
         "-nostdinc",
         "-nostdinc++",
         "-std=gnu++1z",
@@ -331,7 +331,7 @@
         "-DQT_GUI_LIB",
         "-DQT_CORE_LIB",
         "-I",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess",
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess",
         "-I",
         "C:\\Qt\\5.15.2\\mingw81_64\\include",
         "-I",
@@ -369,10 +369,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess\\viewer.cpp"
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess\\viewer.cpp"
     ],
     "directory": "C:/Users/USER/Desktop/GIT/nitghTest/build-ChineseChess-Desktop_Qt_5_15_2_MinGW_64_bit-Release/.qtc_clangd",
-    "file": "C:/Users/USER/Desktop/GIT/nitghTest/ChineseChess/viewer.cpp"
+    "file": "C:/Users/USER/Desktop/物件導向/project/pro2/新增資料夾/ChineseChess/viewer.cpp"
 },
 {
     "arguments": [
@@ -384,7 +384,7 @@
         "-I",
         "C:\\Qt\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-CLcPZq\\clang-uiheader-rzpLUm",
+        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-ckQhXI\\clang-uiheader-TBrDKJ",
         "-nostdinc",
         "-nostdinc++",
         "-std=gnu++1z",
@@ -406,7 +406,7 @@
         "-DQT_GUI_LIB",
         "-DQT_CORE_LIB",
         "-I",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess",
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess",
         "-I",
         "C:\\Qt\\5.15.2\\mingw81_64\\include",
         "-I",
@@ -444,10 +444,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess\\board.h"
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess\\board.h"
     ],
     "directory": "C:/Users/USER/Desktop/GIT/nitghTest/build-ChineseChess-Desktop_Qt_5_15_2_MinGW_64_bit-Release/.qtc_clangd",
-    "file": "C:/Users/USER/Desktop/GIT/nitghTest/ChineseChess/board.h"
+    "file": "C:/Users/USER/Desktop/物件導向/project/pro2/新增資料夾/ChineseChess/board.h"
 },
 {
     "arguments": [
@@ -459,7 +459,7 @@
         "-I",
         "C:\\Qt\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-CLcPZq\\clang-uiheader-rzpLUm",
+        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-ckQhXI\\clang-uiheader-TBrDKJ",
         "-nostdinc",
         "-nostdinc++",
         "-std=gnu++1z",
@@ -481,7 +481,7 @@
         "-DQT_GUI_LIB",
         "-DQT_CORE_LIB",
         "-I",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess",
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess",
         "-I",
         "C:\\Qt\\5.15.2\\mingw81_64\\include",
         "-I",
@@ -519,10 +519,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess\\chess.h"
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess\\chess.h"
     ],
     "directory": "C:/Users/USER/Desktop/GIT/nitghTest/build-ChineseChess-Desktop_Qt_5_15_2_MinGW_64_bit-Release/.qtc_clangd",
-    "file": "C:/Users/USER/Desktop/GIT/nitghTest/ChineseChess/chess.h"
+    "file": "C:/Users/USER/Desktop/物件導向/project/pro2/新增資料夾/ChineseChess/chess.h"
 },
 {
     "arguments": [
@@ -534,7 +534,7 @@
         "-I",
         "C:\\Qt\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-CLcPZq\\clang-uiheader-rzpLUm",
+        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-ckQhXI\\clang-uiheader-TBrDKJ",
         "-nostdinc",
         "-nostdinc++",
         "-std=gnu++1z",
@@ -556,7 +556,7 @@
         "-DQT_GUI_LIB",
         "-DQT_CORE_LIB",
         "-I",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess",
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess",
         "-I",
         "C:\\Qt\\5.15.2\\mingw81_64\\include",
         "-I",
@@ -594,10 +594,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess\\gamemanager.h"
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess\\gamemanager.h"
     ],
     "directory": "C:/Users/USER/Desktop/GIT/nitghTest/build-ChineseChess-Desktop_Qt_5_15_2_MinGW_64_bit-Release/.qtc_clangd",
-    "file": "C:/Users/USER/Desktop/GIT/nitghTest/ChineseChess/gamemanager.h"
+    "file": "C:/Users/USER/Desktop/物件導向/project/pro2/新增資料夾/ChineseChess/gamemanager.h"
 },
 {
     "arguments": [
@@ -609,7 +609,7 @@
         "-I",
         "C:\\Qt\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-CLcPZq\\clang-uiheader-rzpLUm",
+        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-ckQhXI\\clang-uiheader-TBrDKJ",
         "-nostdinc",
         "-nostdinc++",
         "-std=gnu++1z",
@@ -631,7 +631,7 @@
         "-DQT_GUI_LIB",
         "-DQT_CORE_LIB",
         "-I",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess",
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess",
         "-I",
         "C:\\Qt\\5.15.2\\mingw81_64\\include",
         "-I",
@@ -669,10 +669,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess\\viewer.h"
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess\\viewer.h"
     ],
     "directory": "C:/Users/USER/Desktop/GIT/nitghTest/build-ChineseChess-Desktop_Qt_5_15_2_MinGW_64_bit-Release/.qtc_clangd",
-    "file": "C:/Users/USER/Desktop/GIT/nitghTest/ChineseChess/viewer.h"
+    "file": "C:/Users/USER/Desktop/物件導向/project/pro2/新增資料夾/ChineseChess/viewer.h"
 },
 {
     "arguments": [
@@ -684,7 +684,7 @@
         "-I",
         "C:\\Qt\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-CLcPZq\\clang-uiheader-rzpLUm",
+        "C:\\Users\\USER\\AppData\\Local\\Temp\\QtCreator-ckQhXI\\clang-uiheader-TBrDKJ",
         "-nostdinc",
         "-nostdinc++",
         "-std=gnu++1z",
@@ -706,7 +706,7 @@
         "-DQT_GUI_LIB",
         "-DQT_CORE_LIB",
         "-I",
-        "C:\\Users\\USER\\Desktop\\GIT\\nitghTest\\ChineseChess",
+        "C:\\Users\\USER\\Desktop\\物件導向\\project\\pro2\\新增資料夾\\ChineseChess",
         "-I",
         "C:\\Qt\\5.15.2\\mingw81_64\\include",
         "-I",

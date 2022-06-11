@@ -22,23 +22,22 @@ int existAxisXOrY(vector<string> variableNameList, vector<vector<string>> constr
 	for (int i = 0; i < variableNameList.size(); i++) {
 		if (variableNameList[i] == "x") {
 			haveX = true;
-			continue;
 		}
-		else if (variableNameList[i] == "y") {
+		if (variableNameList[i] == "y") {
 			haveY = true;
-			continue;
 		}
+	}
+	for (int i = 0; i < constructVariable.size(); i++) {
 		for (int j = 0; j < constructVariable[i].size(); j++) {
 			if (constructVariable[i][j] == "x") {
 				haveX = true;
-				continue;
 			}
-			else if (constructVariable[i][j] == "y") {
+			if (constructVariable[i][j] == "y") {
 				haveY = true;
-				continue;
 			}
 		}
 	}
+	
 
 	if (haveX == true && haveY == true) {
 		return 2;
@@ -56,6 +55,15 @@ int existAxisXOrY(vector<string> variableNameList, vector<vector<string>> constr
 
 Parser::Parser() {
 
+}
+
+Parser::~Parser() {
+	equationPart.clear();
+	x.clear();
+	y.clear();
+	variableNameList.clear();
+	variableFormulaList.clear();
+	constructVariable.clear();
 }
 
 int Parser::searchVariableName(string a) {
@@ -159,32 +167,105 @@ void Parser::computeAllEquation() {
 	//variableNameList = vnl;
 	//variableFormulaList = vfl;
 	
-
-	for (double d = 0; d < 20; d += 1) {
-		vector<string> formula;
-		string tempFormula = variableFormulaList[0];
-		stringstream ss(tempFormula);
-		string tempss = "";
-		while (getline(ss, tempss, ' '))//拆解輸入字串
-			formula.push_back(tempss);
-		x.push_back(d);
-		for (int i = 0; i < formula.size(); i++) {
-			if (formula[i] == "x") {
-				string sd;
-				stringstream ssd;
-				ssd << d;
-				ssd >> sd;
-				formula[i].replace(formula[i].find("x"), 1, sd);
+	int exist = existAxisXOrY(variableNameList, constructVariable);
+	cout << exist << endl;
+	if (exist == -1) {
+		cout << "x和y不存在，無法繪圖" << endl;
+		return;
+	}
+	else if (exist == 0 && variableNameList[0] == "x") {//x存在，y不存在
+		for (double d = 0; d < 20; d += 1) {
+			vector<string> formula;
+			string tempFormula = variableFormulaList[0];
+			stringstream ss(tempFormula);
+			string tempss = "";
+			while (getline(ss, tempss, ' '))//拆解輸入字串
+				formula.push_back(tempss);
+			y.push_back(d);
+			compute(formula);
+			string sans = formula[0];
+			double ans;
+			stringstream ssans;
+			ssans << sans;
+			ssans >> ans;
+			x.push_back(ans);
+		}
+	}
+	else if (exist == 1 && variableNameList[0] == "y") {//x存在，y不存在
+		for (double d = 0; d < 20; d += 1) {
+			vector<string> formula;
+			string tempFormula = variableFormulaList[0];
+			stringstream ss(tempFormula);
+			string tempss = "";
+			while (getline(ss, tempss, ' '))//拆解輸入字串
+				formula.push_back(tempss);
+			x.push_back(d);
+			compute(formula);
+			string sans = formula[0];
+			double ans;
+			stringstream ssans;
+			ssans << sans;
+			ssans >> ans;
+			y.push_back(ans);
+		}
+	}
+	else if (exist == 2) {
+		if (variableNameList[0] == "y") {
+			for (double d = 0; d < 20; d += 1) {
+				vector<string> formula;
+				string tempFormula = variableFormulaList[0];
+				stringstream ss(tempFormula);
+				string tempss = "";
+				while (getline(ss, tempss, ' '))//拆解輸入字串
+					formula.push_back(tempss);
+				x.push_back(d);
+				for (int i = 0; i < formula.size(); i++) {
+					if (formula[i] == "x") {
+						string sd;
+						stringstream ssd;
+						ssd << d;
+						ssd >> sd;
+						formula[i].replace(formula[i].find("x"), 1, sd);
+					}
+				}
+				compute(formula);
+				string sans = formula[0];
+				double ans;
+				stringstream ssans;
+				ssans << sans;
+				ssans >> ans;
+				y.push_back(ans);
 			}
 		}
-		compute(formula);
-		string sans = formula[0];
-		double ans;
-		stringstream ssans;
-		ssans << sans;
-		ssans >> ans;
-		y.push_back(ans);
+		else if (variableNameList[0] == "x") {
+			for (double d = 0; d < 20; d += 1) {
+				vector<string> formula;
+				string tempFormula = variableFormulaList[0];
+				stringstream ss(tempFormula);
+				string tempss = "";
+				while (getline(ss, tempss, ' '))//拆解輸入字串
+					formula.push_back(tempss);
+				y.push_back(d);
+				for (int i = 0; i < formula.size(); i++) {
+					if (formula[i] == "x") {
+						string sd;
+						stringstream ssd;
+						ssd << d;
+						ssd >> sd;
+						formula[i].replace(formula[i].find("y"), 1, sd);
+					}
+				}
+				compute(formula);
+				string sans = formula[0];
+				double ans;
+				stringstream ssans;
+				ssans << sans;
+				ssans >> ans;
+				x.push_back(ans);
+			}
+		}
 	}
+	
 }
 
 void Parser::getAxisVector() {

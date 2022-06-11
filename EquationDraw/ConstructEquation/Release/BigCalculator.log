@@ -1,1 +1,23 @@
-﻿  BigCalculator.vcxproj -> C:\Users\USER\Desktop\大四下\物件導向實習專案\test\BigCalculator\Release\BigCalculator.exe
+﻿  Parser.cpp
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(4,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(12,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(22,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(30,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(31,21): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(70,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(78,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(88,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(89,25): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(118,21): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(134,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(140,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(222,23): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(249,23): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(272,20): warning C4018: '<': signed/unsigned 不相符
+  正在產生程式碼
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(54): warning C4715: 'existAxisXOrY': 不是所有控制路徑都傳回值
+  3 of 504 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  已完成程式碼產生
+  BigCalculator.vcxproj -> C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Release\BigCalculator.exe

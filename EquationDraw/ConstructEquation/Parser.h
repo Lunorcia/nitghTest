@@ -8,6 +8,7 @@ int existAxisXOrY(vector<string> variableNameList, vector<vector<string>> constr
 class Parser{
 public:
 	Parser();
+	~Parser();
 	vector<string> equationPart;//单Α皚
 	vector<double> x;
 	vector<double> y;
@@ -18,9 +19,7 @@ public:
 	bool checkDefinedVariable(vector<string> cv); //跑计琌ゼ﹚竡
 	bool checkLoopDefinedVariable(); //跑计琌碻吏﹚竡
 	void setEquationPart(string input);//纗单Α
-	
 	void computeAllEquation();
-	
 	void getAxisVector();
 private:
 };

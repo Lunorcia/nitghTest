@@ -3,10 +3,12 @@
 
 int main()
 {
-	Parser p;
+	vector<Parser> parser;
 	string input;
+	Parser p;
 	while (getline(cin, input))
 	{
+		
 		/*number a(inputA);*/
 		/*cout << a.computeSin() << endl;
 		cout << a.computeCos() << endl;
@@ -24,9 +26,12 @@ int main()
 			}
 			p.computeAllEquation();
 			p.getAxisVector();
+			parser.push_back(p);
+			p.~Parser();
 		}
 		else{
 			p.setEquationPart(input);
 		}
+
 	}
 }

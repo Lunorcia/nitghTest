@@ -151,7 +151,7 @@ void Parser::computeAllEquation() {
 	//variableNameList = vnl;
 	//variableFormulaList = vfl;
 
-	for (double d = 0; d < 20; d += 1) {
+	for (double d = -20; d < 20; d += 1) {
 		vector<string> formula;
 		string s;
 		for (int i = 0; i < variableFormulaList[0].size(); i++) {

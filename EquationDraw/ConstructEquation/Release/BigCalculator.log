@@ -1,1 +1,29 @@
-﻿  BigCalculator.vcxproj -> C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Release\BigCalculator.exe
+﻿  Parser.cpp
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(16,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(24,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(34,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(35,25): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(47,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(97,21): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(113,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(119,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(157,21): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(191,23): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(204,23): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(236,21): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(243,30): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(362,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(368,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(394,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(478,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(496,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(506,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(514,20): warning C4018: '<': signed/unsigned 不相符
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(515,21): warning C4018: '<': signed/unsigned 不相符
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+  正在產生程式碼
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(538): warning C4715: 'existAxisXOrY': 不是所有控制路徑都傳回值
+C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Parser.cpp(359): warning C4715: 'Parser::compute': 不是所有控制路徑都傳回值
+  All 513 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成程式碼產生
+  BigCalculator.vcxproj -> C:\Users\USER\Desktop\nitghTest\EquationDraw\ConstructEquation\Release\BigCalculator.exe

@@ -74,184 +74,217 @@ void Viewer::on_addEquationButton_clicked()
 void Viewer::on_Equation1_editingFinished()
 {
     equationInput[1]=ui->Equation1->text();
-    //進入算式處理
-    //算式處理結果儲存
-    //有y就讓viewer畫圖
+    QCustomPlot* customPlot  = ui->customPlot;
+    customPlot->graph(1)->setPen(QPen(QColor(0,0,255)));
     Parser parser(1);
     parser.process();
+    if(parser.needDraw == true)
+    {
+        customPlot->graph(1)->setData(parser.x, parser.y);
+//        customPlot->graph(1)->rescaleAxes();
+        customPlot->xAxis->setRange(-20,20);
+        customPlot->yAxis->setRange(-20,20);
+        customPlot->replot();
+    }
+//    equationInput[1]=ui->Equation1->text();
+//    //進入算式處理
+//    //算式處理結果儲存
+//    //有y就讓viewer畫圖
+//    Parser parser(1);
+//    parser.process();
 
-    QCustomPlot* customPlot  = ui->customPlot;
-        // add two new graphs and set their look:
-        customPlot->graph(1)->setPen(QPen(Qt::green)); // line color blue for first graph
-        // generate some points of data (y0 for first, y1 for second graph):
-        QVector<double> x(451), y0(451);
-        for (int i=0; i<251; ++i)
-        {
-          x[i] = i;
-          y0[i] = qExp(-i/150.0)*qCos(i/10.0); // exponentially decaying cosine
+//    QCustomPlot* customPlot  = ui->customPlot;
+//        // add two new graphs and set their look:
+//        customPlot->graph(1)->setPen(QPen(Qt::green)); // line color blue for first graph
+//        // generate some points of data (y0 for first, y1 for second graph):
+//        QVector<double> x(451), y0(451);
+//        for (int i=0; i<251; ++i)
+//        {
+//          x[i] = i;
+//          y0[i] = qExp(-i/150.0)*qCos(i/10.0); // exponentially decaying cosine
 
-        }
-        for (int i=251; i<451; ++i)
-        {
-          x[i] = -(i-251);
-          y0[i] = qExp((i-251)/150.0)*qCos(-(i-251)/10.0); // exponentially decaying cosine
+//        }
+//        for (int i=251; i<451; ++i)
+//        {
+//          x[i] = -(i-251);
+//          y0[i] = qExp((i-251)/150.0)*qCos(-(i-251)/10.0); // exponentially decaying cosine
 
-        }
-        // pass data points to graphs:
-        customPlot->graph(1)->setData(x, y0);
-        // let the ranges scale themselves so graph 0 fits perfectly in the visible area:
-        //customPlot->graph(1)->rescaleAxes();
-        customPlot->xAxis->setRange(0,100);
-        customPlot->yAxis->setRange(0,1);
-    customPlot->replot();
+//        }
+//        // pass data points to graphs:
+//        customPlot->graph(1)->setData(x, y0);
+//        // let the ranges scale themselves so graph 0 fits perfectly in the visible area:
+//        //customPlot->graph(1)->rescaleAxes();
+//        customPlot->xAxis->setRange(0,100);
+//        customPlot->yAxis->setRange(0,1);
+//    customPlot->replot();
 }
 
 
 void Viewer::on_Equation2_editingFinished()
 {
-    equationInput[2]=ui->Equation1->text();
-    //進入算式處理
-    //算式處理結果儲存
-    //有y就讓viewer畫圖
+    equationInput[2]=ui->Equation2->text();
+    QCustomPlot* customPlot  = ui->customPlot;
+    customPlot->graph(2)->setPen(QPen(QColor(255,0,0)));
     Parser parser(2);
     parser.process();
-
-    QCustomPlot* customPlot  = ui->customPlot;
-
-        // add two new graphs and set their look:
-        customPlot->graph(2)->setPen(QPen(Qt::red)); // line color red for second graph
-        // generate some points of data (y0 for first, y1 for second graph):
-        QVector<double> x(251), y1(251);
-        for (int i=0; i<251; ++i)
-        {
-          x[i] = i;
-          y1[i] = qExp(-i/150.0);              // exponential envelope
-        }
-
-        customPlot->graph(2)->setData(x, y1);
-        // same thing for graph 1, but only enlarge ranges (in case graph 1 is smaller than graph 0):
-        //customPlot->graph(2)->rescaleAxes(true);
-        customPlot->xAxis->setRange(0,50);
-        customPlot->yAxis->setRange(0,1);
+    if(parser.needDraw == true)
+    {
+        customPlot->graph(2)->setData(parser.x, parser.y);
+        customPlot->xAxis->setRange(-20,20);
+        customPlot->yAxis->setRange(-20,20);
         customPlot->replot();
+    }
+//    equationInput[2]=ui->Equation1->text();
+//    //進入算式處理
+//    //算式處理結果儲存
+//    //有y就讓viewer畫圖
+//    Parser parser(2);
+//    parser.process();
+
+//    QCustomPlot* customPlot  = ui->customPlot;
+
+//        // add two new graphs and set their look:
+//        customPlot->graph(2)->setPen(QPen(Qt::red)); // line color red for second graph
+//        // generate some points of data (y0 for first, y1 for second graph):
+//        QVector<double> x(251), y1(251);
+//        for (int i=0; i<251; ++i)
+//        {
+//          x[i] = i;
+//          y1[i] = qExp(-i/150.0);              // exponential envelope
+//        }
+
+//        customPlot->graph(2)->setData(x, y1);
+//        // same thing for graph 1, but only enlarge ranges (in case graph 1 is smaller than graph 0):
+//        //customPlot->graph(2)->rescaleAxes(true);
+//        customPlot->xAxis->setRange(0,50);
+//        customPlot->yAxis->setRange(0,1);
+//        customPlot->replot();
 }
 
 void Viewer::on_Equation3_editingFinished()
 {
-    equationInput[3]=ui->Equation1->text();
+    equationInput[3]=ui->Equation3->text();
     QCustomPlot* customPlot  = ui->customPlot;
-
+    customPlot->graph(3)->setPen(QColor(0,238,0));
     Parser parser(3);
     parser.process();
-    if(parser.needDraw)
+    if(parser.needDraw == true)
     {
         customPlot->graph(3)->setData(parser.x, parser.y);
-        customPlot->graph(3)->rescaleAxes();
+        customPlot->xAxis->setRange(-20,20);
+        customPlot->yAxis->setRange(-20,20);
         customPlot->replot();
     }
 }
 
 void Viewer::on_Equation4_editingFinished()
 {
-    equationInput[4]=ui->Equation1->text();
+    equationInput[4]=ui->Equation4->text();
     QCustomPlot* customPlot  = ui->customPlot;
-
+    customPlot->graph(4)->setPen(QPen(QColor(105,105,105)));
     Parser parser(4);
     parser.process();
     if(parser.needDraw)
     {
-        customPlot->graph(3)->setData(parser.x, parser.y);
-        customPlot->graph(3)->rescaleAxes();
+        customPlot->graph(4)->setData(parser.x, parser.y);
+        customPlot->xAxis->setRange(-20,20);
+        customPlot->yAxis->setRange(-20,20);
         customPlot->replot();
     }
 }
 
 void Viewer::on_Equation5_editingFinished()
 {
-    equationInput[5]=ui->Equation1->text();
+    equationInput[5]=ui->Equation5->text();
     QCustomPlot* customPlot  = ui->customPlot;
-
+    customPlot->graph(5)->setPen(QPen(QColor(174,120,255)));
     Parser parser(5);
     parser.process();
     if(parser.needDraw)
     {
-        customPlot->graph(3)->setData(parser.x, parser.y);
-        customPlot->graph(3)->rescaleAxes();
+        customPlot->graph(5)->setData(parser.x, parser.y);
+        customPlot->xAxis->setRange(-20,20);
+        customPlot->yAxis->setRange(-20,20);
         customPlot->replot();
     }
 }
 
 void Viewer::on_Equation6_editingFinished()
 {
-    equationInput[6]=ui->Equation1->text();
+    equationInput[6]=ui->Equation6->text();
     QCustomPlot* customPlot  = ui->customPlot;
-
+    customPlot->graph(6)->setPen(QPen(QColor(255,165,79)));
     Parser parser(6);
     parser.process();
     if(parser.needDraw)
     {
-        customPlot->graph(3)->setData(parser.x, parser.y);
-        customPlot->graph(3)->rescaleAxes();
+        customPlot->graph(6)->setData(parser.x, parser.y);
+        customPlot->xAxis->setRange(-20,20);
+        customPlot->yAxis->setRange(-20,20);
         customPlot->replot();
     }
 }
 
 void Viewer::on_Equation7_editingFinished()
 {
-    equationInput[7]=ui->Equation1->text();
+    equationInput[7]=ui->Equation7->text();
     QCustomPlot* customPlot  = ui->customPlot;
-
+    customPlot->graph(7)->setPen(QPen(QColor(151,219,242)));
     Parser parser(7);
     parser.process();
     if(parser.needDraw)
     {
-        customPlot->graph(3)->setData(parser.x, parser.y);
-        customPlot->graph(3)->rescaleAxes();
+        customPlot->graph(7)->setData(parser.x, parser.y);
+        customPlot->xAxis->setRange(-20,20);
+        customPlot->yAxis->setRange(-20,20);
         customPlot->replot();
     }
 }
 
 void Viewer::on_Equation8_editingFinished()
 {
-    equationInput[8]=ui->Equation1->text();
+    equationInput[8]=ui->Equation8->text();
     QCustomPlot* customPlot  = ui->customPlot;
-
+    customPlot->graph(8)->setPen(QPen(QColor(255,193,193)));
     Parser parser(8);
     parser.process();
     if(parser.needDraw)
     {
-        customPlot->graph(3)->setData(parser.x, parser.y);
-        customPlot->graph(3)->rescaleAxes();
+        customPlot->graph(8)->setData(parser.x, parser.y);
+        customPlot->xAxis->setRange(-20,20);
+        customPlot->yAxis->setRange(-20,20);
         customPlot->replot();
     }
 }
 
 void Viewer::on_Equation9_editingFinished()
 {
-    equationInput[9]=ui->Equation1->text();
+    equationInput[9]=ui->Equation9->text();
     QCustomPlot* customPlot  = ui->customPlot;
-
+    customPlot->graph(9)->setPen(QPen(QColor(46,139,87)));
     Parser parser(9);
     parser.process();
     if(parser.needDraw)
     {
-        customPlot->graph(3)->setData(parser.x, parser.y);
-        customPlot->graph(3)->rescaleAxes();
+        customPlot->graph(9)->setData(parser.x, parser.y);
+        customPlot->xAxis->setRange(-20,20);
+        customPlot->yAxis->setRange(-20,20);
         customPlot->replot();
     }
 }
 
 void Viewer::on_Equation10_editingFinished()
 {
-    equationInput[10]=ui->Equation1->text();
+    equationInput[10]=ui->Equation10->text();
     QCustomPlot* customPlot  = ui->customPlot;
-
+    customPlot->graph(10)->setPen(QPen(QColor(0,0,128)));
     Parser parser(10);
     parser.process();
     if(parser.needDraw)
     {
-        customPlot->graph(3)->setData(parser.x, parser.y);
-        customPlot->graph(3)->rescaleAxes();
+        customPlot->graph(10)->setData(parser.x, parser.y);
+        customPlot->xAxis->setRange(-20,20);
+        customPlot->yAxis->setRange(-20,20);
         customPlot->replot();
     }
 }

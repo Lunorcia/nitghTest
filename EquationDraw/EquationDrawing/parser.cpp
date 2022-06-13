@@ -1,12 +1,15 @@
-#include "parser.h"
+//#include "parser.h"
+#include "viewer.h" //viewer裡有parser.h了
 //static
 vector<pair<string,vector<string>>> Parser::variableList(11);//最多10個([1]~[10],[0]no use)
-
+vector<string> Parser::variableNameList(11);//變數名稱陣列
+vector<string> Parser::variableFormulaList(11);//設定變數的等式
 
 Parser::Parser()
 {
     x.fill(0.0,8000);//填入8000個0
     y.fill(0.0,8000);//填入8000個0
+    equationPart.clear();
     needDraw=false;
 }
 
@@ -14,12 +17,18 @@ Parser::Parser(int num)
 {
     x.fill(0.0,8000);//填入8000個0
     y.fill(0.0,8000);//填入8000個0
+    equationPart.clear();
     textLineNumber=num;
     needDraw=false;
 }
 
 void Parser::process()//暫定總處理函式
 {
+    //清除上一次設置的變數和方程式
+    variableNameList[textLineNumber]="";
+    variableFormulaList[textLineNumber]="";
+    /*進入算式處理
+     * setEquationPart(Viewer::equationInput[textLineNumber].toStdString());*/
     return;
 }
 
@@ -32,7 +41,7 @@ int Parser::searchVariableName(string a) {
     return -1;
 }
 
-bool checkBracket(const string& line)//�ˬd���k�A���O�_�X�k
+bool checkBracket(const string& line)//檢查左右括弧是否合法
 {
     int countP = 0, countN = 0;
     for (int i = 0; i < line.length(); i++) {
@@ -40,52 +49,53 @@ bool checkBracket(const string& line)//�ˬd���k�A���O�_�X�
             countP++;
         else if (line[i] == ')')
             countN++;
-        if (countN > countP) { //�ˬd���k�A�����ǬO�_�ۤ�
+        if (countN > countP) { //檢查左右括弧順序是否相反
             return false;
         }
     }
-    if (countP != countN) //�ˬd���k�A���ƶq�O�_�@��
+    if (countP != countN) //檢查左右括弧數量是否一樣
         return false;
     return true;
 }
 
-bool checkOperator(const string& line)//�s���B���� +*-/^���W�Ů檺�~��(�̪Ů����Ѧr���A�r�����׬�1���~�O�B����)
+bool checkOperator(const string& line)//連續運算符 +*-/^單獨空格的才算(依空格拆解字串，字串長度為1的才是運算符)
 {
-    string previous = "", now = "";//�����e�@�ӡA�H�η��e���r
-    stringstream ss(line);
-    while (getline(ss, now, ' ')) //�Ů����Ѧr��
-    {
-        if (now == "+" || now == "-" || now == "*" || now == "/" || now == "^" || now == "=")
+    string previous = "", now = "";//紀錄前一個，以及當前的字
+        stringstream ss(line);
+        while (getline(ss, now, ' ')) //空格拆解字串
         {
-            if (previous == "+" || previous == "-" || previous == "*" || previous == "/" || previous == "^" || previous == "=" || previous == "(")
-                return false;
+            if (now == "+" || now == "-" || now == "*" || now == "/" || now == "^" || now == "=")
+            {
+                if (previous == "+" || previous == "-" || previous == "*" || previous == "/" || previous == "^" || previous == "=" || previous == "(")
+                    return false;
+            }
+            //if (previous == "sin" || previous == "cos" || previous == "tan") { //sin、cos、tan和左括號""有""間隔，確認附帶左括號!
+            //	if (now != "(")
+            //		return false;
+            //}
+            if (now == ")") { //括號內是空的
+                if (previous == "(" || previous == "sin(" || previous == "cos(" || previous == "tan(") //sin、cos、tan和括號""沒有""間隔
+                    return false;
+            }
+            previous = now;
         }
-        //if (previous == "sin" || previous == "cos" || previous == "tan") { //sin�Bcos�Btan�M���A��""��""���j�A�T�{���a���A��!
-        //	if (now != "(")
-        //		return false;
-        //}
-        if (now == ")") { //�A�����O�Ū�
-            if (previous == "(" || previous == "sin(" || previous == "cos(" || previous == "tan(") //sin�Bcos�Btan�M�A��""�S��""���j
-                return false;
-        }
-        previous = now;
-    }
-    return true;
+        return true;
 }
 
-bool checkDPs(const string& num)//�h���p���I
+bool checkDPs(const string& num)//多重小數點
 {
     int it = num.find('.');
-    if (it != num.npos)//���p���I
+    if (it != num.npos)//有小數點
     {
-        it = num.find('.', it + 1);//�䦳�S���ĤG�Ӥp���I
+        it = num.find('.', it + 1);//找有沒有第二個小數點
         if (it != num.npos)
             return false;
     }
-    //�p�G�䤣��or�u�����@�Ӥp���I �^��true
+    //如果找不到or只找到一個小數點 回傳true
     return true;
 }
-bool negativeRoot(const string& num)//�t�Ƥ����}�ڸ�
+
+bool negativeRoot(const string& num)//負數不能開根號
 {
     if (num[0] == '-')
         return false;
@@ -103,37 +113,37 @@ void mergePN(string& num)
             N--;
         c++;
     }
-    if (P + N < 0 && abs(P + N) % 2 == 1)//���t�X�ֵ��G�O�t
+    if (P + N < 0 && abs(P + N) % 2 == 1)//正負合併結果是負
     {
-        num = "-" + num.substr(c, num.length() - c);//�u�d�t��
-        if (num[1] == '.')//�Ҧp-.2
-            num = "-0" + num.substr(1, num.length() - 1);//�ɫe�m0>>-0.2
+        num = "-" + num.substr(c, num.length() - c);//只留負號
+        if (num[1] == '.')//例如-.2
+            num = "-0" + num.substr(1, num.length() - 1);//補前置0>>-0.2
     }
-    else//���G�O���A�⥿�t��������
+    else//結果是正，把正負號全拿掉
     {
         num = num.substr(c, num.length() - c);
-        if (num[0] == '.')//�Ҧp .52
-            num = "0" + num;//�ɫe�m0>>0.52
+        if (num[0] == '.')//例如 .52
+            num = "0" + num;//補前置0>>0.52
     }
 }
 
-bool checkValid(vector<string>& formula)//�ˬd&�ץ�&���Nformula�x�s���Ʀror�ܼơA���H�W���J�P�ɿ��Xĵ��
+bool checkValid(vector<string>& formula)//檢查&修正&取代formula儲存的數字or變數，有違規輸入同時輸出警示
 {
     for (int i = 0; i < formula.size(); i++)
     {
-        //�����e�m0���B�z�g��class number��construct�̤F�A���r���s���Ʀr�ɦ۰ʰ�
+        //移除前置0的處理寫到class number的construct裡了，把字串存成數字時自動做
         string temp = formula[i];
-        if (temp == "(" || temp == ")" || temp == "+" || temp == "-" || temp == "*" || temp == "/" || temp == "^" || temp == "sin(" || temp == "cos(" || temp == "tan(")//�@���B���l���γB�z
+        if (temp == "(" || temp == ")" || temp == "+" || temp == "-" || temp == "*" || temp == "/" || temp == "^" || temp == "sin(" || temp == "cos(" || temp == "tan(")//一般運算子不用處理
             continue;
-        mergePN(temp);//���t�����X(�p�G���p���I�S���e�m0�]�|�ɤW)
-        if (!checkDPs(temp))//�Ʀr���ƼƭӤp���I
+        mergePN(temp);//正負號整合(如果有小數點沒有前置0也會補上)
+        if (!checkDPs(temp))//數字有複數個小數點
         {
-            cout << "�p���I���J���~" << endl;
+            //cout << "小數點輸入錯誤" << endl;
             return false;
         }
-        formula[i] = temp;//�˴����T�A�⥿�t�����X�����ȵ��G�s�^formula
+        formula[i] = temp;//檢測正確，把正負號整合完的值結果存回formula
     }
-    return true;//���J�Ʀr�˴��Ť��ųW�w
+    return true;//輸入數字檢測符不符規定
 }
 
 bool isInConstructVariable(vector<string> cv, string v) {
@@ -144,7 +154,8 @@ bool isInConstructVariable(vector<string> cv, string v) {
     return false;
 }
 
-int existAxisXOrY(vector<string> variableNameList, vector<vector<string>> constructVariable) {//�����s�b�G-1, �s�bx�G0, �s�by�G1, ���̳��s�b�G2
+int existAxisXOrY(vector<string> variableNameList, vector<vector<string>> constructVariable)//都不存在：-1, 存在x：0, 存在y：1, 兩者都存在：2
+{
     bool haveX = false;
     bool haveY = false;
     for (int i = 0; i < variableNameList.size(); i++) {
@@ -182,7 +193,7 @@ int existAxisXOrY(vector<string> variableNameList, vector<vector<string>> constr
 }
 
 
-bool Parser::checkDefinedVariable(vector<string> cv) { //�⦡�����Fx�My�A�s�b���w�q�ܼ�
+bool Parser::checkDefinedVariable(vector<string> cv) { //算式中除了x和y，存在未定義變數
     for (int i = 0; i < cv.size(); i++) {
         int pos = searchVariableName(cv[i]);
         if (pos == -1 && cv[i] != "x" && cv[i] != "y") {
@@ -192,7 +203,7 @@ bool Parser::checkDefinedVariable(vector<string> cv) { //�⦡�����Fx
     return true;
 }
 
-bool Parser::checkLoopDefinedVariable() { //�`���w�q�ܼ�
+bool Parser::checkLoopDefinedVariable() { //循環定義變數
     for (int i = 0; i < variableNameList.size(); i++) {
         for (int j = i + 1; j < variableNameList.size(); j++) {
             if (isInConstructVariable(constructVariable[i], variableNameList[j]) == true && isInConstructVariable(constructVariable[j], variableNameList[i]) == true)
@@ -202,98 +213,108 @@ bool Parser::checkLoopDefinedVariable() { //�`���w�q�ܼ�
     return true;
 }
 
-void Parser::setEquationPart(string input) { //�x�s����
+void Parser::setEquationPart(string input) { //儲存等式
     input.erase(remove(input.begin(), input.end(), ' '), input.end());
     vector<string> formula;
     string s = "";
-    for (int i = 0; i < input.size(); i++) {
+    for (int i = 0; i < input.size(); i++)
+    {
         s += input[i];
-        if (s == "=" || s == "(" || s == ")" || s == "+" || s == "-" || s == "*" || s == "/" || s == "^" || s == "sin(" || s == "cos(" || s == "tan(") {
+        if (s == "=" || s == "(" || s == ")" || s == "+" || s == "-" || s == "*" || s == "/" || s == "^" || s == "sin(" || s == "cos(" || s == "tan(")
+        {
             formula.push_back(s);
             s.clear();
         }
-        else if (((input[i + 1] < '0' || input[i + 1] > '9') && input[i + 1] != '.') && isDigit(s) == true) {//�Ʀr
+        else if (((input[i + 1] < '0' || input[i + 1] > '9') && input[i + 1] != '.') && isDigit(s) == true)
+        {//數字
             formula.push_back(s);
             s.clear();
         }
-        else if ((s == "sin" || s == "cos" || s == "tan") && input[i + 1] == '(') {
+        else if ((s == "sin" || s == "cos" || s == "tan") && input[i + 1] == '(')
+        {
             continue;
         }
-        else if (input[i + 1] == '=' || input[i + 1] == '(' || input[i + 1] == ')' || input[i + 1] == '+' || input[i + 1] == '-' || input[i + 1] == '*' || input[i + 1] == '/' || input[i + 1] == '^') { //�ܼ�
+        else if (input[i + 1] == '=' || input[i + 1] == '(' || input[i + 1] == ')' || input[i + 1] == '+' || input[i + 1] == '-' || input[i + 1] == '*' || input[i + 1] == '/' || input[i + 1] == '^')
+        { //變數
             formula.push_back(s);
             s.clear();
         }
-        if (i == input.size() - 1) {
+        if (i == input.size() - 1)
+        {
             formula.push_back(s);
             s.clear();
         }
     }
-    formula.erase(formula.begin() + formula.size()-1);/*�R��getline�y�����h�l�Ů�(endl)*/
+    formula.erase(formula.begin() + formula.size()-1);/*刪除getline造成的多餘空格(endl)*/
     /*for (int i = 0; i < formula.size(); i++) {
         cout << formula[i] << endl;
     }*/
 
     string variableName;
-    if (formula.size() > 2 && formula[1] == "=") //�p�G�ĤG�Ӧr���O����
+    if (formula.size() > 2 && formula[1] == "=") //如果第二個字串是等號
     {
         variableName = formula[0];
-        variableNameList.push_back(variableName); //�x�s�ܼ�
-        formula.erase(formula.begin(), formula.begin() + 2); //�R���ܼƩM�h����
-        input.erase(0, variableName.size()+1);//�R��assign���ܼƦW�٩M����;
+        variableNameList.push_back(variableName); //儲存變數
+        formula.erase(formula.begin(), formula.begin() + 2); //刪除變數和去等號
+        input.erase(0, variableName.size()+1);//刪除assign的變數名稱和等號;
     }
-    if (checkBracket(input) == false)//�ˬd�A����
+    if (checkBracket(input) == false)//檢查括號數
     {
         input = "error";
-        cout << "�A�����X�k" << endl;
+        //cout << "括號不合法" << endl;
     }
-    if (checkOperator(input) == false)//�ˬd�s���B���l
+    if (checkOperator(input) == false)//檢查連續運算子
     {
         input = "error";
-        cout << "�B���l���X�k" << endl;
+        //cout << "運算子不合法" << endl;
     }
-    bool valid = checkValid(formula); //�ˬd&�ץ�&���Nformula�x�s���Ʀror�ܼơA���H�W���J�P�ɿ��Xĵ��
-    if (valid == false) //���J�Ʀr�˴����ųW�w
+    bool valid = checkValid(formula); //檢查&修正&取代formula儲存的數字or變數，有違規輸入同時輸出警示
+    if (valid == false) //輸入數字檢測不符規定
         input = "error";
-    else {
-        vector<string> cv;//�x�s�c���s�ܼƪ��ܼƭ�
-        for (int i = 0; i < formula.size(); i++) {
-            if (formula[i] != "(" && formula[i] != ")" && formula[i] != "+" && formula[i] != "-" && formula[i] != "*" && formula[i] != "/" && formula[i] != "^" && formula[i] != "sin(" && formula[i] != "cos(" && formula[i] != "tan(" && isDigit(formula[i]) == false) {
+    else
+    {
+        vector<string> cv;//儲存構成新變數的變數們
+        for (int i = 0; i < formula.size(); i++)
+        {
+            if (formula[i] != "(" && formula[i] != ")" && formula[i] != "+" && formula[i] != "-" && formula[i] != "*" && formula[i] != "/" && formula[i] != "^" && formula[i] != "sin(" && formula[i] != "cos(" && formula[i] != "tan(" && isDigit(formula[i]) == false)
+            {
                 cv.push_back(formula[i]);
             }
         }
         constructVariable.push_back(cv);
-        if (checkDefinedVariable(cv) == false) { //�s�b���w�q�ܼ�
+        if (checkDefinedVariable(cv) == false)
+        { //存在未定義變數
             input = "error";
-            cout << "�s�b���w�q�ܼ�" << endl;
+            //cout << "存在未定義變數" << endl;
         }
     }
-    variableFormulaList.push_back(input); //�x�s�⦡
+    variableFormulaList.push_back(input); //儲存算式
     return;
 }
 
 void Parser::computeAllEquation() {
     for (int i = 0; i < variableNameList.size(); i++) {
         if (checkBracket(variableNameList[i]) == false && checkOperator(variableNameList[i]) == false) {
-            cout << "�ܼƦW�ٿ��~" << endl;
+            //cout << "變數名稱錯誤" << endl;
             return;
         }
     }
     for (int i = 0; i < variableFormulaList.size(); i++) {
         if (variableFormulaList[i] == "error") {
-            cout << "�s�b���~�A���i�B��" << endl;
+            //cout << "存在錯誤，不可運算" << endl;
             return;
         }
     }
     if (checkLoopDefinedVariable() == false) {
-        cout << "�`���w�q�ܼơA���i�B��" << endl;
+        //cout << "循環定義變數，不可運算" << endl;
         return;
     }
     int exist = existAxisXOrY(variableNameList, constructVariable);
     if (exist == -1) {
-        cout << "x�My���s�b�A�L�kø��" << endl;
+        //cout << "x和y不存在，無法繪圖" << endl;
         return;
     }
-    /*cout << "���\" << endl;*/
+    /*cout << "成功" << endl;*/
     //vector<string> vnl, vfl;
     //vector<vector<string>> cv;
     //for (int i = 0; i < variableNameList.size(); i++) {
@@ -322,14 +343,14 @@ void Parser::computeAllEquation() {
                 formula.push_back(s);
                 s.clear();
             }
-            else if (((variableFormulaList[0][i+1] < '0' || variableFormulaList[0][i + 1] > '9') && variableFormulaList[0][i + 1] != '.') && isDigit(s) == true) {//�Ʀr
+            else if (((variableFormulaList[0][i+1] < '0' || variableFormulaList[0][i + 1] > '9') && variableFormulaList[0][i + 1] != '.') && isDigit(s) == true) {//數字
                 formula.push_back(s);
                 s.clear();
             }
             else if ((s == "sin" || s == "cos" || s == "tan") && variableFormulaList[0][i + 1] == '(') {
                 continue;
             }
-            else if (variableFormulaList[0][i + 1] == '=' || variableFormulaList[0][i + 1] == '(' || variableFormulaList[0][i + 1] == ')' || variableFormulaList[0][i + 1] == '+' || variableFormulaList[0][i + 1] == '-' || variableFormulaList[0][i + 1] == '*' || variableFormulaList[0][i + 1] == '/' || variableFormulaList[0][i + 1] == '^') { //�ܼ�
+            else if (variableFormulaList[0][i + 1] == '=' || variableFormulaList[0][i + 1] == '(' || variableFormulaList[0][i + 1] == ')' || variableFormulaList[0][i + 1] == '+' || variableFormulaList[0][i + 1] == '-' || variableFormulaList[0][i + 1] == '*' || variableFormulaList[0][i + 1] == '/' || variableFormulaList[0][i + 1] == '^') { //變數
                 formula.push_back(s);
                 s.clear();
             }
@@ -384,7 +405,7 @@ double Parser::compute(vector<string> formula) {
 
     while (formula.size() > 1 || (formula.size() == 3 && formula[1] == "/"))
     {
-        //for (int i = 0; i < formula.size(); i++) { //�h���S���N�q���A��
+        //for (int i = 0; i < formula.size(); i++) { //去除沒有意義的括號
         //	if (isDigit(formula[i]) == true && formula[i - 1] == "(" && formula[i + 1] == ")") {
         //		formula[i - 1].replace(formula[i - 1].find("("), 1, formula[i]);
         //		formula.erase(formula.begin() + i);
@@ -392,8 +413,8 @@ double Parser::compute(vector<string> formula) {
         //		i--;
         //	}
         //}
-        int found1 = -1; //���̫᪺���A�����m
-        int found2 = -1; //���Ĥ@�ӥk�A�������m
+        int found1 = -1; //找最後的左括弧位置
+        int found2 = -1; //找第一個右括弧的位置
         string leftBracket;
         for (int i = 0; i < formula.size(); i++)
         {
@@ -411,28 +432,28 @@ double Parser::compute(vector<string> formula) {
             }
         }
 
-        if (found1 != -1 && found2 != -1 && found1 < found2) //���o���A������
+        if (found1 != -1 && found2 != -1 && found1 < found2) //找得到括弧的話
         {
             if (found1 + 1 == found2)
             {
-                cout << "�A�����L�Ʀr\n";
+                cout << "括號內無數字\n";
                 return NAN;
             }
         }
-        else//�S�����A��
+        else//沒找到括弧
         {
             found1 = -1;
             found2 = formula.size();
         }
 
-        for (int i = found2 - 1; i > found1; i--)//�B�z����
+        for (int i = found2 - 1; i > found1; i--)//處理指數
         {
             if (formula[i] == "^" && i != found1 + 1)
             {
                 double temp = stringToDouble(formula[i - 1]);
-                if (temp < 0)//�p�G�O�t�ƶ}�ڸ�
+                if (temp < 0)//如果是負數開根號
                 {
-                    cout << "�t�Ƥ����}�ڸ�\n";
+                    cout << "負數不能開根號\n";
                     return NAN;
                 }
                 else {
@@ -445,12 +466,12 @@ double Parser::compute(vector<string> formula) {
             }
         }
 
-        for (int i = found1 + 1; i < found2; i++) //�B�z����
+        for (int i = found1 + 1; i < found2; i++) //處理乘除
         {
             if (formula[i] == "/")
             {
                 if (stringToDouble(formula[i + 1]) == 0) {
-                    cout << "���Ƥ��ର 0\n";
+                    //cout << "除數不能為 0\n";
                     return NAN;
                 }
                 else {
@@ -470,7 +491,7 @@ double Parser::compute(vector<string> formula) {
             }
         }
 
-        for (int i = found1 + 1; i < found2; i++) //�B�z�[��
+        for (int i = found1 + 1; i < found2; i++) //處理加減
         {
             if (i == found1 + 1 && formula[i] == "+") // (+ 123) = 123 ; (+ -123) = -123
             {
@@ -494,7 +515,7 @@ double Parser::compute(vector<string> formula) {
             }
         }
 
-        if (found1 == -1)//�S�A�����B��
+        if (found1 == -1)//沒括弧的運算
         {
             formula.erase(formula.begin() + 1, formula.end());
             if (leftBracket == "sin(")
@@ -519,6 +540,7 @@ double Parser::compute(vector<string> formula) {
         }
     }
 }
+
 
 void Parser::getAxisVector() {
     for (int i = 0; i < x.size(); i++) {

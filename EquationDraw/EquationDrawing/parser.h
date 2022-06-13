@@ -32,13 +32,13 @@ public:
     int textLineNumber;//parser對應第幾個textLine輸入(1~10)
     bool needDraw;//預設false,有y設true
 
-    vector<string> variableNameList;//�ܼƦW�ٰ}�C
-    vector<string> variableFormulaList;//�]�w�ܼƪ�����
+    static vector<string> variableNameList;//變數名稱陣列
+    static vector<string> variableFormulaList;//設定變數的等式
     vector<vector<string>> constructVariable;
-    int searchVariableName(string a);//���ܼƦs���s�b�A�s�b�^�ǲĴX�ӡA���s�b�^��-1
-    bool checkDefinedVariable(vector<string> cv); //�ܼƬO�_���w�q
-    bool checkLoopDefinedVariable(); //�ܼƬO�_�`���w�q
-    void setEquationPart(string input);//�x�s����
+    int searchVariableName(string a);//找變數存不存在，存在回傳第幾個，不存在回傳-1
+    bool checkDefinedVariable(vector<string> cv); //變數是否未定義
+    bool checkLoopDefinedVariable(); //變數是否循環定義
+    void setEquationPart(string input);//儲存等式
     void computeAllEquation();
     double compute(vector<string> formula);
     void getAxisVector();
@@ -49,8 +49,8 @@ public:
 bool isDigit(string s);
 double stringToDouble(string s);
 string doubleToString(double d);
-bool checkBracket(const string& line); //�ˬd���k�A��
-bool checkOperator(const string& line); //�ˬd�B���l
+bool checkBracket(const string& line); //檢查左右括號
+bool checkOperator(const string& line); //檢查運算子
 bool checkDPs(const string& num);
 bool negativeRoot(const string& num);
 void mergePN(string& num);

@@ -10,11 +10,13 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    number.cpp \
     parser.cpp \
     qcustomplot.cpp \
     viewer.cpp
 
 HEADERS += \
+    number.h \
     parser.h \
     qcustomplot.h \
     viewer.h

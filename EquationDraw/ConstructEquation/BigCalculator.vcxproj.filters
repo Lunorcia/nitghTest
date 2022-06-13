@@ -18,20 +18,11 @@
     <ClCompile Include="main.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="number.cpp">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
-    <ClCompile Include="prevention and compute.cpp">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
     <ClCompile Include="Parser.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="number.h">
-      <Filter>標頭檔</Filter>
-    </ClInclude>
     <ClInclude Include="Parser.h">
       <Filter>標頭檔</Filter>
     </ClInclude>

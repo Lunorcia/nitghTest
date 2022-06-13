@@ -77,7 +77,7 @@ void Viewer::on_Equation1_editingFinished()
     //進入算式處理
     //算式處理結果儲存
     //有y就讓viewer畫圖
-    Parser parser;
+    Parser parser(1);
     parser.process();
 
     QCustomPlot* customPlot  = ui->customPlot;
@@ -113,7 +113,7 @@ void Viewer::on_Equation2_editingFinished()
     //進入算式處理
     //算式處理結果儲存
     //有y就讓viewer畫圖
-    Parser parser;
+    Parser parser(2);
     parser.process();
 
     QCustomPlot* customPlot  = ui->customPlot;
@@ -141,7 +141,7 @@ void Viewer::on_Equation3_editingFinished()
     equationInput[3]=ui->Equation1->text();
     QCustomPlot* customPlot  = ui->customPlot;
 
-    Parser parser;
+    Parser parser(3);
     parser.process();
     if(parser.needDraw)
     {
@@ -156,7 +156,7 @@ void Viewer::on_Equation4_editingFinished()
     equationInput[4]=ui->Equation1->text();
     QCustomPlot* customPlot  = ui->customPlot;
 
-    Parser parser;
+    Parser parser(4);
     parser.process();
     if(parser.needDraw)
     {
@@ -171,7 +171,7 @@ void Viewer::on_Equation5_editingFinished()
     equationInput[5]=ui->Equation1->text();
     QCustomPlot* customPlot  = ui->customPlot;
 
-    Parser parser;
+    Parser parser(5);
     parser.process();
     if(parser.needDraw)
     {
@@ -186,7 +186,7 @@ void Viewer::on_Equation6_editingFinished()
     equationInput[6]=ui->Equation1->text();
     QCustomPlot* customPlot  = ui->customPlot;
 
-    Parser parser;
+    Parser parser(6);
     parser.process();
     if(parser.needDraw)
     {
@@ -201,7 +201,7 @@ void Viewer::on_Equation7_editingFinished()
     equationInput[7]=ui->Equation1->text();
     QCustomPlot* customPlot  = ui->customPlot;
 
-    Parser parser;
+    Parser parser(7);
     parser.process();
     if(parser.needDraw)
     {
@@ -216,7 +216,7 @@ void Viewer::on_Equation8_editingFinished()
     equationInput[8]=ui->Equation1->text();
     QCustomPlot* customPlot  = ui->customPlot;
 
-    Parser parser;
+    Parser parser(8);
     parser.process();
     if(parser.needDraw)
     {
@@ -231,7 +231,7 @@ void Viewer::on_Equation9_editingFinished()
     equationInput[9]=ui->Equation1->text();
     QCustomPlot* customPlot  = ui->customPlot;
 
-    Parser parser;
+    Parser parser(9);
     parser.process();
     if(parser.needDraw)
     {
@@ -246,7 +246,7 @@ void Viewer::on_Equation10_editingFinished()
     equationInput[10]=ui->Equation1->text();
     QCustomPlot* customPlot  = ui->customPlot;
 
-    Parser parser;
+    Parser parser(10);
     parser.process();
     if(parser.needDraw)
     {

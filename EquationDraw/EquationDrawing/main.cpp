@@ -1,4 +1,4 @@
-#include "viewer.h"
+﻿#include "viewer.h"
 
 #include <QApplication>
 

@@ -5,6 +5,8 @@
 #include <QObject>
 #include <vector>
 #include <string>
+#include "number.h"
+
 using namespace std;
 class Parser
 {
@@ -28,7 +30,28 @@ public:
 
     bool needDraw;//預設false,有y設true
 
+    vector<string> variableNameList;//�ܼƦW�ٰ}�C
+    vector<string> variableFormulaList;//�]�w�ܼƪ�����
+    vector<vector<string>> constructVariable;
+    int searchVariableName(string a);//���ܼƦs���s�b�A�s�b�^�ǲĴX�ӡA���s�b�^��-1
+    bool checkDefinedVariable(vector<string> cv); //�ܼƬO�_���w�q
+    bool checkLoopDefinedVariable(); //�ܼƬO�_�`���w�q
+    void setEquationPart(string input);//�x�s����
+    void computeAllEquation();
+    double compute(vector<string> formula);
+    void getAxisVector();
 
 };
 
 #endif // PARSER_H
+bool isDigit(string s);
+double stringToDouble(string s);
+string doubleToString(double d);
+bool checkBracket(const string& line); //�ˬd���k�A��
+bool checkOperator(const string& line); //�ˬd�B���l
+bool checkDPs(const string& num);
+bool negativeRoot(const string& num);
+void mergePN(string& num);
+bool checkValid(vector<string>& formula);
+bool isInConstructVariable(vector<string> cv, string v);
+int existAxisXOrY(vector<string> variableNameList, vector<vector<string>> constructVariable);

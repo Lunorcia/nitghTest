@@ -14,3 +14,530 @@ void Parser::process()//暫定總處理函式
     return;
 }
 
+
+int Parser::searchVariableName(string a) {
+    for (int i = 0; i < variableNameList.size(); i++) {
+        if (variableNameList[i] == a)
+            return i;
+    }
+    return -1;
+}
+
+bool checkBracket(const string& line)//�ˬd���k�A���O�_�X�k
+{
+    int countP = 0, countN = 0;
+    for (int i = 0; i < line.length(); i++) {
+        if (line[i] == '(')
+            countP++;
+        else if (line[i] == ')')
+            countN++;
+        if (countN > countP) { //�ˬd���k�A�����ǬO�_�ۤ�
+            return false;
+        }
+    }
+    if (countP != countN) //�ˬd���k�A���ƶq�O�_�@��
+        return false;
+    return true;
+}
+
+bool checkOperator(const string& line)//�s���B���� +*-/^���W�Ů檺�~��(�̪Ů����Ѧr���A�r�����׬�1���~�O�B����)
+{
+    string previous = "", now = "";//�����e�@�ӡA�H�η��e���r
+    stringstream ss(line);
+    while (getline(ss, now, ' ')) //�Ů����Ѧr��
+    {
+        if (now == "+" || now == "-" || now == "*" || now == "/" || now == "^" || now == "=")
+        {
+            if (previous == "+" || previous == "-" || previous == "*" || previous == "/" || previous == "^" || previous == "=" || previous == "(")
+                return false;
+        }
+        //if (previous == "sin" || previous == "cos" || previous == "tan") { //sin�Bcos�Btan�M���A��""��""���j�A�T�{���a���A��!
+        //	if (now != "(")
+        //		return false;
+        //}
+        if (now == ")") { //�A�����O�Ū�
+            if (previous == "(" || previous == "sin(" || previous == "cos(" || previous == "tan(") //sin�Bcos�Btan�M�A��""�S��""���j
+                return false;
+        }
+        previous = now;
+    }
+    return true;
+}
+
+bool checkDPs(const string& num)//�h���p���I
+{
+    int it = num.find('.');
+    if (it != num.npos)//���p���I
+    {
+        it = num.find('.', it + 1);//�䦳�S���ĤG�Ӥp���I
+        if (it != num.npos)
+            return false;
+    }
+    //�p�G�䤣��or�u�����@�Ӥp���I �^��true
+    return true;
+}
+bool negativeRoot(const string& num)//�t�Ƥ����}�ڸ�
+{
+    if (num[0] == '-')
+        return false;
+    return true;
+}
+
+void mergePN(string& num)
+{
+    int P = 0, N = 0, c = 0;
+    while (num[c] == '+' || num[c] == '-')
+    {
+        if (num[c] == '+')
+            P++;
+        if (num[c] == '-')
+            N--;
+        c++;
+    }
+    if (P + N < 0 && abs(P + N) % 2 == 1)//���t�X�ֵ��G�O�t
+    {
+        num = "-" + num.substr(c, num.length() - c);//�u�d�t��
+        if (num[1] == '.')//�Ҧp-.2
+            num = "-0" + num.substr(1, num.length() - 1);//�ɫe�m0>>-0.2
+    }
+    else//���G�O���A�⥿�t��������
+    {
+        num = num.substr(c, num.length() - c);
+        if (num[0] == '.')//�Ҧp .52
+            num = "0" + num;//�ɫe�m0>>0.52
+    }
+}
+
+bool checkValid(vector<string>& formula)//�ˬd&�ץ�&���Nformula�x�s���Ʀror�ܼơA���H�W���J�P�ɿ��Xĵ��
+{
+    for (int i = 0; i < formula.size(); i++)
+    {
+        //�����e�m0���B�z�g��class number��construct�̤F�A���r���s���Ʀr�ɦ۰ʰ�
+        string temp = formula[i];
+        if (temp == "(" || temp == ")" || temp == "+" || temp == "-" || temp == "*" || temp == "/" || temp == "^" || temp == "sin(" || temp == "cos(" || temp == "tan(")//�@���B���l���γB�z
+            continue;
+        mergePN(temp);//���t�����X(�p�G���p���I�S���e�m0�]�|�ɤW)
+        if (!checkDPs(temp))//�Ʀr���ƼƭӤp���I
+        {
+            cout << "�p���I���J���~" << endl;
+            return false;
+        }
+        formula[i] = temp;//�˴����T�A�⥿�t�����X�����ȵ��G�s�^formula
+    }
+    return true;//���J�Ʀr�˴��Ť��ųW�w
+}
+
+bool isInConstructVariable(vector<string> cv, string v) {
+    for (int i = 0; i < cv.size(); i++) {
+        if (cv[i] == v)
+            return true;
+    }
+    return false;
+}
+
+int existAxisXOrY(vector<string> variableNameList, vector<vector<string>> constructVariable) {//�����s�b�G-1, �s�bx�G0, �s�by�G1, ���̳��s�b�G2
+    bool haveX = false;
+    bool haveY = false;
+    for (int i = 0; i < variableNameList.size(); i++) {
+        if (variableNameList[i] == "x") {
+            haveX = true;
+        }
+        if (variableNameList[i] == "y") {
+            haveY = true;
+        }
+    }
+    for (int i = 0; i < constructVariable.size(); i++) {
+        for (int j = 0; j < constructVariable[i].size(); j++) {
+            if (constructVariable[i][j] == "x") {
+                haveX = true;
+            }
+            if (constructVariable[i][j] == "y") {
+                haveY = true;
+            }
+        }
+    }
+
+
+    if (haveX == true && haveY == true) {
+        return 2;
+    }
+    else if (haveX == true && haveY == false) {
+        return 0;
+    }
+    else if (haveX == false && haveY == true) {
+        return 1;
+    }
+    else if (haveX == false && haveY == false) {
+        return -1;
+    }
+}
+
+
+bool Parser::checkDefinedVariable(vector<string> cv) { //�⦡�����Fx�My�A�s�b���w�q�ܼ�
+    for (int i = 0; i < cv.size(); i++) {
+        int pos = searchVariableName(cv[i]);
+        if (pos == -1 && cv[i] != "x" && cv[i] != "y") {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool Parser::checkLoopDefinedVariable() { //�`���w�q�ܼ�
+    for (int i = 0; i < variableNameList.size(); i++) {
+        for (int j = i + 1; j < variableNameList.size(); j++) {
+            if (isInConstructVariable(constructVariable[i], variableNameList[j]) == true && isInConstructVariable(constructVariable[j], variableNameList[i]) == true)
+                return false;
+        }
+    }
+    return true;
+}
+
+void Parser::setEquationPart(string input) { //�x�s����
+    input.erase(remove(input.begin(), input.end(), ' '), input.end());
+    vector<string> formula;
+    string s = "";
+    for (int i = 0; i < input.size(); i++) {
+        s += input[i];
+        if (s == "=" || s == "(" || s == ")" || s == "+" || s == "-" || s == "*" || s == "/" || s == "^" || s == "sin(" || s == "cos(" || s == "tan(") {
+            formula.push_back(s);
+            s.clear();
+        }
+        else if (((input[i + 1] < '0' || input[i + 1] > '9') && input[i + 1] != '.') && isDigit(s) == true) {//�Ʀr
+            formula.push_back(s);
+            s.clear();
+        }
+        else if ((s == "sin" || s == "cos" || s == "tan") && input[i + 1] == '(') {
+            continue;
+        }
+        else if (input[i + 1] == '=' || input[i + 1] == '(' || input[i + 1] == ')' || input[i + 1] == '+' || input[i + 1] == '-' || input[i + 1] == '*' || input[i + 1] == '/' || input[i + 1] == '^') { //�ܼ�
+            formula.push_back(s);
+            s.clear();
+        }
+        if (i == input.size() - 1) {
+            formula.push_back(s);
+            s.clear();
+        }
+    }
+    formula.erase(formula.begin() + formula.size()-1);/*�R��getline�y�����h�l�Ů�(endl)*/
+    /*for (int i = 0; i < formula.size(); i++) {
+        cout << formula[i] << endl;
+    }*/
+
+    string variableName;
+    if (formula.size() > 2 && formula[1] == "=") //�p�G�ĤG�Ӧr���O����
+    {
+        variableName = formula[0];
+        variableNameList.push_back(variableName); //�x�s�ܼ�
+        formula.erase(formula.begin(), formula.begin() + 2); //�R���ܼƩM�h����
+        input.erase(0, variableName.size()+1);//�R��assign���ܼƦW�٩M����;
+    }
+    if (checkBracket(input) == false)//�ˬd�A����
+    {
+        input = "error";
+        cout << "�A�����X�k" << endl;
+    }
+    if (checkOperator(input) == false)//�ˬd�s���B���l
+    {
+        input = "error";
+        cout << "�B���l���X�k" << endl;
+    }
+    bool valid = checkValid(formula); //�ˬd&�ץ�&���Nformula�x�s���Ʀror�ܼơA���H�W���J�P�ɿ��Xĵ��
+    if (valid == false) //���J�Ʀr�˴����ųW�w
+        input = "error";
+    else {
+        vector<string> cv;//�x�s�c���s�ܼƪ��ܼƭ�
+        for (int i = 0; i < formula.size(); i++) {
+            if (formula[i] != "(" && formula[i] != ")" && formula[i] != "+" && formula[i] != "-" && formula[i] != "*" && formula[i] != "/" && formula[i] != "^" && formula[i] != "sin(" && formula[i] != "cos(" && formula[i] != "tan(" && isDigit(formula[i]) == false) {
+                cv.push_back(formula[i]);
+            }
+        }
+        constructVariable.push_back(cv);
+        if (checkDefinedVariable(cv) == false) { //�s�b���w�q�ܼ�
+            input = "error";
+            cout << "�s�b���w�q�ܼ�" << endl;
+        }
+    }
+    variableFormulaList.push_back(input); //�x�s�⦡
+    return;
+}
+
+void Parser::computeAllEquation() {
+    for (int i = 0; i < variableNameList.size(); i++) {
+        if (checkBracket(variableNameList[i]) == false && checkOperator(variableNameList[i]) == false) {
+            cout << "�ܼƦW�ٿ��~" << endl;
+            return;
+        }
+    }
+    for (int i = 0; i < variableFormulaList.size(); i++) {
+        if (variableFormulaList[i] == "error") {
+            cout << "�s�b���~�A���i�B��" << endl;
+            return;
+        }
+    }
+    if (checkLoopDefinedVariable() == false) {
+        cout << "�`���w�q�ܼơA���i�B��" << endl;
+        return;
+    }
+    int exist = existAxisXOrY(variableNameList, constructVariable);
+    if (exist == -1) {
+        cout << "x�My���s�b�A�L�kø��" << endl;
+        return;
+    }
+    /*cout << "���\" << endl;*/
+    //vector<string> vnl, vfl;
+    //vector<vector<string>> cv;
+    //for (int i = 0; i < variableNameList.size(); i++) {
+    //	int pos = searchVariableName(variableNameList[i]);
+    //	if (pos == -1) {
+    //		vnl.push_back(variableNameList[i]);
+    //		vfl.push_back(variableFormulaList[i]);
+    //	}
+    //	else {
+    //		vnl[pos].clear();
+    //		vfl[pos].clear();
+    //		vnl.push_back(variableNameList[i]);
+    //		vfl.push_back(variableFormulaList[i]);
+    //		////
+    //	}
+    //}
+    //variableNameList = vnl;
+    //variableFormulaList = vfl;
+
+    for (double d = 0; d < 20; d += 1) {
+        vector<string> formula;
+        string s;
+        for (int i = 0; i < variableFormulaList[0].size(); i++) {
+            s += variableFormulaList[0][i];
+            if (s == "=" || s == "(" || s == ")" || s == "+" || s == "-" || s == "*" || s == "/" || s == "^" || s == "sin(" || s == "cos(" || s == "tan(") {
+                formula.push_back(s);
+                s.clear();
+            }
+            else if (((variableFormulaList[0][i+1] < '0' || variableFormulaList[0][i + 1] > '9') && variableFormulaList[0][i + 1] != '.') && isDigit(s) == true) {//�Ʀr
+                formula.push_back(s);
+                s.clear();
+            }
+            else if ((s == "sin" || s == "cos" || s == "tan") && variableFormulaList[0][i + 1] == '(') {
+                continue;
+            }
+            else if (variableFormulaList[0][i + 1] == '=' || variableFormulaList[0][i + 1] == '(' || variableFormulaList[0][i + 1] == ')' || variableFormulaList[0][i + 1] == '+' || variableFormulaList[0][i + 1] == '-' || variableFormulaList[0][i + 1] == '*' || variableFormulaList[0][i + 1] == '/' || variableFormulaList[0][i + 1] == '^') { //�ܼ�
+                formula.push_back(s);
+                s.clear();
+            }
+            if (i == variableFormulaList[0].size() - 1) {
+                formula.push_back(s);
+                s.clear();
+            }
+        }
+
+        if (exist == 0 && variableNameList[0] == "x") {
+            y.push_back(d);
+            x.push_back(compute(formula));
+        }
+        else if (exist == 1 && variableNameList[0] == "y") {
+            x.push_back(d);
+            y.push_back(compute(formula));
+        }
+        else if (exist == 2) {
+            if (variableNameList[0] == "y") {
+                x.push_back(d);
+                for (int i = 0; i < formula.size(); i++) {
+                    if (formula[i] == "x") {
+                        string sd;
+                        stringstream ssd;
+                        ssd << d;
+                        ssd >> sd;
+                        formula[i].replace(formula[i].find("x"), 1, sd);
+                    }
+                }
+                y.push_back(compute(formula));
+            }
+            else if (variableNameList[0] == "x") {
+                y.push_back(d);
+                for (int i = 0; i < formula.size(); i++) {
+                    if (formula[i] == "y") {
+                        string sd;
+                        stringstream ssd;
+                        ssd << d;
+                        ssd >> sd;
+                        formula[i].replace(formula[i].find("y"), 1, sd);
+                    }
+                }
+                x.push_back(compute(formula));
+            }
+        }
+    }
+
+}
+
+double Parser::compute(vector<string> formula) {
+    double ans = 0;
+
+    while (formula.size() > 1 || (formula.size() == 3 && formula[1] == "/"))
+    {
+        //for (int i = 0; i < formula.size(); i++) { //�h���S���N�q���A��
+        //	if (isDigit(formula[i]) == true && formula[i - 1] == "(" && formula[i + 1] == ")") {
+        //		formula[i - 1].replace(formula[i - 1].find("("), 1, formula[i]);
+        //		formula.erase(formula.begin() + i);
+        //		formula.erase(formula.begin() + i + 1);
+        //		i--;
+        //	}
+        //}
+        int found1 = -1; //���̫᪺���A�����m
+        int found2 = -1; //���Ĥ@�ӥk�A�������m
+        string leftBracket;
+        for (int i = 0; i < formula.size(); i++)
+        {
+            if (formula[i] == "(" || formula[i] == "sin(" || formula[i] == "cos(" || formula[i] == "tan(") {
+                found1 = i;
+                leftBracket = formula[i];
+            }
+        }
+        for (int i = found1 + 1; i < formula.size(); i++)
+        {
+            if (formula[i] == ")")
+            {
+                found2 = i;
+                break;
+            }
+        }
+
+        if (found1 != -1 && found2 != -1 && found1 < found2) //���o���A������
+        {
+            if (found1 + 1 == found2)
+            {
+                cout << "�A�����L�Ʀr\n";
+                return NAN;
+            }
+        }
+        else//�S�����A��
+        {
+            found1 = -1;
+            found2 = formula.size();
+        }
+
+        for (int i = found2 - 1; i > found1; i--)//�B�z����
+        {
+            if (formula[i] == "^" && i != found1 + 1)
+            {
+                double temp = stringToDouble(formula[i - 1]);
+                if (temp < 0)//�p�G�O�t�ƶ}�ڸ�
+                {
+                    cout << "�t�Ƥ����}�ڸ�\n";
+                    return NAN;
+                }
+                else {
+                    temp = pow(temp, stringToDouble(formula[i + 1]));
+                    formula[i - 1] = doubleToString(temp);
+                    formula.erase(formula.begin() + i, formula.begin() + i + 2);
+                    found2 -= 2;
+                    i--;
+                }
+            }
+        }
+
+        for (int i = found1 + 1; i < found2; i++) //�B�z����
+        {
+            if (formula[i] == "/")
+            {
+                if (stringToDouble(formula[i + 1]) == 0) {
+                    cout << "���Ƥ��ର 0\n";
+                    return NAN;
+                }
+                else {
+                    double temp = stringToDouble(formula[i - 1]) / stringToDouble(formula[i + 1]);
+                    formula[i - 1] = doubleToString(temp);
+                    formula.erase(formula.begin() + i, formula.begin() + i + 2);
+                    found2 -= 2;
+                    i -= 2;
+                }
+            }
+            else if (formula[i] == "*") {
+                double temp = stringToDouble(formula[i - 1]) * stringToDouble(formula[i + 1]);
+                formula[i - 1] = doubleToString(temp);
+                formula.erase(formula.begin() + i, formula.begin() + i + 2);
+                found2 -= 2;
+                i--;
+            }
+        }
+
+        for (int i = found1 + 1; i < found2; i++) //�B�z�[��
+        {
+            if (i == found1 + 1 && formula[i] == "+") // (+ 123) = 123 ; (+ -123) = -123
+            {
+                formula[i] = formula[1];
+                i++;
+            }
+            else if (i == found1 + 1 && formula[i] == "-")
+            {
+                formula[i] = doubleToString(0 - stringToDouble(formula[i + 1]));
+                i++;
+            }
+            if (formula[i] == "+") //(1 + 2) = 3
+            {
+                formula[found1+1] = doubleToString(stringToDouble(formula[found1+1]) + stringToDouble(formula[i + 1]));
+                i++;
+            }
+            else if (formula[i] == "-")
+            {
+                formula[found1+1] = doubleToString(stringToDouble(formula[found1+1]) - stringToDouble(formula[i + 1]));
+                i++;
+            }
+        }
+
+        if (found1 == -1)//�S�A�����B��
+        {
+            formula.erase(formula.begin() + 1, formula.end());
+            if (leftBracket == "sin(")
+                formula[0] = doubleToString(sin(stringToDouble(formula[0])));
+            else if (leftBracket == "cos(")
+                formula[0] = doubleToString(cos(stringToDouble(formula[0])));
+            else if (leftBracket == "tan(")
+                formula[0] = doubleToString(tan(stringToDouble(formula[0])));
+            ans = stringToDouble(formula[0]);
+            return ans;
+        }
+        else
+        {
+            formula[found1] = formula[found1 + 1];
+            formula.erase(formula.begin() + found1 + 1, formula.begin() + found2 + 1);
+            if (leftBracket == "sin(")
+                formula[found1] = doubleToString(sin(stringToDouble(formula[found1])));
+            else if (leftBracket == "cos(")
+                formula[found1] = doubleToString(cos(stringToDouble(formula[found1])));
+            else if (leftBracket == "tan(")
+                formula[found1] = doubleToString(tan(stringToDouble(formula[found1])));
+        }
+    }
+}
+
+void Parser::getAxisVector() {
+    for (int i = 0; i < x.size(); i++) {
+        cout << x[i] << " " << y[i] << endl;
+    }
+}
+
+bool isDigit(string s) {
+    for (int i = 0; i < s.size(); i++) {
+        if ((s[i] > '9' || s[i] < '0') && s[i] != '.')
+            return false;
+    }
+    return true;
+}
+
+double stringToDouble(string s) {
+    stringstream ss;
+    double d;
+    ss << s;
+    ss >> d;
+    return d;
+}
+
+string doubleToString(double d) {
+    stringstream ss;
+    string s;
+    ss << d;
+    ss >> s;
+    return s;
+}
+

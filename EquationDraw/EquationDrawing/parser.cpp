@@ -8,15 +8,15 @@ vector<string> Parser::variableFormulaList(11); //設定變數的等式
 //vector<vector<string>> Parser::constructVariableList(11);
 
 Parser::Parser(){
-    x.fill(0.0,8000);//填入8000個0
-    y.fill(0.0,8000);//填入8000個0
+    //x.fill(0.0,8000);//填入8000個0
+    //y.fill(0.0,8000);//填入8000個0
     equationPart.clear();
     needDraw=false;
 }
 
 Parser::Parser(int num){
-    x.fill(0.0,8000);//填入8000個0
-    y.fill(0.0,8000);//填入8000個0
+    //x.fill(0.0,8000);//填入8000個0
+    //y.fill(0.0,8000);//填入8000個0
     equationPart.clear();
     textLineNumber=num;
     needDraw=false;
@@ -76,6 +76,10 @@ void Parser::setEquationPart(string input) {
             s.clear();
         }
         else if (((input[i + 1] < '0' || input[i + 1] > '9') && input[i + 1] != '.') && isDigit(s) == true){
+            formula.push_back(s);
+            s.clear();
+        }
+        else if(s == "x"|| s == "y") {
             formula.push_back(s);
             s.clear();
         }
@@ -149,10 +153,20 @@ void Parser::computeAllEquation() {
     double d = -3999;
     while(d <= 4000) {
         vector<string> formula;
-        string s;
+        string s="";
         for (int i = 0; i < variableFormulaList[textLineNumber].size(); i++) {
             s += variableFormulaList[textLineNumber][i];
             if (s == "=" || s == "(" || s == ")" || s == "+" || s == "-" || s == "*" || s == "/" || s == "^" || s == "sin(" || s == "cos(" || s == "tan(") {
+                formula.push_back(s);
+                s.clear();
+            }
+            else if(s == "x"&& variableList[textLineNumber].first == "y") {
+                s = to_string(d);
+                formula.push_back(s);
+                s.clear();
+            }
+            else if(s == "y"&& variableList[textLineNumber].first == "x") {
+                s = to_string(d);
                 formula.push_back(s);
                 s.clear();
             }
@@ -321,6 +335,9 @@ double Parser::compute(vector<string> formula) {
     }
     return ans;
 }
+
+
+
 
 int Parser::existAxisXOrY(){
     bool haveX = false;

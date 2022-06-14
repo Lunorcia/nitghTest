@@ -41,6 +41,7 @@ public:
     void computeAllEquation();
     double compute(vector<string> formula);
     int existAxisXOrY();
+
 //    void getAxisVector();
 
 };

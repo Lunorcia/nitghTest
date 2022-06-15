@@ -14,7 +14,7 @@ class Parser
 public:
     Parser();
     Parser(int num); //存取textLineNumber
-    vector<string> equationPart; //拆解後的字串(等號右邊)
+//    vector<string> equationPart; //拆解後的字串(等號右邊)
     QVector<double> x,y; //存計算的座標點數值
     static vector<pair<string,vector<string>>> variableList;
     int textLineNumber; //parser對應第幾個textLine輸入(1~10)
@@ -48,14 +48,14 @@ public:
 
 #endif // PARSER_H
 
-bool isDigit(string s);
-double stringToDouble(string s);
-string doubleToString(double d);
 bool checkBracket(const string& line); //檢查左右括號
 bool checkOperator(const string& line); //檢查運算子
 bool checkDPs(const string& num);
-bool negativeRoot(const string& num);
 void mergePN(string& num);
 bool checkValid(vector<string>& formula);
 bool isInConstructVariable(vector<string> cv, string v);
+bool isDigit(string s);
+bool isDigitWithPN(string s);
+double stringToDouble(string s);
+string doubleToString(double d);
 

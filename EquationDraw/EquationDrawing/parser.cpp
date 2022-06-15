@@ -10,14 +10,14 @@ vector<string> Parser::variableFormulaList(11); //設定變數的等式
 Parser::Parser(){
     //x.fill(0.0,8000);//填入8000個0
     //y.fill(0.0,8000);//填入8000個0
-    equationPart.clear();
+//    equationPart.clear();
     needDraw=false;
 }
 
 Parser::Parser(int num){
     //x.fill(0.0,8000);//填入8000個0
     //y.fill(0.0,8000);//填入8000個0
-    equationPart.clear();
+//    equationPart.clear();
     textLineNumber=num;
     needDraw=false;
 }
@@ -96,7 +96,10 @@ void Parser::setEquationPart(string input) {
             s.clear();
         }
     }
-    formula.erase(formula.begin() + formula.size()-1);
+    for (int i = 0; i < formula.size(); i++){
+        if (formula[i] == "")
+            formula.erase(formula.begin() + i);
+    }
 
     string variableName;
     if (formula.size() > 2 && formula[1] == "="){
@@ -105,6 +108,37 @@ void Parser::setEquationPart(string input) {
         formula.erase(formula.begin(), formula.begin() + 2);
         input.erase(0, variableName.size()+1);
     }
+    else{
+        return;
+    }
+
+    for (int i = formula.size()-1; i > 0; i--){
+        if (isDigitWithPN(formula[i]) == true){
+            if (formula[i-1] == "+" || formula[i-1] == "-") {
+                if (i-1 == 0){
+                    formula[i-1].append(formula[i]);
+                    formula.erase(formula.begin() + i);
+                    mergePN(formula[i-1]);
+                    break;
+                }
+                else{
+                    if (formula[i-2] == "(" || formula[i-2] == "+" || formula[i-2] == "-" || formula[i-2] == "sin(" || formula[i-2] == "cos(" || formula[i-2] == "tan("){
+                        //(formula[i-2][formula[i-2].size()-1] >= '0' && formula[i-2][formula[i-2].size()-1] <= '9') ||
+                        //formual[i]的前一個字元是+或- 前前一個字元是=(+-*/^ sin( cos( tan( 或是剛好i-2為第一個字元 "右括號不算"
+                        formula[i-1].append(formula[i]);
+                        formula.erase(formula.begin() + i);
+                        mergePN(formula[i-1]);
+                    }
+                }
+            }
+        }
+    }
+    string temp;//存取校正正負號的input
+    for (int i = 0; i < formula.size(); i++){
+        temp.append(formula[i]);
+    }
+    input = temp;
+
     if (checkBracket(input) == false)
         input = "error";
     if (checkOperator(input) == false)
@@ -150,8 +184,8 @@ void Parser::computeAllEquation() {
         return;
 
     needDraw = true;
-    double d = -3999;
-    while(d <= 4000) {
+    double d = -9999;
+    while(d <= 10000) {
         vector<string> formula;
         string s="";
         for (int i = 0; i < variableFormulaList[textLineNumber].size(); i++) {
@@ -186,6 +220,10 @@ void Parser::computeAllEquation() {
                 s.clear();
             }
         }
+//        for (int i = 0; i < formula.size(); i++) {
+//            if (formula[i] == "")
+//                formula.erase(formula.begin() + i);
+//        }
 
         if (exist == 0 && variableList[textLineNumber].first == "x") {
             y.push_back(d);
@@ -223,13 +261,18 @@ void Parser::computeAllEquation() {
                 x.push_back(compute(formula));
             }
         }
-        d+=0.1;
+        d++;
     }
 
 }
 
 double Parser::compute(vector<string> formula) {
     double ans = 0;
+
+    if (formula.size() == 1){
+        ans = stringToDouble(formula[0]);
+        return ans;
+    }
     while (formula.size() > 1 || (formula.size() == 3 && formula[1] == "/")){
         int found1 = -1;
         int found2 = -1;
@@ -366,11 +409,6 @@ int Parser::existAxisXOrY(){
     return -1;
 }
 
-//void Parser::getAxisVector(){
-//    for (int i = 0; i < x.size(); i++)
-//        cout << x[i] << " " << y[i] << endl;
-//}
-
 bool checkBracket(const string& line){
     if (line == "error")
             return false;
@@ -418,14 +456,22 @@ bool checkOperator(const string& line){
             s.clear();
         }
     }
-    formula.erase(formula.begin() + formula.size()-1);
+    for (int i = 0; i < formula.size(); i++) {
+        if (formula[i] == "")
+        formula.erase(formula.begin() + i);
+    }
 
     string previous = "";
     string now = "";
     for(int i = 0; i < formula.size(); i++){
         now = formula[i];
-        if (now == "+" || now == "-" || now == "*" || now == "/" || now == "^" || now == "="){
-            if (previous == "+" || previous == "-" || previous == "*" || previous == "/" || previous == "^" || previous == "=" || previous == "("){
+        if (now == "+" || now == "-"){
+            if (previous == "*" || previous == "/" || previous == "^" || previous == "="){
+                return false;
+            }
+        }
+        else if (now == "*" || now == "/" || now == "^" || now == "="){
+            if (previous == "+" || previous == "-" || previous == "*" || previous == "/" || previous == "^" || previous == "=" || previous == "(" || previous == "sin(" || previous == "cos(" || previous == "tan("){
                 return false;
             }
         }
@@ -448,31 +494,37 @@ bool checkDPs(const string& num){
     return true;
 }
 
-bool negativeRoot(const string& num){
-    if (num[0] == '-')
-        return false;
-    return true;
-}
-
 void mergePN(string& num){
-    int P = 0, N = 0, c = 0;
-    while (num[c] == '+' || num[c] == '-'){
-        if (num[c] == '+')
-            P++;
-        if (num[c] == '-')
-            N--;
+    int N = 0, c = 0;
+    for (int i = 0;i < num.size(); i++){
+        if (num[i] == '-')
+            N++;
+        if (num[i] != '+' && num[i] != '-')
+            break;
         c++;
     }
-    if (P + N < 0 && abs(P + N) % 2 == 1){
-        num = "-" + num.substr(c, num.length() - c);
-        if (num[1] == '.')
-            num = "-0" + num.substr(1, num.length() - 1);
+    num.erase(0,c);
+    if (N % 2 == 1){
+        num.insert(0,1,'-');
     }
-    else{
-        num = num.substr(c, num.length() - c);
-        if (num[0] == '.')
-            num = "0" + num;
-    }
+//    int P = 0, N = 0, c = 0;
+//    while (num[c] == '+' || num[c] == '-'){
+//        if (num[c] == '+')
+//            P++;
+//        if (num[c] == '-')
+//            N--;
+//        c++;
+//    }
+//    if (P + N < 0 && abs(P + N) % 2 == 1){
+//        num = "-" + num.substr(c, num.length() - c);
+//        if (num[1] == '.')
+//            num = "-0" + num.substr(1, num.length() - 1);
+//    }
+//    else{
+//        num = num.substr(c, num.length() - c);
+//        if (num[0] == '.')
+//            num = "0" + num;
+//    }
 }
 
 bool checkValid(vector<string>& formula){
@@ -480,7 +532,7 @@ bool checkValid(vector<string>& formula){
         string temp = formula[i];
         if (temp == "(" || temp == ")" || temp == "+" || temp == "-" || temp == "*" || temp == "/" || temp == "^" || temp == "sin(" || temp == "cos(" || temp == "tan(")
             continue;
-        mergePN(temp);
+        //mergePN(temp);
         if (!checkDPs(temp))
             return false;
         formula[i] = temp;
@@ -499,6 +551,14 @@ bool isInConstructVariable(vector<string> cv, string v) {
 bool isDigit(string s){
     for (int i = 0; i < s.length(); i++) {
         if ((s[i] > '9'|| s[i] < '0') && (s[i] != '.'))
+            return false;
+    }
+    return true;
+}
+
+bool isDigitWithPN(string s){
+    for (int i = 0; i < s.length(); i++){
+        if ((s[i] > '9'|| s[i] < '0') && (s[i] != '.') && (s[i] != '+') && (s[i] != '-'))
             return false;
     }
     return true;

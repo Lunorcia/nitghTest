@@ -3,21 +3,17 @@
 //viewer裡有parser.h了
 //static
 vector<pair<string,vector<string>>> Parser::variableList(11); //最多10個([1]~[10],[0]no use)
-//vector<string> Parser::variableNameList(11); //變數名稱陣列
 vector<string> Parser::variableFormulaList(11); //設定變數的等式
-//vector<vector<string>> Parser::constructVariableList(11);
 
 Parser::Parser(){
     //x.fill(0.0,8000);//填入8000個0
     //y.fill(0.0,8000);//填入8000個0
-//    equationPart.clear();
     needDraw=false;
 }
 
 Parser::Parser(int num){
     //x.fill(0.0,8000);//填入8000個0
     //y.fill(0.0,8000);//填入8000個0
-//    equationPart.clear();
     textLineNumber=num;
     needDraw=false;
 }
@@ -53,12 +49,12 @@ bool Parser::checkDefinedVariable() {
     return true;
 }
 
-bool Parser::checkLoopDefinedVariable() {
-    for (int i = 0; i <= textLineNumber; i++) {
-        if (variableList[i].first == "x" || variableList[i].first == "y")
+bool Parser::checkLoopDefinedVariable(vector<int> relatedTextLineNumber) {
+    for (int i = 0; i < relatedTextLineNumber.size(); i++) {
+        if (variableList[relatedTextLineNumber[i]].first == "x" || variableList[relatedTextLineNumber[i]].first == "y")
             continue;
-        for (int j = i + 1; j < variableList.size(); j++) {
-            if (isInConstructVariable(variableList[i].second, variableList[j].first) == true && isInConstructVariable(variableList[j].second, variableList[i].first) == true)
+        for (int j = i + 1; j < relatedTextLineNumber.size(); j++) {
+            if (isInConstructVariable(variableList[relatedTextLineNumber[i]].second, variableList[relatedTextLineNumber[j]].first) == true && isInConstructVariable(variableList[relatedTextLineNumber[j]].second, variableList[relatedTextLineNumber[i]].first) == true)
                 return false;
         }
     }
@@ -167,18 +163,91 @@ void Parser::setEquationPart(string input) {
 }
 
 void Parser::computeAllEquation() {
-    for (int i = 0; i < variableList.size(); i++){
-        if (i == textLineNumber){
+    vector<int> relatedTextLineNumber;
+    for (int i = 0; i <= textLineNumber; i++) {
+        if (i == textLineNumber) {
             if (variableFormulaList[i] == "error")
                 return;
+            relatedTextLineNumber.push_back(i);
         }
-        else{
-            if ((variableList[i].first != "x" && variableList[i].first != "y") && variableFormulaList[i] == "error")
-                return;
+        else {
+            if (variableList[i].first != "x" && variableList[i].first != "y" ) {
+                if (variableList[i].second.size() == 0 || isInConstructVariable(variableList[textLineNumber].second, variableList[i].first) == true) {
+                    if (variableFormulaList[i] == "error")
+                        return;
+                    int e = false;
+                    for (int j = 0; j < relatedTextLineNumber.size(); j++) {
+                        if (variableList[i].first == variableList[relatedTextLineNumber[j]].first) {
+                            e = true;
+                            relatedTextLineNumber[j] = i;
+                            break;
+                        }
+                    }
+                    if (e == false)
+                        relatedTextLineNumber.push_back(i);
+                }
+            }
         }
     }
-    if (checkLoopDefinedVariable() == false)
+    if (checkLoopDefinedVariable(relatedTextLineNumber) == false)
         return;
+
+    vector<vector<string>> allFormula;
+    vector<string> formula;
+    string s;
+    for (int r = 0; r < relatedTextLineNumber.size(); r++) {
+        for (int i = 0; i < variableFormulaList[relatedTextLineNumber[r]].size(); i++) {
+            s += variableFormulaList[relatedTextLineNumber[r]][i];
+            if (s == "=" || s == "(" || s == ")" || s == "+" || s == "-" || s == "*" || s == "/" || s == "^" || s == "sin(" || s == "cos(" || s == "tan(") {
+                formula.push_back(s);
+                s.clear();
+            }
+            else if (s == "x" && variableList[relatedTextLineNumber[r]].first == "y") {
+                formula.push_back(s);
+                s.clear();
+            }
+            else if (s == "y" && variableList[relatedTextLineNumber[r]].first == "x") {
+                formula.push_back(s);
+                s.clear();
+            }
+            else if (((variableFormulaList[relatedTextLineNumber[r]][i + 1] < '0' || variableFormulaList[relatedTextLineNumber[r]][i + 1] > '9') && variableFormulaList[relatedTextLineNumber[r]][i + 1] != '.') && isDigit(s) == true) {
+                formula.push_back(s);
+                s.clear();
+            }
+            else if ((s == "sin" || s == "cos" || s == "tan") && variableFormulaList[relatedTextLineNumber[r]][i + 1] == '(') {
+                continue;
+            }
+            else if (variableFormulaList[relatedTextLineNumber[r]][i + 1] == '=' || variableFormulaList[relatedTextLineNumber[r]][i + 1] == '(' || variableFormulaList[relatedTextLineNumber[r]][i + 1] == ')' || variableFormulaList[relatedTextLineNumber[r]][i + 1] == '+' || variableFormulaList[relatedTextLineNumber[r]][i + 1] == '-' || variableFormulaList[relatedTextLineNumber[r]][i + 1] == '*' || variableFormulaList[relatedTextLineNumber[r]][i + 1] == '/' || variableFormulaList[relatedTextLineNumber[r]][i + 1] == '^') {
+                formula.push_back(s);
+                s.clear();
+            }
+            if (i == variableFormulaList[relatedTextLineNumber[r]].size() - 1) {
+                formula.push_back(s);
+                s.clear();
+            }
+        }
+        for (int i = 0; i < formula.size(); i++) {
+            if (formula[i] == "")
+                formula.erase(formula.begin() + i);
+        }
+        allFormula.push_back(formula);
+        formula.clear();
+    }
+
+    for (int i = 0; i < relatedTextLineNumber.size(); i++) {
+        for (int j = i + 1; j < relatedTextLineNumber.size(); j++) {
+            if (isInConstructVariable(variableList[relatedTextLineNumber[j]].second, variableList[relatedTextLineNumber[i]].first) == true) {
+                for (int w = 0; w < allFormula[j].size(); w++) {
+                    if (variableList[relatedTextLineNumber[i]].first == allFormula[j][w]) {
+                        allFormula[j][w] = "(";
+                        allFormula[j].insert(allFormula[j].begin() + w + 1, ")");
+                        allFormula[j].insert(allFormula[j].begin() + w + 1 , allFormula[i].begin(), allFormula[i].end());
+                    }
+                }
+            }
+        }
+    }
+
     int exist = existAxisXOrY();
     if (exist == -1)
         return;
@@ -186,79 +255,41 @@ void Parser::computeAllEquation() {
     needDraw = true;
     double d = -9999;
     while(d <= 10000) {
-        vector<string> formula;
-        string s="";
-        for (int i = 0; i < variableFormulaList[textLineNumber].size(); i++) {
-            s += variableFormulaList[textLineNumber][i];
-            if (s == "=" || s == "(" || s == ")" || s == "+" || s == "-" || s == "*" || s == "/" || s == "^" || s == "sin(" || s == "cos(" || s == "tan(") {
-                formula.push_back(s);
-                s.clear();
-            }
-            else if(s == "x"&& variableList[textLineNumber].first == "y") {
-                s = to_string(d);
-                formula.push_back(s);
-                s.clear();
-            }
-            else if(s == "y"&& variableList[textLineNumber].first == "x") {
-                s = to_string(d);
-                formula.push_back(s);
-                s.clear();
-            }
-            else if (((variableFormulaList[textLineNumber][i+1] < '0' || variableFormulaList[textLineNumber][i + 1] > '9') && variableFormulaList[textLineNumber][i + 1] != '.') && isDigit(s) == true) {
-                formula.push_back(s);
-                s.clear();
-            }
-            else if ((s == "sin" || s == "cos" || s == "tan") && variableFormulaList[textLineNumber][i + 1] == '(') {
-                continue;
-            }
-            else if (variableFormulaList[textLineNumber][i + 1] == '=' || variableFormulaList[textLineNumber][i + 1] == '(' || variableFormulaList[textLineNumber][i + 1] == ')' || variableFormulaList[textLineNumber][i + 1] == '+' || variableFormulaList[textLineNumber][i + 1] == '-' || variableFormulaList[textLineNumber][i + 1] == '*' || variableFormulaList[textLineNumber][i + 1] == '/' || variableFormulaList[textLineNumber][i + 1] == '^') {
-                formula.push_back(s);
-                s.clear();
-            }
-            if (i == variableFormulaList[textLineNumber].size() - 1) {
-                formula.push_back(s);
-                s.clear();
-            }
-        }
-//        for (int i = 0; i < formula.size(); i++) {
-//            if (formula[i] == "")
-//                formula.erase(formula.begin() + i);
-//        }
-
+        vector<string> replaceFormula = allFormula[allFormula.size() - 1];
         if (exist == 0 && variableList[textLineNumber].first == "x") {
             y.push_back(d);
-            x.push_back(compute(formula));
+            x.push_back(compute(replaceFormula));
         }
         else if (exist == 1 && variableList[textLineNumber].first == "y") {
             x.push_back(d);
-            y.push_back(compute(formula));
+            y.push_back(compute(replaceFormula));
         }
         else if (exist == 2) {
             if (variableList[textLineNumber].first == "y") {
                 x.push_back(d);
-                for (int i = 0; i < formula.size(); i++) {
-                    if (formula[i] == "x") {
+                for (int i = 0; i < replaceFormula.size(); i++) {
+                    if (replaceFormula[i] == "x") {
                         string sd;
                         stringstream ssd;
                         ssd << d;
                         ssd >> sd;
-                        formula[i].replace(formula[i].find("x"), 1, sd);
+                        replaceFormula[i].replace(replaceFormula[i].find("x"), 1, sd);
                     }
                 }
-                y.push_back(compute(formula));
+                y.push_back(compute(replaceFormula));
             }
             else if (variableList[textLineNumber].first == "x"){
                 y.push_back(d);
-                for (int i = 0; i < formula.size(); i++){
-                    if (formula[i] == "y") {
+                for (int i = 0; i < replaceFormula.size(); i++){
+                    if (replaceFormula[i] == "y") {
                         string sd;
                         stringstream ssd;
                         ssd << d;
                         ssd >> sd;
-                        formula[i].replace(formula[i].find("y"), 1, sd);
+                        replaceFormula[i].replace(replaceFormula[i].find("y"), 1, sd);
                     }
                 }
-                x.push_back(compute(formula));
+                x.push_back(compute(replaceFormula));
             }
         }
         d++;
@@ -268,6 +299,14 @@ void Parser::computeAllEquation() {
 
 double Parser::compute(vector<string> formula) {
     double ans = 0;
+
+//    for (int i = 0; i < formula.size(); i++) {
+//         if (isDigit(formula[i]) == true && formula[i - 1] == "(" && formula[i + 1] == ")") {
+//             formula.erase(formula.begin() + i - 1);
+//             formula.erase(formula.begin() + i);
+//             i--;
+//         }
+//     }
 
     if (formula.size() == 1){
         ans = stringToDouble(formula[0]);
@@ -374,13 +413,14 @@ double Parser::compute(vector<string> formula) {
                 formula[found1] = doubleToString(cos(stringToDouble(formula[found1])));
             else if (leftBracket == "tan(")
                 formula[found1] = doubleToString(tan(stringToDouble(formula[found1])));
+            if(formula.size()==1){
+                ans = stringToDouble(formula[0]);
+                return ans;
+            }
         }
     }
     return ans;
 }
-
-
-
 
 int Parser::existAxisXOrY(){
     bool haveX = false;
@@ -507,24 +547,6 @@ void mergePN(string& num){
     if (N % 2 == 1){
         num.insert(0,1,'-');
     }
-//    int P = 0, N = 0, c = 0;
-//    while (num[c] == '+' || num[c] == '-'){
-//        if (num[c] == '+')
-//            P++;
-//        if (num[c] == '-')
-//            N--;
-//        c++;
-//    }
-//    if (P + N < 0 && abs(P + N) % 2 == 1){
-//        num = "-" + num.substr(c, num.length() - c);
-//        if (num[1] == '.')
-//            num = "-0" + num.substr(1, num.length() - 1);
-//    }
-//    else{
-//        num = num.substr(c, num.length() - c);
-//        if (num[0] == '.')
-//            num = "0" + num;
-//    }
 }
 
 bool checkValid(vector<string>& formula){
@@ -532,7 +554,6 @@ bool checkValid(vector<string>& formula){
         string temp = formula[i];
         if (temp == "(" || temp == ")" || temp == "+" || temp == "-" || temp == "*" || temp == "/" || temp == "^" || temp == "sin(" || temp == "cos(" || temp == "tan(")
             continue;
-        //mergePN(temp);
         if (!checkDPs(temp))
             return false;
         formula[i] = temp;

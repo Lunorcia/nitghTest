@@ -292,7 +292,7 @@ void Parser::computeAllEquation() {
                 x.push_back(compute(replaceFormula));
             }
         }
-        d++;
+        d+=0.1;
     }
 
 }

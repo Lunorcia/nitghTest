@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <QGridLayout>
+#include<QMessageBox>
 #include "parser.h"
 using namespace std;
 QT_BEGIN_NAMESPACE
@@ -69,6 +70,26 @@ private slots:
      void on_checkBox_9_stateChanged(int arg1);
 
      void on_checkBox_10_stateChanged(int arg1);
+
+     void on_pushButton_clicked();
+
+     void on_pushButton_2_clicked();
+
+     void on_pushButton_4_clicked();
+
+     void on_pushButton_3_clicked();
+
+     void on_pushButton_10_clicked();
+
+     void on_pushButton_9_clicked();
+
+     void on_pushButton_8_clicked();
+
+     void on_pushButton_7_clicked();
+
+     void on_pushButton_5_clicked();
+
+     void on_pushButton_6_clicked();
 
 private:
     Ui::Viewer *ui;

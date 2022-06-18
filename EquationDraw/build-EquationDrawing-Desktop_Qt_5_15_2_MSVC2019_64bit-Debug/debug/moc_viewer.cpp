@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Viewer_t {
-    QByteArrayData data[25];
-    char stringdata0[613];
+    QByteArrayData data[35];
+    char stringdata0[852];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -56,7 +56,17 @@ QT_MOC_LITERAL(20, 477, 26), // "on_checkBox_6_stateChanged"
 QT_MOC_LITERAL(21, 504, 26), // "on_checkBox_7_stateChanged"
 QT_MOC_LITERAL(22, 531, 26), // "on_checkBox_8_stateChanged"
 QT_MOC_LITERAL(23, 558, 26), // "on_checkBox_9_stateChanged"
-QT_MOC_LITERAL(24, 585, 27) // "on_checkBox_10_stateChanged"
+QT_MOC_LITERAL(24, 585, 27), // "on_checkBox_10_stateChanged"
+QT_MOC_LITERAL(25, 613, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(26, 635, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(27, 659, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(28, 683, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(29, 707, 24), // "on_pushButton_10_clicked"
+QT_MOC_LITERAL(30, 732, 23), // "on_pushButton_9_clicked"
+QT_MOC_LITERAL(31, 756, 23), // "on_pushButton_8_clicked"
+QT_MOC_LITERAL(32, 780, 23), // "on_pushButton_7_clicked"
+QT_MOC_LITERAL(33, 804, 23), // "on_pushButton_5_clicked"
+QT_MOC_LITERAL(34, 828, 23) // "on_pushButton_6_clicked"
 
     },
     "Viewer\0on_addEquationButton_clicked\0"
@@ -79,7 +89,13 @@ QT_MOC_LITERAL(24, 585, 27) // "on_checkBox_10_stateChanged"
     "on_checkBox_7_stateChanged\0"
     "on_checkBox_8_stateChanged\0"
     "on_checkBox_9_stateChanged\0"
-    "on_checkBox_10_stateChanged"
+    "on_checkBox_10_stateChanged\0"
+    "on_pushButton_clicked\0on_pushButton_2_clicked\0"
+    "on_pushButton_4_clicked\0on_pushButton_3_clicked\0"
+    "on_pushButton_10_clicked\0"
+    "on_pushButton_9_clicked\0on_pushButton_8_clicked\0"
+    "on_pushButton_7_clicked\0on_pushButton_5_clicked\0"
+    "on_pushButton_6_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -89,7 +105,7 @@ static const uint qt_meta_data_Viewer[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      22,   14, // methods
+      32,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -97,28 +113,38 @@ static const uint qt_meta_data_Viewer[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  124,    2, 0x08 /* Private */,
-       3,    0,  125,    2, 0x08 /* Private */,
-       4,    0,  126,    2, 0x08 /* Private */,
-       5,    0,  127,    2, 0x08 /* Private */,
-       6,    0,  128,    2, 0x08 /* Private */,
-       7,    0,  129,    2, 0x08 /* Private */,
-       8,    0,  130,    2, 0x08 /* Private */,
-       9,    0,  131,    2, 0x08 /* Private */,
-      10,    0,  132,    2, 0x08 /* Private */,
-      11,    0,  133,    2, 0x08 /* Private */,
-      12,    0,  134,    2, 0x08 /* Private */,
-      13,    0,  135,    2, 0x08 /* Private */,
-      14,    1,  136,    2, 0x08 /* Private */,
-      16,    1,  139,    2, 0x08 /* Private */,
-      17,    1,  142,    2, 0x08 /* Private */,
-      18,    1,  145,    2, 0x08 /* Private */,
-      19,    1,  148,    2, 0x08 /* Private */,
-      20,    1,  151,    2, 0x08 /* Private */,
-      21,    1,  154,    2, 0x08 /* Private */,
-      22,    1,  157,    2, 0x08 /* Private */,
-      23,    1,  160,    2, 0x08 /* Private */,
-      24,    1,  163,    2, 0x08 /* Private */,
+       1,    0,  174,    2, 0x08 /* Private */,
+       3,    0,  175,    2, 0x08 /* Private */,
+       4,    0,  176,    2, 0x08 /* Private */,
+       5,    0,  177,    2, 0x08 /* Private */,
+       6,    0,  178,    2, 0x08 /* Private */,
+       7,    0,  179,    2, 0x08 /* Private */,
+       8,    0,  180,    2, 0x08 /* Private */,
+       9,    0,  181,    2, 0x08 /* Private */,
+      10,    0,  182,    2, 0x08 /* Private */,
+      11,    0,  183,    2, 0x08 /* Private */,
+      12,    0,  184,    2, 0x08 /* Private */,
+      13,    0,  185,    2, 0x08 /* Private */,
+      14,    1,  186,    2, 0x08 /* Private */,
+      16,    1,  189,    2, 0x08 /* Private */,
+      17,    1,  192,    2, 0x08 /* Private */,
+      18,    1,  195,    2, 0x08 /* Private */,
+      19,    1,  198,    2, 0x08 /* Private */,
+      20,    1,  201,    2, 0x08 /* Private */,
+      21,    1,  204,    2, 0x08 /* Private */,
+      22,    1,  207,    2, 0x08 /* Private */,
+      23,    1,  210,    2, 0x08 /* Private */,
+      24,    1,  213,    2, 0x08 /* Private */,
+      25,    0,  216,    2, 0x08 /* Private */,
+      26,    0,  217,    2, 0x08 /* Private */,
+      27,    0,  218,    2, 0x08 /* Private */,
+      28,    0,  219,    2, 0x08 /* Private */,
+      29,    0,  220,    2, 0x08 /* Private */,
+      30,    0,  221,    2, 0x08 /* Private */,
+      31,    0,  222,    2, 0x08 /* Private */,
+      32,    0,  223,    2, 0x08 /* Private */,
+      33,    0,  224,    2, 0x08 /* Private */,
+      34,    0,  225,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -143,6 +169,16 @@ static const uint qt_meta_data_Viewer[] = {
     QMetaType::Void, QMetaType::Int,   15,
     QMetaType::Void, QMetaType::Int,   15,
     QMetaType::Void, QMetaType::Int,   15,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -175,6 +211,16 @@ void Viewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 19: _t->on_checkBox_8_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 20: _t->on_checkBox_9_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 21: _t->on_checkBox_10_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 22: _t->on_pushButton_clicked(); break;
+        case 23: _t->on_pushButton_2_clicked(); break;
+        case 24: _t->on_pushButton_4_clicked(); break;
+        case 25: _t->on_pushButton_3_clicked(); break;
+        case 26: _t->on_pushButton_10_clicked(); break;
+        case 27: _t->on_pushButton_9_clicked(); break;
+        case 28: _t->on_pushButton_8_clicked(); break;
+        case 29: _t->on_pushButton_7_clicked(); break;
+        case 30: _t->on_pushButton_5_clicked(); break;
+        case 31: _t->on_pushButton_6_clicked(); break;
         default: ;
         }
     }
@@ -209,13 +255,13 @@ int Viewer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 22)
+        if (_id < 32)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 22;
+        _id -= 32;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 22)
+        if (_id < 32)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 22;
+        _id -= 32;
     }
     return _id;
 }

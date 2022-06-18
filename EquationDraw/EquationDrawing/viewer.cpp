@@ -379,3 +379,164 @@ void Viewer::on_checkBox_10_stateChanged(int arg1)
     ui->customPlot->replot();
 }
 
+
+void Viewer::on_pushButton_clicked()
+{
+    ui->Equation1->setText("");
+    ui->checkBox_1->setChecked(false);
+    equationInput[1]="";
+    QCustomPlot* customPlot  = ui->customPlot;
+    customPlot->graph(1)->setPen(QPen(QColor(0,0,255)));
+    Parser parser(1);
+  //  parser.process();
+    customPlot->graph(1)->setData(parser.x, parser.y);
+    customPlot->xAxis->setRange(-20,20);
+    customPlot->yAxis->setRange(-20,20);
+    customPlot->replot();
+}
+
+
+void Viewer::on_pushButton_2_clicked()
+{
+    ui->Equation2->setText("");
+    ui->checkBox_2->setChecked(false);
+    equationInput[2]=ui->Equation2->text();
+    QCustomPlot* customPlot  = ui->customPlot;
+    customPlot->graph(2)->setPen(QPen(QColor(255,0,0)));
+    Parser parser(2);
+   // parser.process();
+    customPlot->graph(2)->setData(parser.x, parser.y);
+    customPlot->xAxis->setRange(-20,20);
+    customPlot->yAxis->setRange(-20,20);
+    customPlot->replot();
+}
+
+
+void Viewer::on_pushButton_4_clicked()
+{
+    ui->Equation3->setText("");
+    ui->checkBox_3->setChecked(false);
+    equationInput[3]=ui->Equation3->text();
+    QCustomPlot* customPlot  = ui->customPlot;
+    customPlot->graph(3)->setPen(QColor(0,238,0));
+    Parser parser(3);
+  //  parser.process();
+    customPlot->graph(3)->setData(parser.x, parser.y);
+    customPlot->xAxis->setRange(-20,20);
+    customPlot->yAxis->setRange(-20,20);
+    customPlot->replot();
+}
+
+
+void Viewer::on_pushButton_3_clicked()
+{
+    ui->Equation4->setText("");
+    ui->checkBox_4->setChecked(false);
+    equationInput[4]=ui->Equation4->text();
+    QCustomPlot* customPlot  = ui->customPlot;
+    customPlot->graph(4)->setPen(QPen(QColor(105,105,105)));
+    Parser parser(4);
+ //   parser.process();
+    customPlot->graph(4)->setData(parser.x, parser.y);
+    customPlot->xAxis->setRange(-20,20);
+    customPlot->yAxis->setRange(-20,20);
+    customPlot->replot();
+}
+
+
+void Viewer::on_pushButton_10_clicked()
+{
+    ui->Equation5->setText("");
+    ui->checkBox_5->setChecked(false);
+    equationInput[5]=ui->Equation5->text();
+    QCustomPlot* customPlot  = ui->customPlot;
+    customPlot->graph(5)->setPen(QPen(QColor(174,120,255)));
+    Parser parser(5);
+   // parser.process();
+    customPlot->graph(5)->setData(parser.x, parser.y);
+    customPlot->xAxis->setRange(-20,20);
+    customPlot->yAxis->setRange(-20,20);
+    customPlot->replot();
+}
+
+
+
+
+void Viewer::on_pushButton_9_clicked()
+{
+    ui->Equation6->setText("");
+    ui->checkBox_6->setChecked(false);
+    equationInput[6]=ui->Equation6->text();
+    QCustomPlot* customPlot  = ui->customPlot;
+    customPlot->graph(6)->setPen(QPen(QColor(255,165,79)));
+    Parser parser(6);
+   // parser.process();
+    customPlot->graph(6)->setData(parser.x, parser.y);
+    customPlot->xAxis->setRange(-20,20);
+    customPlot->yAxis->setRange(-20,20);
+    customPlot->replot();
+}
+
+
+void Viewer::on_pushButton_8_clicked()
+{
+    ui->Equation7->setText("");
+    ui->checkBox_7->setChecked(false);
+    equationInput[7]=ui->Equation7->text();
+    QCustomPlot* customPlot  = ui->customPlot;
+    customPlot->graph(7)->setPen(QPen(QColor(151,219,242)));
+    Parser parser(7);
+  //  parser.process();
+    customPlot->graph(7)->setData(parser.x, parser.y);
+    customPlot->xAxis->setRange(-20,20);
+    customPlot->yAxis->setRange(-20,20);
+    customPlot->replot();
+}
+
+
+void Viewer::on_pushButton_7_clicked()
+{
+    ui->Equation8->setText("");
+    ui->checkBox_8->setChecked(false);
+    equationInput[8]=ui->Equation8->text();
+    QCustomPlot* customPlot  = ui->customPlot;
+    customPlot->graph(8)->setPen(QPen(QColor(255,193,193)));
+    Parser parser(8);
+   // parser.process();
+    customPlot->graph(8)->setData(parser.x, parser.y);
+    customPlot->xAxis->setRange(-20,20);
+    customPlot->yAxis->setRange(-20,20);
+    customPlot->replot();
+}
+
+
+void Viewer::on_pushButton_5_clicked()
+{
+    ui->Equation9->setText("");
+    ui->checkBox_9->setChecked(false);
+    equationInput[9]=ui->Equation9->text();
+    QCustomPlot* customPlot  = ui->customPlot;
+    customPlot->graph(9)->setPen(QPen(QColor(46,139,87)));
+    Parser parser(9);
+  //  parser.process();
+    customPlot->graph(9)->setData(parser.x, parser.y);
+    customPlot->xAxis->setRange(-20,20);
+    customPlot->yAxis->setRange(-20,20);
+    customPlot->replot();
+}
+
+
+void Viewer::on_pushButton_6_clicked()
+{
+    ui->Equation10->setText("");
+    ui->checkBox_10->setChecked(false);
+    equationInput[10]=ui->Equation10->text();
+    QCustomPlot* customPlot  = ui->customPlot;
+    Parser parser(10);
+  //  parser.process();
+    customPlot->graph(10)->setData(parser.x, parser.y);
+    customPlot->xAxis->setRange(-20,20);
+    customPlot->yAxis->setRange(-20,20);
+    customPlot->replot();
+}
+

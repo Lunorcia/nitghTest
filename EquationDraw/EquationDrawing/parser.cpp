@@ -72,6 +72,7 @@ void Parser::setEquationPart(string input) {
             s.clear();
         }
         else if (((input[i + 1] < '0' || input[i + 1] > '9') && input[i + 1] != '.') && isDigit(s) == true){
+
             formula.push_back(s);
             s.clear();
         }

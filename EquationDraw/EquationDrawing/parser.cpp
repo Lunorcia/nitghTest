@@ -27,6 +27,8 @@ void Parser::process(){//暫定總處理函式
     setEquationPart(Viewer::equationInput[textLineNumber].toStdString());
     if (variableList[textLineNumber].first == "y" || variableList[textLineNumber].first == "x")
         computeAllEquation();
+    else
+        needDraw=false;
 }
 
 
@@ -43,7 +45,7 @@ bool Parser::checkDefinedVariable() {
         if (variableList[textLineNumber].second[i] == "x" || variableList[textLineNumber].second[i] == "y")
             continue;
         int pos = searchVariableName(variableList[textLineNumber].second[i]);
-        if (pos > textLineNumber && pos == -1)
+        if (pos > textLineNumber || pos < 0)
             return false;
     }
     return true;
@@ -72,6 +74,7 @@ void Parser::setEquationPart(string input) {
             s.clear();
         }
         else if (((input[i + 1] < '0' || input[i + 1] > '9') && input[i + 1] != '.') && isDigit(s) == true){
+
             formula.push_back(s);
             s.clear();
         }
@@ -167,14 +170,21 @@ void Parser::computeAllEquation() {
     for (int i = 0; i <= textLineNumber; i++) {
         if (i == textLineNumber) {
             if (variableFormulaList[i] == "error")
+            {
+                needDraw=false;
                 return;
+            }
+
             relatedTextLineNumber.push_back(i);
         }
         else {
             if (variableList[i].first != "x" && variableList[i].first != "y" ) {
                 if (variableList[i].second.size() == 0 || isInConstructVariable(variableList[textLineNumber].second, variableList[i].first) == true) {
                     if (variableFormulaList[i] == "error")
+                    {
+                        needDraw=false;
                         return;
+                    }
                     int e = false;
                     for (int j = 0; j < relatedTextLineNumber.size(); j++) {
                         if (variableList[i].first == variableList[relatedTextLineNumber[j]].first) {
@@ -189,8 +199,14 @@ void Parser::computeAllEquation() {
             }
         }
     }
-    if (checkLoopDefinedVariable(relatedTextLineNumber) == false)
-        return;
+    if (checkDefinedVariable() == false){
+            needDraw = false;
+            return;
+        }
+    if (checkDefinedVariable() == false){
+            needDraw = false;
+            return;
+        }
 
     vector<vector<string>> allFormula;
     vector<string> formula;
@@ -250,7 +266,11 @@ void Parser::computeAllEquation() {
 
     int exist = existAxisXOrY();
     if (exist == -1)
+    {
+        needDraw=false;
         return;
+    }
+
 
     needDraw = true;
     double d = -9999;
@@ -292,7 +312,7 @@ void Parser::computeAllEquation() {
                 x.push_back(compute(replaceFormula));
             }
         }
-        d++;
+        d+=0.1;
     }
 
 }

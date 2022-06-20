@@ -704,7 +704,7 @@ debug\moc_qcustomplot.cpp: ..\EquationDrawing\qcustomplot.h \
 		C:\Qt\5.15.2\msvc2019_64\include\QtCore\QTimeZone \
 		debug\moc_predefs.h \
 		C:\Qt\5.15.2\msvc2019_64\bin\moc.exe
-	C:\Qt\5.15.2\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/USER/Desktop/nitghTest/EquationDraw/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/debug/moc_predefs.h -IC:/Qt/5.15.2/msvc2019_64/mkspecs/win32-msvc -IC:/Users/USER/Desktop/nitghTest/EquationDraw/EquationDrawing -IC:/Qt/5.15.2/msvc2019_64/include -IC:/Qt/5.15.2/msvc2019_64/include/QtPrintSupport -IC:/Qt/5.15.2/msvc2019_64/include/QtWidgets -IC:/Qt/5.15.2/msvc2019_64/include/QtGui -IC:/Qt/5.15.2/msvc2019_64/include/QtANGLE -IC:/Qt/5.15.2/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\EquationDrawing\qcustomplot.h -o debug\moc_qcustomplot.cpp
+	C:\Qt\5.15.2\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/USER/Desktop/GIT/nitghTest/EquationDraw/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/debug/moc_predefs.h -IC:/Qt/5.15.2/msvc2019_64/mkspecs/win32-msvc -IC:/Users/USER/Desktop/GIT/nitghTest/EquationDraw/EquationDrawing -IC:/Qt/5.15.2/msvc2019_64/include -IC:/Qt/5.15.2/msvc2019_64/include/QtPrintSupport -IC:/Qt/5.15.2/msvc2019_64/include/QtWidgets -IC:/Qt/5.15.2/msvc2019_64/include/QtGui -IC:/Qt/5.15.2/msvc2019_64/include/QtANGLE -IC:/Qt/5.15.2/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\EquationDrawing\qcustomplot.h -o debug\moc_qcustomplot.cpp
 
 debug\moc_viewer.cpp: ..\EquationDrawing\viewer.h \
 		..\EquationDrawing\qcustomplot.h \
@@ -1225,10 +1225,11 @@ debug\moc_viewer.cpp: ..\EquationDrawing\viewer.h \
 		C:\Qt\5.15.2\msvc2019_64\include\QtCore\QTimeZone \
 		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMainWindow \
 		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGridLayout \
+		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMessageBox \
 		..\EquationDrawing\parser.h \
 		debug\moc_predefs.h \
 		C:\Qt\5.15.2\msvc2019_64\bin\moc.exe
-	C:\Qt\5.15.2\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/USER/Desktop/nitghTest/EquationDraw/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/debug/moc_predefs.h -IC:/Qt/5.15.2/msvc2019_64/mkspecs/win32-msvc -IC:/Users/USER/Desktop/nitghTest/EquationDraw/EquationDrawing -IC:/Qt/5.15.2/msvc2019_64/include -IC:/Qt/5.15.2/msvc2019_64/include/QtPrintSupport -IC:/Qt/5.15.2/msvc2019_64/include/QtWidgets -IC:/Qt/5.15.2/msvc2019_64/include/QtGui -IC:/Qt/5.15.2/msvc2019_64/include/QtANGLE -IC:/Qt/5.15.2/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\EquationDrawing\viewer.h -o debug\moc_viewer.cpp
+	C:\Qt\5.15.2\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/USER/Desktop/GIT/nitghTest/EquationDraw/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/debug/moc_predefs.h -IC:/Qt/5.15.2/msvc2019_64/mkspecs/win32-msvc -IC:/Users/USER/Desktop/GIT/nitghTest/EquationDraw/EquationDrawing -IC:/Qt/5.15.2/msvc2019_64/include -IC:/Qt/5.15.2/msvc2019_64/include/QtPrintSupport -IC:/Qt/5.15.2/msvc2019_64/include/QtWidgets -IC:/Qt/5.15.2/msvc2019_64/include/QtGui -IC:/Qt/5.15.2/msvc2019_64/include/QtANGLE -IC:/Qt/5.15.2/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\EquationDrawing\viewer.h -o debug\moc_viewer.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -2288,6 +2289,7 @@ debug\main.obj: ..\EquationDrawing\main.cpp ..\EquationDrawing\viewer.h \
 		C:\Qt\5.15.2\msvc2019_64\include\QtCore\QTimeZone \
 		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMainWindow \
 		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGridLayout \
+		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMessageBox \
 		..\EquationDrawing\parser.h \
 		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QApplication
 
@@ -2810,6 +2812,7 @@ debug\parser.obj: ..\EquationDrawing\parser.cpp ..\EquationDrawing\viewer.h \
 		C:\Qt\5.15.2\msvc2019_64\include\QtCore\QTimeZone \
 		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMainWindow \
 		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGridLayout \
+		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMessageBox \
 		..\EquationDrawing\parser.h
 
 debug\qcustomplot.obj: ..\EquationDrawing\qcustomplot.cpp ..\EquationDrawing\qcustomplot.h \
@@ -3848,15 +3851,9 @@ debug\viewer.obj: ..\EquationDrawing\viewer.cpp ..\EquationDrawing\viewer.h \
 		C:\Qt\5.15.2\msvc2019_64\include\QtCore\QTimeZone \
 		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMainWindow \
 		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QGridLayout \
+		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMessageBox \
 		..\EquationDrawing\parser.h \
-		ui_viewer.h \
-		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QApplication \
-		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QCheckBox \
-		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLabel \
-		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QLineEdit \
-		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QMenuBar \
-		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QPushButton \
-		C:\Qt\5.15.2\msvc2019_64\include\QtWidgets\QStatusBar
+		ui_viewer.h
 
 debug\moc_qcustomplot.obj: debug\moc_qcustomplot.cpp 
 

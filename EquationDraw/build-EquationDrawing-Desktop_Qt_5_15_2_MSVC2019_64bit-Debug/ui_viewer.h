@@ -12,7 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
-#include <QtWidgets/QLabel>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -29,7 +29,6 @@ public:
     QWidget *centralwidget;
     QCustomPlot *customPlot;
     QWidget *equationWidget;
-    QLabel *label;
     QPushButton *addEquationButton;
     QLineEdit *Equation1;
     QLineEdit *Equation2;
@@ -61,6 +60,16 @@ public:
     QCheckBox *checkBox_8;
     QCheckBox *checkBox_9;
     QCheckBox *checkBox_10;
+    QGraphicsView *graphicsView;
+    QGraphicsView *graphicsView_2;
+    QGraphicsView *graphicsView_3;
+    QGraphicsView *graphicsView_4;
+    QGraphicsView *graphicsView_5;
+    QGraphicsView *graphicsView_6;
+    QGraphicsView *graphicsView_7;
+    QGraphicsView *graphicsView_8;
+    QGraphicsView *graphicsView_9;
+    QGraphicsView *graphicsView_10;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -77,13 +86,6 @@ public:
         equationWidget = new QWidget(centralwidget);
         equationWidget->setObjectName(QString::fromUtf8("equationWidget"));
         equationWidget->setGeometry(QRect(630, 400, 341, 181));
-        label = new QLabel(equationWidget);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(30, 10, 251, 21));
-        QFont font;
-        font.setPointSize(12);
-        label->setFont(font);
-        label->setAlignment(Qt::AlignCenter);
         addEquationButton = new QPushButton(centralwidget);
         addEquationButton->setObjectName(QString::fromUtf8("addEquationButton"));
         addEquationButton->setGeometry(QRect(630, 30, 93, 29));
@@ -177,6 +179,56 @@ public:
         checkBox_10 = new QCheckBox(centralwidget);
         checkBox_10->setObjectName(QString::fromUtf8("checkBox_10"));
         checkBox_10->setGeometry(QRect(890, 350, 16, 24));
+        graphicsView = new QGraphicsView(centralwidget);
+        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+        graphicsView->setGeometry(QRect(600, 80, 21, 21));
+        graphicsView->setStyleSheet(QString::fromUtf8("background-color: rgb(0,0,255);\n"
+""));
+        graphicsView_2 = new QGraphicsView(centralwidget);
+        graphicsView_2->setObjectName(QString::fromUtf8("graphicsView_2"));
+        graphicsView_2->setGeometry(QRect(600, 110, 21, 21));
+        graphicsView_2->setStyleSheet(QString::fromUtf8("background-color: rgb(255,0,0);\n"
+""));
+        graphicsView_3 = new QGraphicsView(centralwidget);
+        graphicsView_3->setObjectName(QString::fromUtf8("graphicsView_3"));
+        graphicsView_3->setGeometry(QRect(600, 140, 21, 21));
+        graphicsView_3->setStyleSheet(QString::fromUtf8("background-color: rgb(0,238,0);\n"
+""));
+        graphicsView_4 = new QGraphicsView(centralwidget);
+        graphicsView_4->setObjectName(QString::fromUtf8("graphicsView_4"));
+        graphicsView_4->setGeometry(QRect(600, 170, 21, 21));
+        graphicsView_4->setStyleSheet(QString::fromUtf8("background-color: rgb(105,105,105);\n"
+""));
+        graphicsView_5 = new QGraphicsView(centralwidget);
+        graphicsView_5->setObjectName(QString::fromUtf8("graphicsView_5"));
+        graphicsView_5->setGeometry(QRect(600, 200, 21, 21));
+        graphicsView_5->setStyleSheet(QString::fromUtf8("background-color: rgb(174,120,255);\n"
+""));
+        graphicsView_6 = new QGraphicsView(centralwidget);
+        graphicsView_6->setObjectName(QString::fromUtf8("graphicsView_6"));
+        graphicsView_6->setGeometry(QRect(600, 230, 21, 21));
+        graphicsView_6->setStyleSheet(QString::fromUtf8("background-color: rgb(255,165,79);\n"
+""));
+        graphicsView_7 = new QGraphicsView(centralwidget);
+        graphicsView_7->setObjectName(QString::fromUtf8("graphicsView_7"));
+        graphicsView_7->setGeometry(QRect(600, 260, 21, 21));
+        graphicsView_7->setStyleSheet(QString::fromUtf8("background-color: rgb(151,219,242);\n"
+""));
+        graphicsView_8 = new QGraphicsView(centralwidget);
+        graphicsView_8->setObjectName(QString::fromUtf8("graphicsView_8"));
+        graphicsView_8->setGeometry(QRect(600, 290, 21, 21));
+        graphicsView_8->setStyleSheet(QString::fromUtf8("background-color: rgb(255,193,193);\n"
+""));
+        graphicsView_9 = new QGraphicsView(centralwidget);
+        graphicsView_9->setObjectName(QString::fromUtf8("graphicsView_9"));
+        graphicsView_9->setGeometry(QRect(600, 320, 21, 21));
+        graphicsView_9->setStyleSheet(QString::fromUtf8("background-color: rgb(46,139,87);\n"
+""));
+        graphicsView_10 = new QGraphicsView(centralwidget);
+        graphicsView_10->setObjectName(QString::fromUtf8("graphicsView_10"));
+        graphicsView_10->setGeometry(QRect(600, 350, 21, 21));
+        graphicsView_10->setStyleSheet(QString::fromUtf8("background-color: rgb(0,0,128);\n"
+""));
         Viewer->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Viewer);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -224,7 +276,6 @@ public:
     void retranslateUi(QMainWindow *Viewer)
     {
         Viewer->setWindowTitle(QCoreApplication::translate("Viewer", "Viewer", nullptr));
-        label->setText(QCoreApplication::translate("Viewer", "temp no use", nullptr));
         addEquationButton->setText(QCoreApplication::translate("Viewer", "Add", nullptr));
         pushButton->setText(QCoreApplication::translate("Viewer", "D", nullptr));
         pushButton_2->setText(QCoreApplication::translate("Viewer", "D", nullptr));
